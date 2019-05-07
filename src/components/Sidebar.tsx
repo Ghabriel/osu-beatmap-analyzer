@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useFileUpload } from '../hooks/useFileUpload';
 import { Beatmap, StyleMap } from '../types';
@@ -6,8 +6,9 @@ import { BeatmapSummary } from './BeatmapSummary';
 
 export interface SidebarProps {
     beatmapList: Beatmap[];
-    onImportBeatmap: (beatmap: string) => void;
-    onSelectBeatmap: (beatmap: Beatmap) => void;
+    selectedBeatmap: number | null;
+    onImportBeatmap: (beatmapString: string) => void;
+    onSelectBeatmap: (beatmapIndex: number) => void;
 }
 
 const styles: StyleMap = {
@@ -18,16 +19,7 @@ const styles: StyleMap = {
 };
 
 export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
-    const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(null);
-
     const handleImportClick = useFileUpload(props.onImportBeatmap);
-
-    function handleBeatmapClick(index: number) {
-        setSelectedBeatmap(index);
-
-        const beatmap = props.beatmapList[index];
-        props.onSelectBeatmap(beatmap);
-    }
 
     return (
         <div style={styles.wrapper}>
@@ -40,8 +32,8 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
                     <BeatmapSummary
                         key={beatmap.beatmapId}
                         beatmap={beatmap}
-                        isSelected={index === selectedBeatmap}
-                        onClick={() => handleBeatmapClick(index)}
+                        isSelected={index === props.selectedBeatmap}
+                        onClick={() => props.onSelectBeatmap(index)}
                     />
                 ))}
             </div>
