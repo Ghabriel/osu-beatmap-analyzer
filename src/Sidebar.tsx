@@ -1,21 +1,20 @@
 import React from 'react';
-import { UploadButton } from './components/UploadButton';
+import Button from 'react-bootstrap/Button';
+import { useFileUpload } from './hooks/useFileUpload';
 import './Sidebar.css';
 
 export interface SidebarProps {
-    // handleImportBeatmap: () => void;
+    onImportBeatmap: (beatmap: string) => void;
 }
 
 export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
-    function handleImportBeatmap() {
-        // TODO
-    };
+    const handleClick = useFileUpload(props.onImportBeatmap);
 
     return (
         <div className="component">
-            <UploadButton variant="primary" onUpload={handleImportBeatmap}>
+            <Button variant="primary" onClick={handleClick}>
                 Import Beatmap
-            </UploadButton>
+            </Button>
         </div>
     )
 };

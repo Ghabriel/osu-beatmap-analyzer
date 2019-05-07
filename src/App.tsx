@@ -3,6 +3,10 @@ import './App.css';
 import { Sidebar } from './Sidebar';
 
 const App: React.FunctionComponent = () => {
+    function handleImportBeatmap(beatmap: string) {
+        console.log('[BEATMAP]', beatmap);
+    }
+
     return (
         <div className="page">
             <div className="header">
@@ -11,7 +15,7 @@ const App: React.FunctionComponent = () => {
 
             <div className="body">
                 <div className="sidebar">
-                    <Sidebar />
+                    <Sidebar onImportBeatmap={handleImportBeatmap} />
                 </div>
                 <div className="main">
                     Main
