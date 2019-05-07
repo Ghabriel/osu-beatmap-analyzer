@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { parseBeatmap } from './helpers';
+import { parseBeatmap } from './helpers/beatmap-parser';
 import { Sidebar } from './Sidebar';
 import { Beatmap, HitObjectMetadata } from './types';
 

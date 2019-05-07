@@ -1,4 +1,4 @@
-import { Beatmap, HitObjectMetadata } from './types';
+import { Beatmap, HitObjectMetadata } from '../types';
 
 enum BeatmapSection {
     General = 'General',
