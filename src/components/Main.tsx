@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '../helpers/style-variables';
 import { Beatmap, StyleMap } from '../types';
 
 export interface MainProps {
@@ -20,7 +21,7 @@ const styles: StyleMap = {
     },
 
     difficulty: {
-        border: '1px solid #1186b8',
+        border: `1px solid ${colors.primaryBorder}`,
         marginTop: '15px',
         padding: '5px',
     },
@@ -47,37 +48,37 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
 
     return (
         <div>
-            <div className="title" style={styles.title}>
+            <div style={styles.title}>
                 {beatmap.title}
             </div>
 
-            <div className="version" style={styles.version}>
+            <div style={styles.version}>
                 {beatmap.version}
             </div>
 
-            <div className="author" style={styles.author}>
+            <div style={styles.author}>
                 {beatmap.source} ({beatmap.artist}) - Mapped by {beatmap.creator}
             </div>
 
-            <div className="difficulty" style={styles.difficulty}>
-                <div className="trait" style={styles.trait}>
-                    <div className="key" style={styles.traitKey}>HP Drain</div>
-                    <div className="value">{beatmap.hpDrainRate}</div>
+            <div style={styles.difficulty}>
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>HP Drain</div>
+                    <div>{beatmap.hpDrainRate}</div>
                 </div>
 
-                <div className="trait" style={styles.trait}>
-                    <div className="key" style={styles.traitKey}>Circle Size</div>
-                    <div className="value">{beatmap.circleSize}</div>
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>Circle Size</div>
+                    <div>{beatmap.circleSize}</div>
                 </div>
 
-                <div className="trait" style={styles.trait}>
-                    <div className="key" style={styles.traitKey}>Overall Difficulty</div>
-                    <div className="value">{beatmap.overallDifficulty}</div>
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>Overall Difficulty</div>
+                    <div>{beatmap.overallDifficulty}</div>
                 </div>
 
-                <div className="trait" style={styles.trait}>
-                    <div className="key" style={styles.traitKey}>Approach Rate</div>
-                    <div className="value">{beatmap.approachRate}</div>
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>Approach Rate</div>
+                    <div>{beatmap.approachRate}</div>
                 </div>
             </div>
         </div>

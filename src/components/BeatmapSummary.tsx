@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { merge } from '../helpers/merge';
+import { colors } from '../helpers/style-variables';
 import { Beatmap, StyleMap } from '../types';
 
 export interface BeatmapSummaryProps {
@@ -10,8 +11,8 @@ export interface BeatmapSummaryProps {
 
 const styles: StyleMap = {
     beatmapSummary: {
-        backgroundColor: '#b3b3b3',
-        border: '1px solid #8d8d8d',
+        backgroundColor: colors.secondary,
+        border: `1px solid ${colors.secondaryBorder}`,
         borderRadius: '2px',
         cursor: 'pointer',
         marginTop: '3px',
@@ -19,16 +20,16 @@ const styles: StyleMap = {
     },
 
     beatmapSummaryHovered: {
-        backgroundColor: '#9a9a9a',
+        backgroundColor: colors.secondaryDark,
     },
 
     beatmapSummarySelected: {
-        backgroundColor: '#15a8e7',
-        border: '1px solid #1186b8',
+        backgroundColor: colors.primary,
+        border: `1px solid ${colors.primaryBorder}`,
     },
 
     beatmapSummaryHoveredSelected: {
-        backgroundColor: '#1397cf',
+        backgroundColor: colors.primaryDark,
     },
 
     title: {
