@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
 import { parseBeatmap } from './helpers/beatmap-parser';
 import { Beatmap, HitObjectMetadata } from './types';
@@ -129,14 +130,11 @@ const quaverCopy2: Beatmap = {
 
 const App: React.FunctionComponent = () => {
     const [beatmapList, setBeatmapList] = useState<Beatmap[]>([quaver, quaverCopy, quaverCopy2]);
+    const [selectedBeatmap, setSelectedBeatmap] = useState<Beatmap | null>(null);
 
     function handleImportBeatmap(beatmapString: string) {
         const beatmap = parseBeatmap(beatmapString);
         setBeatmapList(beatmapList.concat([beatmap]));
-    }
-
-    function handleSelectBeatmap(beatmap: Beatmap) {
-        console.log('[SELECTED]', beatmap);
     }
 
     return (
@@ -150,11 +148,11 @@ const App: React.FunctionComponent = () => {
                     <Sidebar
                         beatmapList={beatmapList}
                         onImportBeatmap={handleImportBeatmap}
-                        onSelectBeatmap={handleSelectBeatmap}
+                        onSelectBeatmap={beatmap => setSelectedBeatmap(beatmap)}
                     />
                 </div>
                 <div className="main">
-                    Main
+                    <Main beatmap={selectedBeatmap} />
                 </div>
             </div>
         </div>
