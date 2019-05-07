@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
+import { parseBeatmap } from './helpers';
 import { Sidebar } from './Sidebar';
 
 const App: React.FunctionComponent = () => {
-    function handleImportBeatmap(beatmap: string) {
+    function handleImportBeatmap(beatmapString: string) {
+        const beatmap = parseBeatmap(beatmapString);
         console.log('[BEATMAP]', beatmap);
     }
 
