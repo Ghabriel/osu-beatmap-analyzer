@@ -184,6 +184,7 @@ function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
 }
 
 function parseColorLine(beatmap: Partial<Beatmap>, line: string) {
+    // eslint-disable-next-line
     const [_, value] = line.split(':').map(p => p.trim());
 
     if (beatmap.colors === undefined) {

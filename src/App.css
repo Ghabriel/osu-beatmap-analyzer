@@ -20,12 +20,12 @@
 
 .sidebar {
     background-color: #ccc;
-    flex: 15 0 15%;
+    flex: 20 0 20%;
     padding: 3px;
 }
 
 .main {
     background-color: #eee;
-    flex: 85 0 85%;
+    flex: 80 0 80%;
     padding: 3px;
 }
