@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { BeatmapSummary } from './components/BeatmapSummary';
-import { useFileUpload } from './hooks/useFileUpload';
-import './Sidebar.css';
-import { Beatmap } from './types';
+import { useFileUpload } from '../hooks/useFileUpload';
+import { Beatmap, StyleMap } from '../types';
+import { BeatmapSummary } from './BeatmapSummary';
 
 export interface SidebarProps {
     beatmapList: Beatmap[];
     onImportBeatmap: (beatmap: string) => void;
     onSelectBeatmap: (beatmap: Beatmap) => void;
 }
+
+const styles: StyleMap = {
+    wrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+    }
+};
 
 export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
     const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(null);
@@ -24,7 +30,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
     }
 
     return (
-        <div className="component">
+        <div style={styles.wrapper}>
             <Button variant="primary" onClick={handleImportClick}>
                 Import Beatmap
             </Button>

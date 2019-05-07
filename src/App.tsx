@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Sidebar } from './components/Sidebar';
 import { parseBeatmap } from './helpers/beatmap-parser';
-import { Sidebar } from './Sidebar';
 import { Beatmap, HitObjectMetadata } from './types';
 
 const quaver: Beatmap = {
