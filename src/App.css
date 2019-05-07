@@ -5,8 +5,11 @@
 }
 
 .header {
-    background-color: #ddd;
+    background-color: #1186b8;
+    color: white;
     flex: 0 0 auto;
+    font-size: 20px;
+    padding: 3px;
 }
 
 .body {
@@ -17,10 +20,12 @@
 
 .sidebar {
     background-color: #ccc;
-    flex: 20 0 auto;
+    flex: 15 0 15%;
+    padding: 3px;
 }
 
 .main {
     background-color: #eee;
-    flex: 80 0 auto;
+    flex: 85 0 85%;
+    padding: 3px;
 }
