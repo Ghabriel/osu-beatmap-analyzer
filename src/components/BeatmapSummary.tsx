@@ -4,6 +4,8 @@ import { Beatmap, StyleMap } from '../types';
 
 export interface BeatmapSummaryProps {
     beatmap: Beatmap;
+    isSelected: boolean;
+    onClick: () => void;
 }
 
 const styles: StyleMap = {
@@ -18,6 +20,15 @@ const styles: StyleMap = {
 
     beatmapSummaryHovered: {
         backgroundColor: '#9a9a9a',
+    },
+
+    beatmapSummarySelected: {
+        backgroundColor: '#15a8e7',
+        border: '1px solid #1186b8',
+    },
+
+    beatmapSummaryHoveredSelected: {
+        backgroundColor: '#1397cf',
     },
 
     title: {
@@ -35,7 +46,7 @@ const styles: StyleMap = {
     },
 };
 
-export const BeatmapSummary: React.FunctionComponent<BeatmapSummaryProps> = ({ beatmap }) => {
+export const BeatmapSummary: React.FunctionComponent<BeatmapSummaryProps> = props => {
     const [hovered, setHovered] = useState(false);
 
     return (
@@ -44,21 +55,24 @@ export const BeatmapSummary: React.FunctionComponent<BeatmapSummaryProps> = ({ b
             style={merge(
                 styles.beatmapSummary,
                 hovered && styles.beatmapSummaryHovered,
+                props.isSelected && styles.beatmapSummarySelected,
+                props.isSelected && hovered && styles.beatmapSummaryHoveredSelected,
             )}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
+            onClick={props.onClick}
         >
             {/* {beatmap.source} ({beatmap.artist}) - {beatmap.title} [{beatmap.version}] */}
             <div className="title" style={styles.title}>
-                {beatmap.title}
+                {props.beatmap.title}
             </div>
 
             <div className="author" style={styles.author}>
-                {beatmap.artist} // {beatmap.creator}
+                {props.beatmap.artist} // {props.beatmap.creator}
             </div>
 
             <div className="version" style={styles.version}>
-                {beatmap.version}
+                {props.beatmap.version}
             </div>
         </div>
     );

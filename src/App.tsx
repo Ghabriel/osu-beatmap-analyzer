@@ -117,12 +117,26 @@ const quaver: Beatmap = {
     ]
 };
 
+const quaverCopy: Beatmap = {
+    ...quaver,
+    beatmapId: quaver.beatmapId + 1,
+};
+
+const quaverCopy2: Beatmap = {
+    ...quaver,
+    beatmapId: quaver.beatmapId + 2,
+};
+
 const App: React.FunctionComponent = () => {
-    const [beatmapList, setBeatmapList] = useState<Beatmap[]>([quaver, quaver, quaver]);
+    const [beatmapList, setBeatmapList] = useState<Beatmap[]>([quaver, quaverCopy, quaverCopy2]);
 
     function handleImportBeatmap(beatmapString: string) {
         const beatmap = parseBeatmap(beatmapString);
         setBeatmapList(beatmapList.concat([beatmap]));
+    }
+
+    function handleSelectBeatmap(beatmap: Beatmap) {
+        console.log('[SELECTED]', beatmap);
     }
 
     return (
@@ -136,6 +150,7 @@ const App: React.FunctionComponent = () => {
                     <Sidebar
                         beatmapList={beatmapList}
                         onImportBeatmap={handleImportBeatmap}
+                        onSelectBeatmap={handleSelectBeatmap}
                     />
                 </div>
                 <div className="main">
