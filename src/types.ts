@@ -10,6 +10,12 @@ export interface Point {
     y: number;
 }
 
+export interface DifficultyHitObject {
+    lastLast: HitObject | null;
+    last: HitObject;
+    current: HitObject;
+}
+
 export interface ParsedBeatmap {
     // General
     audioFilename: string;
