@@ -1,6 +1,7 @@
 import React from 'react';
 import { colors } from '../helpers/style-variables';
 import { Beatmap, StyleMap } from '../types';
+import { PartialBar } from './PartialBar';
 
 export interface MainProps {
     beatmap: Beatmap | null;
@@ -27,6 +28,7 @@ const styles: StyleMap = {
     },
 
     trait: {
+        alignItems: 'center',
         display: 'flex',
         flexDirection: 'row',
     },
@@ -34,6 +36,10 @@ const styles: StyleMap = {
     traitKey: {
         fontWeight: 'bold',
         width: '150px',
+    },
+
+    traitValue: {
+        marginLeft: '10px',
     },
 };
 
@@ -63,22 +69,26 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
             <div style={styles.difficulty}>
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>HP Drain</div>
-                    <div>{beatmap.hpDrainRate}</div>
+                    <PartialBar fraction={beatmap.hpDrainRate / 10} />
+                    <div style={styles.traitValue}>{beatmap.hpDrainRate}</div>
                 </div>
 
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>Circle Size</div>
-                    <div>{beatmap.circleSize}</div>
+                    <PartialBar fraction={beatmap.circleSize / 10} />
+                    <div style={styles.traitValue}>{beatmap.circleSize}</div>
                 </div>
 
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>Overall Difficulty</div>
-                    <div>{beatmap.overallDifficulty}</div>
+                    <PartialBar fraction={beatmap.overallDifficulty / 10} />
+                    <div style={styles.traitValue}>{beatmap.overallDifficulty}</div>
                 </div>
 
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>Approach Rate</div>
-                    <div>{beatmap.approachRate}</div>
+                    <PartialBar fraction={beatmap.approachRate / 10} />
+                    <div style={styles.traitValue}>{beatmap.approachRate}</div>
                 </div>
             </div>
         </div>

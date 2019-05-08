@@ -132,7 +132,7 @@ const quaverCopy2: Beatmap = {
 
 const App: React.FunctionComponent = () => {
     const [beatmapList, setBeatmapList] = useState<Beatmap[]>([quaver, quaverCopy, quaverCopy2]);
-    const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(null);
+    const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(0);
 
     function handleImportBeatmap(beatmapString: string) {
         const beatmap = parseBeatmap(beatmapString);
