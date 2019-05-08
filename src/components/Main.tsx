@@ -41,6 +41,11 @@ const styles: StyleMap = {
     traitValue: {
         marginLeft: '10px',
     },
+
+    traitDivisor: {
+        marginBottom: '5px',
+        marginTop: '5px',
+    },
 };
 
 export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
@@ -89,6 +94,26 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
                     <div style={styles.traitKey}>Approach Rate</div>
                     <PartialBar fraction={beatmap.approachRate / 10} />
                     <div style={styles.traitValue}>{beatmap.approachRate}</div>
+                </div>
+
+                <hr color={colors.primaryBorder} style={styles.traitDivisor} />
+
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>Aim Strain</div>
+                    <PartialBar fraction={3.5 / 10} />
+                    <div style={styles.traitValue}>{3.5}</div>
+                </div>
+
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>Speed Strain</div>
+                    <PartialBar fraction={4.5 / 10} />
+                    <div style={styles.traitValue}>{4.5}</div>
+                </div>
+
+                <div style={styles.trait}>
+                    <div style={styles.traitKey}>Star Rating</div>
+                    <PartialBar fraction={4 / 10} />
+                    <div style={styles.traitValue}>{4}</div>
                 </div>
             </div>
         </div>
