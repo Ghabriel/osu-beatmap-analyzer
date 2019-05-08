@@ -1,0 +1,7 @@
+https://github.com/ppy/osu/blob/de08115e8506ef0f5004a11cc48c15808d9a1800/osu.Game/Rulesets/Objects/SliderPath.cs
+https://github.com/ppy/osu/blob/de08115e8506ef0f5004a11cc48c15808d9a1800/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
+https://github.com/ppy/osu/blob/9cbd3f43f3af66a893d172f813d10b6a10b118d7/osu.Game.Rulesets.Osu/Difficulty/OsuDifficultyCalculator.cs
+https://github.com/ppy/osu/blob/de08115e8506ef0f5004a11cc48c15808d9a1800/osu.Game.Rulesets.Osu/Difficulty/Preprocessing/OsuDifficultyHitObject.cs
+https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Objects/OsuHitObject.cs
+https://github.com/ppy/osu/blob/9cbd3f43f3af66a893d172f813d10b6a10b118d7/osu.Game.Rulesets.Osu/Difficulty/Skills/Aim.cs
+https://github.com/ppy/osu/blob/8ccc935b6bfab2eae7eb28703c7ee4a6ef735d55/osu.Game/Rulesets/Difficulty/Skills/Skill.cs
