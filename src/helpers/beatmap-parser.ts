@@ -1,4 +1,6 @@
-import { Beatmap, HitObjectMetadata } from '../types';
+import { Beatmap, CircleMetadata, HitObjectFlags, HitObjectMetadata, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
+import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
+import { SliderPath } from './SliderPath';
 
 enum BeatmapSection {
     General = 'General',
@@ -35,7 +37,7 @@ export function parseBeatmap(content: string): Beatmap {
         parseBeatmapLine(beatmap, currentSection, line);
     }
 
-    return beatmap as Beatmap;
+    return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
 }
 
 function parseBeatmapLine(beatmap: Partial<Beatmap>, section: BeatmapSection, line: string) {
@@ -207,17 +209,69 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         beatmap.hitObjects = [];
     }
 
+    const flags = parseInt(parts[3]);
+    const metadata = parseHitObjectMetadata(parts.slice(5), flags);
+
+    if (metadata === null) {
+        console.log('Invalid hit object. Ignoring.', line);
+        return;
+    }
+
     beatmap.hitObjects.push({
         x: parseInt(parts[0]),
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
-        flags: parseInt(parts[3]),
+        flags: flags,
         soundType: parseInt(parts[4]),
-        metadata: parseHitObjectMetadata(parts[5]),
+        metadata: metadata,
     });
 }
 
-function parseHitObjectMetadata(metadata: string): HitObjectMetadata {
-    // TODO
-    return {} as HitObjectMetadata;
+function parseHitObjectMetadata(metadata: string[], flags: HitObjectFlags): HitObjectMetadata | null {
+    if (flags & HitObjectFlags.Circle) {
+        return parseCircleMetadata(metadata);
+    }
+
+    if (flags & HitObjectFlags.Slider) {
+        return parseSliderMetadata(metadata);
+    }
+
+    if (flags & HitObjectFlags.Spinner) {
+        return parseSpinnerMetadata(metadata);
+    }
+
+    return null;
+}
+
+function parseCircleMetadata(metadata: string[]): CircleMetadata {
+    return {
+        soundSamples: metadata
+    };
+}
+
+function parseSliderMetadata(metadata: string[]): SliderMetadata {
+    const [pathType, ...points] = metadata[0].split('|');
+    const pathLength = metadata.length <= 2 ? 0 : parseInt(metadata[2]);
+
+    const controlPoints = points.map(pair => {
+        const [x, y] = pair.split(':').map(v => parseInt(v));
+        return { x, y } as Point;
+    });
+
+    return {
+        path: new SliderPath(
+            pathType as PathType,
+            controlPoints,
+            pathLength,
+        ),
+        repeatCount: Math.max(0, parseInt(metadata[1]) - 1),
+        soundSamples: metadata.slice(3),
+    };
+}
+
+function parseSpinnerMetadata(metadata: string[]): SpinnerMetadata {
+    return {
+        endTime: parseInt(metadata[0]),
+        soundSamples: metadata.slice(1),
+    };
 }

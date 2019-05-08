@@ -1,10 +1,16 @@
 import { CSSProperties } from 'react';
+import { SliderPath } from './helpers/SliderPath';
 
 export interface StyleMap {
     [key: string]: CSSProperties;
 }
 
-export interface Beatmap {
+export interface Point {
+    x: number;
+    y: number;
+}
+
+export interface ParsedBeatmap {
     // General
     audioFilename: string;
     audioLeadIn: number;
@@ -43,6 +49,13 @@ export interface Beatmap {
     hitObjects: HitObject[];
 }
 
+export type Beatmap = ParsedBeatmap & {
+    // Computed
+    aimStrain: number;
+    speedStrain: number;
+    starRating: number;
+};
+
 export interface TimingPoint {
     // TODO
 }
@@ -70,12 +83,15 @@ export enum HitObjectFlags {
     Spinner = 8,
 }
 
-export type HitObjectMetadata = SliderMetadata | SpinnerMetadata;
+export type HitObjectMetadata = CircleMetadata | SliderMetadata | SpinnerMetadata;
+
+export interface CircleMetadata {
+    soundSamples: string[];
+}
 
 export interface SliderMetadata {
-    pathType: PathType;
-    spanCount: number;
-    pathLength: number;
+    path: SliderPath;
+    repeatCount: number;
     soundSamples: string[];
 }
 
