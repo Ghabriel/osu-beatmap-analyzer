@@ -1,7 +1,10 @@
 import { Beatmap } from './types';
 
 export const quaver: Beatmap = {
-    controlPoints: [],
+    timingControlPoints: [],
+    difficultyControlPoints: [],
+    effectControlPoints: [],
+    legacySampleControlPoints: [],
     "audioFilename": "audio.mp3",
     "audioLeadIn": 0,
     "previewTime": 37767,
@@ -11,7 +14,7 @@ export const quaver: Beatmap = {
     "distanceSpacing": 1,
     "beatDivisor": 4,
     "gridSize": 32,
-    "title": "quaver",
+    "title": "quaver (mock)",
     "titleUnicode": "quaver ♪",
     "artist": "dj TAKA",
     "artistUnicode": "dj TAKA",

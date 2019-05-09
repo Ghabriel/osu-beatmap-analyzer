@@ -1,4 +1,4 @@
-import { Beatmap, ControlPointType, HitObject, HitObjectType, ParsedBeatmap } from '../types';
+import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, ParsedBeatmap, Slider } from '../types';
 import { assertNever } from './assertNever';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
@@ -6,6 +6,9 @@ const SECTION_LENGTH = 400;
 
 // https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L14
 const STACK_DISTANCE = 3;
+
+// HitObject.cs (25)
+const CONTROL_POINT_LENIENCY = 1;
 
 const CLOCK_RATE = 1000 / 30;
 const NORMALIZED_RADIUS = 52;
@@ -41,11 +44,9 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 }
 
 function createControlPoints(beatmap: ParsedBeatmap) {
-    const controlPoints = beatmap.controlPoints;
-
     for (const timingPoint of beatmap.timingPoints) {
         if (timingPoint.timingChange) {
-            controlPoints.push({
+            beatmap.timingControlPoints.push({
                 type: ControlPointType.Timing,
                 time: timingPoint.time,
                 beatLength: timingPoint.beatLength,
@@ -53,20 +54,20 @@ function createControlPoints(beatmap: ParsedBeatmap) {
             });
         }
 
-        controlPoints.push({
+        beatmap.difficultyControlPoints.push({
             type: ControlPointType.Difficulty,
             time: timingPoint.time,
             speedMultiplier: timingPoint.speedMultiplier,
         });
 
-        controlPoints.push({
+        beatmap.effectControlPoints.push({
             type: ControlPointType.Effect,
             time: timingPoint.time,
             kiaiMode: timingPoint.kiaiMode,
             omitFirstBarSignature: timingPoint.omitFirstBarSignature,
         });
 
-        controlPoints.push({
+        beatmap.legacySampleControlPoints.push({
             type: ControlPointType.LegacySample,
             time: timingPoint.time,
             customSampleBank: timingPoint.customSampleBank,
@@ -105,7 +106,40 @@ function fillHitObjects(beatmap: ParsedBeatmap) {
 }
 
 function applyDefaults(beatmap: ParsedBeatmap) {
-    // TODO
+    for (const hitObject of beatmap.hitObjects) {
+        if (hitObject.type === HitObjectType.Slider) {
+            fillSliderComputedAttributes(hitObject, beatmap);
+            createNestedHitObjects(hitObject);
+        }
+    }
+}
+
+function fillSliderComputedAttributes(slider: Slider, beatmap: ParsedBeatmap) {
+    const BASE_SCORING_DISTANCE = 100;
+    const TICK_DISTANCE_MULTIPLIER = 1;
+
+    const timingPoint = getControlPoint(beatmap.timingControlPoints, slider.startTime);
+    const difficultyPoint = getControlPoint(beatmap.difficultyControlPoints, slider.startTime);
+
+    slider.metadata.timingPoint = timingPoint;
+    slider.metadata.difficultyPoint = difficultyPoint;
+
+    const scoringDistance = BASE_SCORING_DISTANCE * beatmap.sliderMultiplier * difficultyPoint!.speedMultiplier;
+
+    slider.metadata.velocity = scoringDistance / timingPoint!.beatLength;
+    slider.metadata.tickDistance = scoringDistance / beatmap.sliderTickRate * TICK_DISTANCE_MULTIPLIER;
+}
+
+function getControlPoint<T extends ControlPoint>(list: T[], startTime: number): T | null {
+    return list.find(t => t.time === startTime) || null;
+}
+
+function createNestedHitObjects(slider: Slider) {
+    const startTime = slider.startTime;
+    const spanCount = slider.metadata.repeatCount + 1;
+    // const endTime = startTime + spanCount * slider.metadata.path.length /
+    // const duration =
+    // const spanDuration = slider.
 }
 
 function preProcessBeatmap(beatmap: ParsedBeatmap) {

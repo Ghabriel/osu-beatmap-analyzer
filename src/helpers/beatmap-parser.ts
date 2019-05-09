@@ -40,7 +40,10 @@ export function parseBeatmap(content: string): Beatmap {
 
     beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
 
-    beatmap.controlPoints = [];
+    beatmap.timingControlPoints = [];
+    beatmap.difficultyControlPoints = [];
+    beatmap.effectControlPoints = [];
+    beatmap.legacySampleControlPoints = [];
 
     return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
 }
@@ -336,6 +339,12 @@ function parseSliderMetadata(metadata: string[]): SliderMetadata {
         ),
         repeatCount: Math.max(0, parseInt(metadata[1]) - 1),
         soundSamples: metadata.slice(3),
+
+        // Computed
+        timingPoint: null,
+        difficultyPoint: null,
+        velocity: 0,
+        tickDistance: 0,
     };
 }
 

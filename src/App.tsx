@@ -9,13 +9,13 @@ import { Beatmap } from './types';
 const quaverCopy: Beatmap = {
     ...quaver,
     beatmapId: quaver.beatmapId + 1,
-    title: 'quaver (copy)',
+    title: 'quaver (mock copy)',
 };
 
 const quaverCopy2: Beatmap = {
     ...quaver,
     beatmapId: quaver.beatmapId + 2,
-    title: 'quaver (copy 2)',
+    title: 'quaver (mock copy 2)',
 };
 
 const App: React.FunctionComponent = () => {

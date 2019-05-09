@@ -51,7 +51,11 @@ export interface ParsedBeatmap {
     sliderTickRate: number;
 
     timingPoints: TimingPoint[];
-    controlPoints: ControlPoint[];
+    // controlPoints: ControlPoint[];
+    timingControlPoints: TimingControlPoint[];
+    difficultyControlPoints: DifficultyControlPoint[];
+    effectControlPoints: EffectControlPoint[];
+    legacySampleControlPoints: LegacySampleControlPoint[];
     colors: Color[];
     hitObjects: HitObject[];
 }
@@ -190,6 +194,12 @@ export interface SliderMetadata {
     path: SliderPath;
     repeatCount: number;
     soundSamples: string[];
+
+    // Computed
+    timingPoint: TimingControlPoint | null;
+    difficultyPoint: DifficultyControlPoint | null;
+    velocity: number;
+    tickDistance: number;
 }
 
 export enum PathType {
