@@ -84,6 +84,11 @@ export interface BaseHitObject {
     comboOffset: number;
     soundType: number;
     // metadata: HitObjectMetadata;
+
+    // Computed
+    indexInCurrentCombo: number;
+    comboIndex: number;
+    lastInCombo: boolean;
 }
 
 export interface Circle extends BaseHitObject {

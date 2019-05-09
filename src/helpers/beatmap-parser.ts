@@ -227,6 +227,10 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         newCombo: (flags & HitObjectFlags.NewCombo) > 0,
         comboOffset: (type & HitObjectFlags.ComboOffset) / 16,
         soundType: parseInt(parts[4]),
+
+        indexInCurrentCombo: 0,
+        comboIndex: 0,
+        lastInCombo: false,
     };
 
     const hitObject = createHitObject(baseHitObject, type, parts.slice(5));

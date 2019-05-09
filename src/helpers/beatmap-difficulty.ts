@@ -14,6 +14,8 @@ const OBJECT_RADIUS = 64;
 export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
     fillHitObjects(beatmap);
 
+    applyDefaults(beatmap);
+
     // TODO: apply mods, if any
     // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L90
     // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L97
@@ -62,6 +64,10 @@ function fillHitObjects(beatmap: ParsedBeatmap) {
 
         firstObject = false;
     }
+}
+
+function applyDefaults(beatmap: Beatmap) {
+    // TODO
 }
 
 function preProcessBeatmap(beatmap: ParsedBeatmap) {
