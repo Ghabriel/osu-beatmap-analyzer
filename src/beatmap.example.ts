@@ -1,6 +1,7 @@
 import { Beatmap } from './types';
 
 export const quaver: Beatmap = {
+    controlPoints: [],
     "audioFilename": "audio.mp3",
     "audioLeadIn": 0,
     "previewTime": 37767,

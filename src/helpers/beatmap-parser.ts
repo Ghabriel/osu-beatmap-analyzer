@@ -40,6 +40,8 @@ export function parseBeatmap(content: string): Beatmap {
 
     beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
 
+    beatmap.controlPoints = [];
+
     return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
 }
 

@@ -1,4 +1,4 @@
-import { Beatmap, HitObject, HitObjectType, ParsedBeatmap } from '../types';
+import { Beatmap, ControlPointType, HitObject, HitObjectType, ParsedBeatmap } from '../types';
 import { assertNever } from './assertNever';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
@@ -12,6 +12,8 @@ const NORMALIZED_RADIUS = 52;
 const OBJECT_RADIUS = 64;
 
 export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
+    createControlPoints(beatmap);
+
     fillHitObjects(beatmap);
 
     applyDefaults(beatmap);
@@ -36,6 +38,42 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
         speedStrain: 0,
         starRating: 0,
     };
+}
+
+function createControlPoints(beatmap: ParsedBeatmap) {
+    const controlPoints = beatmap.controlPoints;
+
+    for (const timingPoint of beatmap.timingPoints) {
+        if (timingPoint.timingChange) {
+            controlPoints.push({
+                type: ControlPointType.Timing,
+                time: timingPoint.time,
+                beatLength: timingPoint.beatLength,
+                timeSignature: timingPoint.timeSignature,
+            });
+        }
+
+        controlPoints.push({
+            type: ControlPointType.Difficulty,
+            time: timingPoint.time,
+            speedMultiplier: timingPoint.speedMultiplier,
+        });
+
+        controlPoints.push({
+            type: ControlPointType.Effect,
+            time: timingPoint.time,
+            kiaiMode: timingPoint.kiaiMode,
+            omitFirstBarSignature: timingPoint.omitFirstBarSignature,
+        });
+
+        controlPoints.push({
+            type: ControlPointType.LegacySample,
+            time: timingPoint.time,
+            customSampleBank: timingPoint.customSampleBank,
+            sampleSet: timingPoint.sampleSet,
+            sampleVolume: timingPoint.sampleVolume,
+        });
+    }
 }
 
 // TODO: find a better name
