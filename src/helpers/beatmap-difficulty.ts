@@ -120,12 +120,10 @@ function fillSliderComputedAttributes(slider: Slider, beatmap: ParsedBeatmap) {
 
     const timingPoint = getControlPoint(beatmap.timingControlPoints, slider.startTime);
     const difficultyPoint = getControlPoint(beatmap.difficultyControlPoints, slider.startTime);
+    const scoringDistance = BASE_SCORING_DISTANCE * beatmap.sliderMultiplier * difficultyPoint!.speedMultiplier;
 
     slider.metadata.timingPoint = timingPoint;
     slider.metadata.difficultyPoint = difficultyPoint;
-
-    const scoringDistance = BASE_SCORING_DISTANCE * beatmap.sliderMultiplier * difficultyPoint!.speedMultiplier;
-
     slider.metadata.velocity = scoringDistance / timingPoint!.beatLength;
     slider.metadata.tickDistance = scoringDistance / beatmap.sliderTickRate * TICK_DISTANCE_MULTIPLIER;
 }
@@ -135,11 +133,15 @@ function getControlPoint<T extends ControlPoint>(list: T[], startTime: number): 
 }
 
 function createNestedHitObjects(slider: Slider) {
+    const LEGACY_LAST_TICK_OFFSET = 36;
+
     const startTime = slider.startTime;
     const spanCount = slider.metadata.repeatCount + 1;
-    // const endTime = startTime + spanCount * slider.metadata.path.length /
-    // const duration =
-    // const spanDuration = slider.
+    const pathDistance = slider.metadata.path.length;
+    const endTime = startTime + spanCount * pathDistance / slider.metadata.velocity;
+    const duration = endTime - startTime;
+    const spanDuration = duration / spanCount;
+    const tickDistance = slider.metadata.tickDistance;
 }
 
 function preProcessBeatmap(beatmap: ParsedBeatmap) {
