@@ -1,4 +1,4 @@
-import { Beatmap, CircleMetadata, HitObjectFlags, HitObjectMetadata, HitObjectType, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
+import { BaseHitObject, Beatmap, CircleMetadata, HitObject, HitObjectFlags, HitObjectType, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
 import { assertNever } from './assertNever';
 import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
 import { SliderPath } from './SliderPath';
@@ -220,15 +220,17 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         return;
     }
 
-    beatmap.hitObjects.push({
+    const baseHitObject: BaseHitObject = {
         x: parseInt(parts[0]),
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
-        type: type,
         newCombo: (flags & HitObjectFlags.NewCombo) > 0,
         soundType: parseInt(parts[4]),
-        metadata: parseHitObjectMetadata(parts.slice(5), type),
-    });
+    };
+
+    const hitObject = createHitObject(baseHitObject, type, parts.slice(5));
+
+    beatmap.hitObjects.push(hitObject);
 }
 
 function getHitObjectType(flags: HitObjectFlags): HitObjectType | null {
@@ -247,14 +249,30 @@ function getHitObjectType(flags: HitObjectFlags): HitObjectType | null {
     return null;
 }
 
-function parseHitObjectMetadata(metadata: string[], type: HitObjectType): HitObjectMetadata {
+function createHitObject(
+    baseHitObject: BaseHitObject,
+    type: HitObjectType,
+    metadata: string[],
+): HitObject {
     switch (type) {
         case HitObjectType.Circle:
-            return parseCircleMetadata(metadata);
+            return {
+                ...baseHitObject,
+                type: type,
+                metadata: parseCircleMetadata(metadata),
+            };
         case HitObjectType.Slider:
-            return parseSliderMetadata(metadata);
+            return {
+                ...baseHitObject,
+                type: type,
+                metadata: parseSliderMetadata(metadata),
+            };
         case HitObjectType.Spinner:
-            return parseSpinnerMetadata(metadata);
+            return {
+                ...baseHitObject,
+                type: type,
+                metadata: parseSpinnerMetadata(metadata),
+            };
         default:
             return assertNever(type);
     }
@@ -262,7 +280,8 @@ function parseHitObjectMetadata(metadata: string[], type: HitObjectType): HitObj
 
 function parseCircleMetadata(metadata: string[]): CircleMetadata {
     return {
-        soundSamples: metadata
+        soundSamples: metadata,
+        comboOffset: 0,
     };
 }
 
@@ -283,6 +302,7 @@ function parseSliderMetadata(metadata: string[]): SliderMetadata {
         ),
         repeatCount: Math.max(0, parseInt(metadata[1]) - 1),
         soundSamples: metadata.slice(3),
+        comboOffset: 0,
     };
 }
 

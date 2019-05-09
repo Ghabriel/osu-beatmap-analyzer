@@ -73,14 +73,31 @@ export interface Color {
     alpha?: number;
 }
 
-export interface HitObject {
+export type HitObject = Circle | Slider | Spinner;
+
+export interface BaseHitObject {
     x: number;
     y: number;
     startTime: number;
-    type: HitObjectType;
+    // type: HitObjectType;
     newCombo: boolean;
     soundType: number;
-    metadata: HitObjectMetadata;
+    // metadata: HitObjectMetadata;
+}
+
+export interface Circle extends BaseHitObject {
+    type: HitObjectType.Circle;
+    metadata: CircleMetadata;
+}
+
+export interface Slider extends BaseHitObject {
+    type: HitObjectType.Slider;
+    metadata: SliderMetadata;
+}
+
+export interface Spinner extends BaseHitObject {
+    type: HitObjectType.Spinner;
+    metadata: SpinnerMetadata;
 }
 
 export enum HitObjectType {
@@ -96,16 +113,20 @@ export enum HitObjectFlags {
     Spinner = 8,
 }
 
-export type HitObjectMetadata = CircleMetadata | SliderMetadata | SpinnerMetadata;
+// export type HitObjectMetadata = CircleMetadata | SliderMetadata | SpinnerMetadata;
 
 export interface CircleMetadata {
     soundSamples: string[];
+    // Computed
+    comboOffset: number;
 }
 
 export interface SliderMetadata {
     path: SliderPath;
     repeatCount: number;
     soundSamples: string[];
+    // Computed
+    comboOffset: number;
 }
 
 export enum PathType {
