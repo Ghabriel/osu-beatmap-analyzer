@@ -81,6 +81,7 @@ export interface BaseHitObject {
     startTime: number;
     // type: HitObjectType;
     newCombo: boolean;
+    comboOffset: number;
     soundType: number;
     // metadata: HitObjectMetadata;
 }
@@ -111,22 +112,19 @@ export enum HitObjectFlags {
     Slider = 2,
     NewCombo = 4,
     Spinner = 8,
+    ComboOffset = 16 | 32 | 64,
 }
 
 // export type HitObjectMetadata = CircleMetadata | SliderMetadata | SpinnerMetadata;
 
 export interface CircleMetadata {
     soundSamples: string[];
-    // Computed
-    comboOffset: number;
 }
 
 export interface SliderMetadata {
     path: SliderPath;
     repeatCount: number;
     soundSamples: string[];
-    // Computed
-    comboOffset: number;
 }
 
 export enum PathType {

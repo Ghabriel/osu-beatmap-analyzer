@@ -225,6 +225,7 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
         newCombo: (flags & HitObjectFlags.NewCombo) > 0,
+        comboOffset: (type & HitObjectFlags.ComboOffset) / 16,
         soundType: parseInt(parts[4]),
     };
 
@@ -271,7 +272,7 @@ function createHitObject(
             return {
                 ...baseHitObject,
                 type: type,
-                metadata: parseSpinnerMetadata(metadata),
+                metadata: parseSpinnerMetadata(metadata, baseHitObject),
             };
         default:
             return assertNever(type);
@@ -281,7 +282,6 @@ function createHitObject(
 function parseCircleMetadata(metadata: string[]): CircleMetadata {
     return {
         soundSamples: metadata,
-        comboOffset: 0,
     };
 }
 
@@ -302,13 +302,12 @@ function parseSliderMetadata(metadata: string[]): SliderMetadata {
         ),
         repeatCount: Math.max(0, parseInt(metadata[1]) - 1),
         soundSamples: metadata.slice(3),
-        comboOffset: 0,
     };
 }
 
-function parseSpinnerMetadata(metadata: string[]): SpinnerMetadata {
+function parseSpinnerMetadata(metadata: string[], baseHitObject: BaseHitObject): SpinnerMetadata {
     return {
-        endTime: parseInt(metadata[0]),
+        endTime: Math.max(parseInt(metadata[0]), baseHitObject.startTime),
         soundSamples: metadata.slice(1),
     };
 }
