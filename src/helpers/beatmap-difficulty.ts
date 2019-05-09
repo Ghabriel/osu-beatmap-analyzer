@@ -66,7 +66,7 @@ function fillHitObjects(beatmap: ParsedBeatmap) {
     }
 }
 
-function applyDefaults(beatmap: Beatmap) {
+function applyDefaults(beatmap: ParsedBeatmap) {
     // TODO
 }
 

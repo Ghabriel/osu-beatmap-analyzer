@@ -1,12 +1,6 @@
-import { SliderPath } from './helpers/SliderPath';
-import { Beatmap, PathType } from './types';
+import { Beatmap } from './types';
 
 export const quaver: Beatmap = {
-    "timingPoints": [],
-    aimStrain: 0,
-    speedStrain: 0,
-    starRating: 0,
-
     "audioFilename": "audio.mp3",
     "audioLeadIn": 0,
     "previewTime": 37767,
@@ -91,6 +85,152 @@ export const quaver: Beatmap = {
     "approachRate": 3,
     "sliderMultiplier": 0,
     "sliderTickRate": 1,
+    "timingPoints": [
+        {
+            "time": 1198,
+            "beatLength": 329,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 32,
+            "timingChange": true,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1
+        },
+        {
+            "time": 1198,
+            "beatLength": -133,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 32,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 0.7518796992481203
+        },
+        {
+            "time": 6472,
+            "beatLength": -100,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 52,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1
+        },
+        {
+            "time": 13066,
+            "beatLength": 326,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 62,
+            "timingChange": true,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1
+        },
+        {
+            "time": 13066,
+            "beatLength": -100,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 62,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1
+        },
+        {
+            "time": 37848,
+            "beatLength": 322,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 72,
+            "timingChange": true,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1
+        },
+        {
+            "time": 37848,
+            "beatLength": -90,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 72,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "time": 48170,
+            "beatLength": -90,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 82,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "time": 53331,
+            "beatLength": -90,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 72,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "time": 57202,
+            "beatLength": -90,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 82,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "time": 58493,
+            "beatLength": -83,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 92,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1.2048192771084338
+        },
+        {
+            "time": 64944,
+            "beatLength": -90,
+            "timeSignature": 4,
+            "sampleSet": 2,
+            "customSampleBank": 22,
+            "sampleVolume": 5,
+            "timingChange": false,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false,
+            "speedMultiplier": 1.1111111111111112
+        }
+    ],
     "colors": [
         {
             "red": 114,
@@ -122,8 +262,13 @@ export const quaver: Beatmap = {
             "x": 256,
             "y": 192,
             "startTime": 1198,
-            "flags": 12,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 2,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 1,
+            "lastInCombo": true,
+            "type": 2,
             "metadata": {
                 "endTime": 5154,
                 "soundSamples": [
@@ -135,15 +280,28 @@ export const quaver: Beatmap = {
             "x": 297,
             "y": 198,
             "startTime": 6472,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 2,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 353, "y": 227 },
-                        { "x": 458, "y": 206 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 353,
+                            "y": 227
+                        },
+                        {
+                            "x": 458,
+                            "y": 206
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|2|2",
@@ -156,8 +314,13 @@ export const quaver: Beatmap = {
             "x": 167,
             "y": 78,
             "startTime": 8450,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 2,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 2,
+            "lastInCombo": true,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:0:0:0:\r"
@@ -168,14 +331,24 @@ export const quaver: Beatmap = {
             "x": 21,
             "y": 177,
             "startTime": 9110,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 3,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 41, "y": 346 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 41,
+                            "y": 346
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|6",
@@ -188,14 +361,24 @@ export const quaver: Beatmap = {
             "x": 214,
             "y": 359,
             "startTime": 10428,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 3,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 223, "y": 279 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 223,
+                            "y": 279
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|2",
@@ -208,14 +391,24 @@ export const quaver: Beatmap = {
             "x": 267,
             "y": 204,
             "startTime": 11088,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 3,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 258, "y": 124 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 258,
+                            "y": 124
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|0",
@@ -228,16 +421,32 @@ export const quaver: Beatmap = {
             "x": 267,
             "y": 204,
             "startTime": 13066,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 4,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 181, "y": 196 },
-                        { "x": 199, "y": 242 },
-                        { "x": 108, "y": 231 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 181,
+                            "y": 196
+                        },
+                        {
+                            "x": 199,
+                            "y": 242
+                        },
+                        {
+                            "x": 108,
+                            "y": 231
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|2|2",
@@ -250,8 +459,13 @@ export const quaver: Beatmap = {
             "x": 347,
             "y": 239,
             "startTime": 14696,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 4,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -262,15 +476,28 @@ export const quaver: Beatmap = {
             "x": 420,
             "y": 189,
             "startTime": 15022,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 4,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 427, "y": 132 },
-                        { "x": 419, "y": 102 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 427,
+                            "y": 132
+                        },
+                        {
+                            "x": 419,
+                            "y": 102
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -283,20 +510,48 @@ export const quaver: Beatmap = {
             "x": 359,
             "y": 48,
             "startTime": 15674,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 5,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 318, "y": 60 },
-                        { "x": 282, "y": 38 },
-                        { "x": 282, "y": 38 },
-                        { "x": 217, "y": 84 },
-                        { "x": 217, "y": 84 },
-                        { "x": 180, "y": 62 },
-                        { "x": 126, "y": 71 }
-                    ], 240
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 318,
+                            "y": 60
+                        },
+                        {
+                            "x": 282,
+                            "y": 38
+                        },
+                        {
+                            "x": 282,
+                            "y": 38
+                        },
+                        {
+                            "x": 217,
+                            "y": 84
+                        },
+                        {
+                            "x": 217,
+                            "y": 84
+                        },
+                        {
+                            "x": 180,
+                            "y": 62
+                        },
+                        {
+                            "x": 126,
+                            "y": 71
+                        }
+                    ],
+                    "length": 240
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|8",
@@ -309,20 +564,48 @@ export const quaver: Beatmap = {
             "x": 56,
             "y": 40,
             "startTime": 16979,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 5,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 46, "y": 83 },
-                        { "x": 68, "y": 117 },
-                        { "x": 68, "y": 117 },
-                        { "x": 21, "y": 181 },
-                        { "x": 21, "y": 181 },
-                        { "x": 42, "y": 219 },
-                        { "x": 33, "y": 273 }
-                    ], 240
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 46,
+                            "y": 83
+                        },
+                        {
+                            "x": 68,
+                            "y": 117
+                        },
+                        {
+                            "x": 68,
+                            "y": 117
+                        },
+                        {
+                            "x": 21,
+                            "y": 181
+                        },
+                        {
+                            "x": 21,
+                            "y": 181
+                        },
+                        {
+                            "x": 42,
+                            "y": 219
+                        },
+                        {
+                            "x": 33,
+                            "y": 273
+                        }
+                    ],
+                    "length": 240
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -335,15 +618,28 @@ export const quaver: Beatmap = {
             "x": 25,
             "y": 346,
             "startTime": 18283,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 6,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 109, "y": 366 },
-                        { "x": 188, "y": 335 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 109,
+                            "y": 366
+                        },
+                        {
+                            "x": 188,
+                            "y": 335
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|2",
@@ -356,8 +652,13 @@ export const quaver: Beatmap = {
             "x": 234,
             "y": 276,
             "startTime": 19261,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 6,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -368,14 +669,24 @@ export const quaver: Beatmap = {
             "x": 253,
             "y": 190,
             "startTime": 19587,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 6,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 246, "y": 103 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 246,
+                            "y": 103
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|10|2",
@@ -388,15 +699,28 @@ export const quaver: Beatmap = {
             "x": 323,
             "y": 351,
             "startTime": 20892,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 7,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 392, "y": 364 },
-                        { "x": 477, "y": 326 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 392,
+                            "y": 364
+                        },
+                        {
+                            "x": 477,
+                            "y": 326
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|2",
@@ -409,8 +733,13 @@ export const quaver: Beatmap = {
             "x": 250,
             "y": 300,
             "startTime": 22522,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 2,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 7,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -421,15 +750,28 @@ export const quaver: Beatmap = {
             "x": 179,
             "y": 247,
             "startTime": 22848,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 7,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 135, "y": 239 },
-                        { "x": 89, "y": 244 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 135,
+                            "y": 239
+                        },
+                        {
+                            "x": 89,
+                            "y": 244
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|2",
@@ -442,15 +784,28 @@ export const quaver: Beatmap = {
             "x": 14,
             "y": 261,
             "startTime": 23500,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 8,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 8, "y": 178 },
-                        { "x": 2, "y": 96 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 8,
+                            "y": 178
+                        },
+                        {
+                            "x": 2,
+                            "y": 96
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|2|2",
@@ -463,8 +818,13 @@ export const quaver: Beatmap = {
             "x": 70,
             "y": 328,
             "startTime": 25131,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 8,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -475,15 +835,28 @@ export const quaver: Beatmap = {
             "x": 147,
             "y": 369,
             "startTime": 25457,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 8,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 187, "y": 380 },
-                        { "x": 236, "y": 367 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 187,
+                            "y": 380
+                        },
+                        {
+                            "x": 236,
+                            "y": 367
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -496,21 +869,52 @@ export const quaver: Beatmap = {
             "x": 304,
             "y": 337,
             "startTime": 26109,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 9,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 301, "y": 288 },
-                        { "x": 318, "y": 259 },
-                        { "x": 318, "y": 259 },
-                        { "x": 301, "y": 220 },
-                        { "x": 276, "y": 191 },
-                        { "x": 276, "y": 191 },
-                        { "x": 274, "y": 162 },
-                        { "x": 300, "y": 109 }
-                    ], 240
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 301,
+                            "y": 288
+                        },
+                        {
+                            "x": 318,
+                            "y": 259
+                        },
+                        {
+                            "x": 318,
+                            "y": 259
+                        },
+                        {
+                            "x": 301,
+                            "y": 220
+                        },
+                        {
+                            "x": 276,
+                            "y": 191
+                        },
+                        {
+                            "x": 276,
+                            "y": 191
+                        },
+                        {
+                            "x": 274,
+                            "y": 162
+                        },
+                        {
+                            "x": 300,
+                            "y": 109
+                        }
+                    ],
+                    "length": 240
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -523,21 +927,52 @@ export const quaver: Beatmap = {
             "x": 357,
             "y": 51,
             "startTime": 27413,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 9,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 308, "y": 48 },
-                        { "x": 279, "y": 65 },
-                        { "x": 279, "y": 65 },
-                        { "x": 240, "y": 48 },
-                        { "x": 211, "y": 23 },
-                        { "x": 211, "y": 23 },
-                        { "x": 182, "y": 21 },
-                        { "x": 129, "y": 47 }
-                    ], 240
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 308,
+                            "y": 48
+                        },
+                        {
+                            "x": 279,
+                            "y": 65
+                        },
+                        {
+                            "x": 279,
+                            "y": 65
+                        },
+                        {
+                            "x": 240,
+                            "y": 48
+                        },
+                        {
+                            "x": 211,
+                            "y": 23
+                        },
+                        {
+                            "x": 211,
+                            "y": 23
+                        },
+                        {
+                            "x": 182,
+                            "y": 21
+                        },
+                        {
+                            "x": 129,
+                            "y": 47
+                        }
+                    ],
+                    "length": 240
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -550,16 +985,32 @@ export const quaver: Beatmap = {
             "x": 62,
             "y": 93,
             "startTime": 28718,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 10,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 84, "y": 170 },
-                        { "x": 40, "y": 176 },
-                        { "x": 57, "y": 256 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 84,
+                            "y": 170
+                        },
+                        {
+                            "x": 40,
+                            "y": 176
+                        },
+                        {
+                            "x": 57,
+                            "y": 256
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|2",
@@ -572,8 +1023,13 @@ export const quaver: Beatmap = {
             "x": 124,
             "y": 306,
             "startTime": 29696,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 10,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -584,14 +1040,24 @@ export const quaver: Beatmap = {
             "x": 200,
             "y": 262,
             "startTime": 30022,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 10,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 291, "y": 267 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 291,
+                            "y": 267
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|10|2",
@@ -604,15 +1070,28 @@ export const quaver: Beatmap = {
             "x": 164,
             "y": 89,
             "startTime": 31326,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 11,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 236, "y": 54 },
-                        { "x": 331, "y": 65 }
-                    ], 160
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 236,
+                            "y": 54
+                        },
+                        {
+                            "x": 331,
+                            "y": 65
+                        }
+                    ],
+                    "length": 160
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|2",
@@ -625,8 +1104,13 @@ export const quaver: Beatmap = {
             "x": 393,
             "y": 95,
             "startTime": 32305,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 11,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -637,14 +1121,24 @@ export const quaver: Beatmap = {
             "x": 442,
             "y": 168,
             "startTime": 32631,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 11,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 433, "y": 257 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 433,
+                            "y": 257
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -657,14 +1151,24 @@ export const quaver: Beatmap = {
             "x": 371,
             "y": 309,
             "startTime": 33283,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 3,
+            "comboIndex": 11,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 282, "y": 300 }
-                    ], 80
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 282,
+                            "y": 300
+                        }
+                    ],
+                    "length": 80
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -677,8 +1181,13 @@ export const quaver: Beatmap = {
             "x": 256,
             "y": 192,
             "startTime": 33935,
-            "flags": 12,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 12,
+            "lastInCombo": true,
+            "type": 2,
             "metadata": {
                 "endTime": 36544,
                 "soundSamples": [
@@ -690,14 +1199,24 @@ export const quaver: Beatmap = {
             "x": 243,
             "y": 137,
             "startTime": 37848,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 13,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 140, "y": 152 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 140,
+                            "y": 152
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|10|2",
@@ -710,8 +1229,13 @@ export const quaver: Beatmap = {
             "x": 330,
             "y": 129,
             "startTime": 38815,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 13,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -722,15 +1246,28 @@ export const quaver: Beatmap = {
             "x": 400,
             "y": 182,
             "startTime": 39138,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 13,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 411, "y": 230 },
-                        { "x": 401, "y": 274 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 411,
+                            "y": 230
+                        },
+                        {
+                            "x": 401,
+                            "y": 274
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -743,15 +1280,28 @@ export const quaver: Beatmap = {
             "x": 351,
             "y": 337,
             "startTime": 39783,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 3,
+            "comboIndex": 13,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 303, "y": 348 },
-                        { "x": 259, "y": 338 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 303,
+                            "y": 348
+                        },
+                        {
+                            "x": 259,
+                            "y": 338
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -764,16 +1314,32 @@ export const quaver: Beatmap = {
             "x": 180,
             "y": 319,
             "startTime": 40428,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 14,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 85, "y": 315 },
-                        { "x": 107, "y": 367 },
-                        { "x": 10, "y": 359 }
-                    ], 176
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 85,
+                            "y": 315
+                        },
+                        {
+                            "x": 107,
+                            "y": 367
+                        },
+                        {
+                            "x": 10,
+                            "y": 359
+                        }
+                    ],
+                    "length": 176
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|2",
@@ -786,8 +1352,13 @@ export const quaver: Beatmap = {
             "x": 266,
             "y": 341,
             "startTime": 42041,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 14,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -798,15 +1369,28 @@ export const quaver: Beatmap = {
             "x": 343,
             "y": 298,
             "startTime": 42364,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 14,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 348, "y": 242 },
-                        { "x": 339, "y": 207 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 348,
+                            "y": 242
+                        },
+                        {
+                            "x": 339,
+                            "y": 207
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -819,14 +1403,24 @@ export const quaver: Beatmap = {
             "x": 280,
             "y": 146,
             "startTime": 43009,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 15,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 289, "y": 50 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 289,
+                            "y": 50
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|10|2",
@@ -839,8 +1433,13 @@ export const quaver: Beatmap = {
             "x": 259,
             "y": 231,
             "startTime": 43977,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 15,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -851,15 +1450,28 @@ export const quaver: Beatmap = {
             "x": 197,
             "y": 293,
             "startTime": 44299,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 15,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 146, "y": 299 },
-                        { "x": 99, "y": 288 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 146,
+                            "y": 299
+                        },
+                        {
+                            "x": 99,
+                            "y": 288
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -872,8 +1484,13 @@ export const quaver: Beatmap = {
             "x": 33,
             "y": 249,
             "startTime": 44944,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 2,
+            "indexInCurrentCombo": 3,
+            "comboIndex": 15,
+            "lastInCombo": true,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -884,14 +1501,24 @@ export const quaver: Beatmap = {
             "x": 135,
             "y": 106,
             "startTime": 45589,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 16,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 127, "y": 9 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 127,
+                            "y": 9
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|10|2",
@@ -904,8 +1531,13 @@ export const quaver: Beatmap = {
             "x": 195,
             "y": 169,
             "startTime": 46557,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 16,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -916,15 +1548,28 @@ export const quaver: Beatmap = {
             "x": 280,
             "y": 146,
             "startTime": 46880,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 16,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 318, "y": 125 },
-                        { "x": 372, "y": 122 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 318,
+                            "y": 125
+                        },
+                        {
+                            "x": 372,
+                            "y": 122
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -937,8 +1582,13 @@ export const quaver: Beatmap = {
             "x": 447,
             "y": 139,
             "startTime": 47525,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 2,
+            "indexInCurrentCombo": 3,
+            "comboIndex": 16,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -949,8 +1599,13 @@ export const quaver: Beatmap = {
             "x": 485,
             "y": 217,
             "startTime": 47847,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 4,
+            "comboIndex": 16,
+            "lastInCombo": true,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -961,14 +1616,24 @@ export const quaver: Beatmap = {
             "x": 436,
             "y": 290,
             "startTime": 48170,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 17,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 445, "y": 384 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 445,
+                            "y": 384
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|10|2",
@@ -981,8 +1646,13 @@ export const quaver: Beatmap = {
             "x": 360,
             "y": 244,
             "startTime": 49138,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 17,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -993,15 +1663,28 @@ export const quaver: Beatmap = {
             "x": 280,
             "y": 280,
             "startTime": 49460,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 17,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 234, "y": 289 },
-                        { "x": 194, "y": 281 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 234,
+                            "y": 289
+                        },
+                        {
+                            "x": 194,
+                            "y": 281
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -1014,15 +1697,28 @@ export const quaver: Beatmap = {
             "x": 125,
             "y": 225,
             "startTime": 50106,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 3,
+            "comboIndex": 17,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 117, "y": 181 },
-                        { "x": 126, "y": 139 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 117,
+                            "y": 181
+                        },
+                        {
+                            "x": 126,
+                            "y": 139
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -1035,18 +1731,40 @@ export const quaver: Beatmap = {
             "x": 157,
             "y": 56,
             "startTime": 50751,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 18,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 211, "y": 66 },
-                        { "x": 211, "y": 66 },
-                        { "x": 268, "y": 43 },
-                        { "x": 268, "y": 43 },
-                        { "x": 331, "y": 55 }
-                    ], 176
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 211,
+                            "y": 66
+                        },
+                        {
+                            "x": 211,
+                            "y": 66
+                        },
+                        {
+                            "x": 268,
+                            "y": 43
+                        },
+                        {
+                            "x": 268,
+                            "y": 43
+                        },
+                        {
+                            "x": 331,
+                            "y": 55
+                        }
+                    ],
+                    "length": 176
+                },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|2",
@@ -1059,8 +1777,13 @@ export const quaver: Beatmap = {
             "x": 72,
             "y": 31,
             "startTime": 52364,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 10,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 18,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
@@ -1071,15 +1794,28 @@ export const quaver: Beatmap = {
             "x": 9,
             "y": 93,
             "startTime": 52686,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 18,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 1, "y": 138 },
-                        { "x": 14, "y": 195 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 1,
+                            "y": 138
+                        },
+                        {
+                            "x": 14,
+                            "y": 195
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
@@ -1092,15 +1828,28 @@ export const quaver: Beatmap = {
             "x": 75,
             "y": 235,
             "startTime": 53331,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 19,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 141, "y": 208 },
-                        { "x": 253, "y": 220 }
-                    ], 176
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 141,
+                            "y": 208
+                        },
+                        {
+                            "x": 253,
+                            "y": 220
+                        }
+                    ],
+                    "length": 176
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "4|0",
@@ -1113,15 +1862,28 @@ export const quaver: Beatmap = {
             "x": 371,
             "y": 337,
             "startTime": 54622,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 19,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.PerfectCurve, [
-                        { "x": 305, "y": 364 },
-                        { "x": 193, "y": 352 }
-                    ], 176
-                ),
+                "path": {
+                    "pathType": "P",
+                    "controlPoints": [
+                        {
+                            "x": 305,
+                            "y": 364
+                        },
+                        {
+                            "x": 193,
+                            "y": 352
+                        }
+                    ],
+                    "length": 176
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "0|0",
@@ -1134,8 +1896,13 @@ export const quaver: Beatmap = {
             "x": 129,
             "y": 306,
             "startTime": 55589,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 19,
+            "lastInCombo": true,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:0:0:0:\r"
@@ -1146,14 +1913,24 @@ export const quaver: Beatmap = {
             "x": 75,
             "y": 235,
             "startTime": 55912,
-            "flags": 6,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 20,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 90, "y": 55 }
-                    ], 176
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 90,
+                            "y": 55
+                        }
+                    ],
+                    "length": 176
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "0|0",
@@ -1166,14 +1943,24 @@ export const quaver: Beatmap = {
             "x": 262,
             "y": 25,
             "startTime": 57202,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 20,
+            "lastInCombo": false,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 269, "y": 112 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 269,
+                            "y": 112
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|6",
@@ -1186,14 +1973,24 @@ export const quaver: Beatmap = {
             "x": 327,
             "y": 178,
             "startTime": 57847,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 20,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Linear, [
-                        { "x": 319, "y": 265 }
-                    ], 88
-                ),
+                "path": {
+                    "pathType": "L",
+                    "controlPoints": [
+                        {
+                            "x": 319,
+                            "y": 265
+                        }
+                    ],
+                    "length": 88
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|6",
@@ -1206,8 +2003,13 @@ export const quaver: Beatmap = {
             "x": 304,
             "y": 360,
             "startTime": 58493,
-            "flags": 5,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 6,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 21,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -1218,8 +2020,13 @@ export const quaver: Beatmap = {
             "x": 209,
             "y": 376,
             "startTime": 58815,
-            "flags": 1,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 2,
+            "indexInCurrentCombo": 1,
+            "comboIndex": 21,
+            "lastInCombo": false,
+            "type": 0,
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
@@ -1230,16 +2037,32 @@ export const quaver: Beatmap = {
             "x": 126,
             "y": 326,
             "startTime": 59138,
-            "flags": 2,
+            "newCombo": false,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 2,
+            "comboIndex": 21,
+            "lastInCombo": true,
+            "type": 1,
             "metadata": {
-                "path": new SliderPath(
-                    PathType.Bezier, [
-                        { "x": 102, "y": 233 },
-                        { "x": 102, "y": 233 },
-                        { "x": 129, "y": 186 }
-                    ], 143
-                ),
+                "path": {
+                    "pathType": "B",
+                    "controlPoints": [
+                        {
+                            "x": 102,
+                            "y": 233
+                        },
+                        {
+                            "x": 102,
+                            "y": 233
+                        },
+                        {
+                            "x": 129,
+                            "y": 186
+                        }
+                    ],
+                    "length": 143
+                },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|6",
@@ -1252,8 +2075,13 @@ export const quaver: Beatmap = {
             "x": 256,
             "y": 192,
             "startTime": 59783,
-            "flags": 12,
+            "newCombo": true,
+            "comboOffset": 0,
             "soundType": 0,
+            "indexInCurrentCombo": 0,
+            "comboIndex": 22,
+            "lastInCombo": false,
+            "type": 2,
             "metadata": {
                 "endTime": 64944,
                 "soundSamples": [
@@ -1261,5 +2089,8 @@ export const quaver: Beatmap = {
                 ]
             }
         }
-    ]
+    ],
+    "aimStrain": 0,
+    "speedStrain": 0,
+    "starRating": 0
 };

@@ -100,20 +100,20 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
 
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>Aim Strain</div>
-                    <PartialBar fraction={3.5 / 10} />
-                    <div style={styles.traitValue}>{3.5}</div>
+                    <PartialBar fraction={beatmap.aimStrain / 10} />
+                    <div style={styles.traitValue}>{beatmap.aimStrain}</div>
                 </div>
 
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>Speed Strain</div>
-                    <PartialBar fraction={4.5 / 10} />
-                    <div style={styles.traitValue}>{4.5}</div>
+                    <PartialBar fraction={beatmap.speedStrain / 10} />
+                    <div style={styles.traitValue}>{beatmap.speedStrain}</div>
                 </div>
 
                 <div style={styles.trait}>
                     <div style={styles.traitKey}>Star Rating</div>
-                    <PartialBar fraction={4 / 10} />
-                    <div style={styles.traitValue}>{4}</div>
+                    <PartialBar fraction={beatmap.starRating / 10} />
+                    <div style={styles.traitValue}>{beatmap.starRating}</div>
                 </div>
             </div>
         </div>
