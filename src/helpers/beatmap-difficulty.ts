@@ -1,4 +1,4 @@
-import { Beatmap, HitObjectType, ParsedBeatmap } from '../types';
+import { Beatmap, HitObject, HitObjectType, ParsedBeatmap } from '../types';
 import { assertNever } from './assertNever';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
@@ -65,7 +65,25 @@ function fillHitObjects(beatmap: ParsedBeatmap) {
 }
 
 function preProcessBeatmap(beatmap: ParsedBeatmap) {
+    let lastObject: HitObject | null = null;
 
+    for (const hitObject of beatmap.hitObjects) {
+        if (hitObject.newCombo) {
+            hitObject.indexInCurrentCombo = 0;
+
+            const lastComboIndex = (lastObject !== null) ? lastObject.comboIndex : 0;
+            hitObject.comboIndex = lastComboIndex + hitObject.comboOffset + 1;
+
+            if (lastObject !== null) {
+                lastObject.lastInCombo = true;
+            }
+        } else if (lastObject !== null) {
+            hitObject.indexInCurrentCombo = lastObject.indexInCurrentCombo + 1;
+            hitObject.comboIndex = lastObject.comboIndex;
+        }
+
+        lastObject = hitObject;
+    }
 }
 
 function postProcessBeatmap(beatmap: ParsedBeatmap) {
