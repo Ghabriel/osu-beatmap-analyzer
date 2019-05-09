@@ -1,58 +1,73 @@
-import { Beatmap, DifficultyHitObject, HitObjectFlags, ParsedBeatmap } from '../types';
+import { Beatmap, HitObjectType, ParsedBeatmap } from '../types';
+import { assertNever } from './assertNever';
+
+// https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
+const SECTION_LENGTH = 400;
+
+// https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L14
+const STACK_DISTANCE = 3;
 
 const CLOCK_RATE = 1000 / 30;
 const NORMALIZED_RADIUS = 52;
 const OBJECT_RADIUS = 64;
 
 export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
+    fillHitObjects(beatmap);
+
+    // TODO: apply mods, if any
+    // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L90
+    // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L97
+
+    preProcessBeatmap(beatmap);
+
+    // TODO: apply mods, if any
+    // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L114
+
+    postProcessBeatmap(beatmap);
+
+    // TODO: apply mods, if any
+    // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs#L45
+
     return {
         ...beatmap,
-        aimStrain: getAimStrain(beatmap),
+        aimStrain: 0,//getAimStrain(beatmap),
         speedStrain: 0,
         starRating: 0,
     };
 }
 
-function getAimStrain(beatmap: ParsedBeatmap): number {
-    const difficultyHitObjects = createDifficultyHitObjects(beatmap);
+// TODO: find a better name
+function fillHitObjects(beatmap: ParsedBeatmap) {
+    let firstObject = true;
+    let forceNewCombo = false;
+    let extraComboOffset = 0;
 
-    // TODO
-    return 0;
-}
+    for (const hitObject of beatmap.hitObjects) {
+        switch (hitObject.type) {
+            case HitObjectType.Circle:
+            case HitObjectType.Slider:
+                hitObject.newCombo = firstObject || forceNewCombo || hitObject.newCombo;
+                hitObject.comboOffset += extraComboOffset;
 
-function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject[] {
-    const hitObjectRadius = getHitObjectRadius(beatmap);
+                forceNewCombo = false;
+                extraComboOffset = 0;
+                break;
+            case HitObjectType.Spinner:
+                forceNewCombo = forceNewCombo || hitObject.newCombo;
+                extraComboOffset += hitObject.comboOffset;
+                break;
+            default:
+                return assertNever(hitObject);
+        }
 
-    return beatmap.hitObjects
-        .slice(1)
-        .map((current, i) => {
-            const lastLast = i > 1 ? beatmap.hitObjects[i - 2] : null;
-            const last = beatmap.hitObjects[i - 1];
-
-            const deltaTime = (current.startTime - last.startTime) / CLOCK_RATE;
-            const strainTime = Math.max(50, deltaTime);
-            const scalingFactor = getScalingFactor(hitObjectRadius);
-
-            if (last.flags & HitObjectFlags.Slider) {
-                // TODO
-            }
-
-            return { lastLast, last, current };
-        });
-}
-
-function getHitObjectRadius(beatmap: ParsedBeatmap): number {
-    const scale = 0.85 - 0.07 * beatmap.circleSize;
-    return OBJECT_RADIUS * scale;
-}
-
-function getScalingFactor(hitObjectRadius: number): number {
-    const scalingFactor = NORMALIZED_RADIUS / hitObjectRadius;
-
-    if (hitObjectRadius < 30) {
-        const smallCircleBonus = Math.min(30 - hitObjectRadius, 5) / 50;
-        return scalingFactor * (1 + smallCircleBonus);
+        firstObject = false;
     }
+}
 
-    return scalingFactor;
+function preProcessBeatmap(beatmap: ParsedBeatmap) {
+
+}
+
+function postProcessBeatmap(beatmap: ParsedBeatmap) {
+
 }
