@@ -5,3 +5,14 @@ https://github.com/ppy/osu/blob/de08115e8506ef0f5004a11cc48c15808d9a1800/osu.Gam
 https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Objects/OsuHitObject.cs
 https://github.com/ppy/osu/blob/9cbd3f43f3af66a893d172f813d10b6a10b118d7/osu.Game.Rulesets.Osu/Difficulty/Skills/Aim.cs
 https://github.com/ppy/osu/blob/8ccc935b6bfab2eae7eb28703c7ee4a6ef735d55/osu.Game/Rulesets/Difficulty/Skills/Skill.cs
+
+https://github.com/ppy/osu/blob/9cbd3f43f3af66a893d172f813d10b6a10b118d7/osu.Game.Rulesets.Osu/Difficulty/OsuDifficultyCalculator.cs
+https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs#L42
+https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L111
+https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/ControlPoints/ControlPointInfo.cs
+https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Objects/HitObject.cs#L71
+https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L21
+https://github.com/ppy/osu/blob/d2ee08ad7b1fc3d8d2328832e17a241cd2ab5963/osu.Game/Beatmaps/BeatmapProcessor.cs#L46
+https://github.com/ppy/osu/blob/de08115e8506ef0f5004a11cc48c15808d9a1800/osu.Game/Beatmaps/Beatmap.cs#L37
+https://github.com/ppy/osu/blob/de08115e8506ef0f5004a11cc48c15808d9a1800/osu.Game.Rulesets.Osu/OsuRuleset.cs
+https://github.com/ppy/osu/blob/4fade26543cc9276e127cec9db86c32cad85dc76/osu.Game/Rulesets/Ruleset.cs
