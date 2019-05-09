@@ -1,4 +1,4 @@
-import { BaseHitObject, Beatmap, CircleMetadata, HitObject, HitObjectFlags, HitObjectType, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
+import { BaseHitObject, Beatmap, CircleMetadata, EffectFlags, HitObject, HitObjectFlags, HitObjectType, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
 import { assertNever } from './assertNever';
 import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
 import { SliderPath } from './SliderPath';
@@ -185,7 +185,35 @@ function parseEventLine(beatmap: Partial<Beatmap>, line: string) {
 }
 
 function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
-    // TODO
+    const parts = line.split(',');
+
+    if (beatmap.timingPoints === undefined) {
+        beatmap.timingPoints = [];
+    }
+
+    const beatLength = parseInt(parts[1]);
+    const timeSignature = parts.length > 2 ? parseInt(parts[2]) : 4;
+
+    let kiaiMode = false;
+    let omitFirstBarSignature = false;
+    if (parts.length > 7) {
+        const effectFlags: EffectFlags = parseInt(parts[7]);
+        kiaiMode = (effectFlags & EffectFlags.Kiai) > 0;
+        omitFirstBarSignature = (effectFlags & EffectFlags.OmitFirstBarLine) > 0;
+    }
+
+    beatmap.timingPoints.push({
+        time: parseInt(parts[0]),
+        beatLength: beatLength,
+        timeSignature: timeSignature !== 0 ? timeSignature : 4,
+        sampleSet: parts.length > 3 ? parseInt(parts[3]) : 0, // TODO: fix fallback
+        customSampleBank: parts.length > 4 ? parseInt(parts[4]) : 0,
+        sampleVolume: parts.length > 5 ? parseInt(parts[5]) : 100,  // TODO: fix fallback
+        timingChange: parts.length > 6 ? parts[6] === '1' : true,
+        kiaiMode: kiaiMode,
+        omitFirstBarSignature: omitFirstBarSignature,
+        speedMultiplier: beatLength < 0 ? 100 / -beatLength : 1,
+    });
 }
 
 function parseColorLine(beatmap: Partial<Beatmap>, line: string) {

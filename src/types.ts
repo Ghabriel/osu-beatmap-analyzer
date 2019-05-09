@@ -63,7 +63,24 @@ export type Beatmap = ParsedBeatmap & {
 };
 
 export interface TimingPoint {
-    // TODO
+    time: number;
+    beatLength: number;
+    timeSignature: number; // unused
+    sampleSet: number; // unused
+    customSampleBank: number; // unused
+    sampleVolume: number; // unused
+    timingChange: boolean;
+    kiaiMode: boolean; // unused
+    omitFirstBarSignature: boolean; // unused
+
+    // Computed
+    speedMultiplier: number;
+}
+
+export enum EffectFlags {
+    None = 0,
+    Kiai = 1,
+    OmitFirstBarLine = 8
 }
 
 export interface Color {
