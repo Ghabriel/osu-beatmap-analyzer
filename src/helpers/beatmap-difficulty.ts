@@ -1,4 +1,4 @@
-import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, ParsedBeatmap, Slider } from '../types';
+import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObjectType, ParsedBeatmap, Slider } from '../types';
 import { assertNever } from './assertNever';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
@@ -160,6 +160,62 @@ enum SliderEventType {
 function createNestedHitObjects(slider: Slider) {
     const computedProperties = getSliderComputedProperties(slider);
     const events = getSliderEvents(computedProperties);
+
+    const { spanDuration } = computedProperties;
+
+    for (const event of events) {
+        switch (event.type) {
+            case SliderEventType.Head:
+                slider.metadata.nestedHitObjects.push({
+                    type: NestedHitObjectType.SliderCircle,
+                    startTime: event.time,
+                    position: {
+                        x: slider.x,
+                        y: slider.y
+                    },
+                    indexInCurrentCombo: slider.indexInCurrentCombo,
+                    comboIndex: slider.comboIndex,
+                });
+                break;
+
+            case SliderEventType.Tick:
+                slider.metadata.nestedHitObjects.push({
+                    type: NestedHitObjectType.SliderTick,
+                    spanIndex: event.spanIndex,
+                    spanStartTime: event.spanStartTime,
+                    startTime: event.time,
+                    position: Position + Path.PositionAt(event.pathProgress),
+                    stackHeight: slider.stackHeight,
+                    scale: slider.scale,
+                });
+                break;
+
+            case SliderEventType.Repeat:
+                slider.metadata.nestedHitObjects.push({
+                    type: NestedHitObjectType.RepeatPoint,
+                    repeatIndex: event.spanIndex,
+                    spanDuration: spanDuration,
+                    startTime: slider.startTime + (event.spanIndex + 1) * spanDuration,
+                    position: Position + Path.PositionAt(event.pathProgress),
+                    stackHeight: slider.stackHeight,
+                    scale: slider.scale,
+                });
+                break;
+
+            case SliderEventType.LegacyLastTick:
+                slider.metadata.nestedHitObjects.push({
+                    type: NestedHitObjectType.SliderTailCircle,
+                    startTime: event.time,
+                    position: EndPosition,
+                    indexInCurrentCombo: slider.indexInCurrentCombo,
+                    comboIndex: slider.comboIndex,
+                });
+                break;
+
+            case SliderEventType.Tail:
+                break;
+        }
+    }
 }
 
 function getSliderComputedProperties(slider: Slider): SliderComputedProperties {

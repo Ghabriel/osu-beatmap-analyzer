@@ -16,6 +16,13 @@ export interface DifficultyHitObject {
     current: HitObject;
 }
 
+export enum PathType {
+    Catmull = 'C',
+    Bezier = 'B',
+    Linear = 'L',
+    PerfectCurve = 'P',
+}
+
 export interface ParsedBeatmap {
     // General
     audioFilename: string;
@@ -200,13 +207,52 @@ export interface SliderMetadata {
     difficultyPoint: DifficultyControlPoint | null;
     velocity: number;
     tickDistance: number;
+    nestedHitObjects: NestedHitObject[];
 }
 
-export enum PathType {
-    Catmull = 'C',
-    Bezier = 'B',
-    Linear = 'L',
-    PerfectCurve = 'P',
+export enum NestedHitObjectType {
+    SliderCircle,
+    SliderTick,
+    RepeatPoint,
+    SliderTailCircle,
+}
+
+export type NestedHitObject = SliderTick | SliderCircle | SliderTailCircle | RepeatPoint;
+
+export interface SliderTick {
+    type: NestedHitObjectType.SliderTick;
+    spanIndex: number;
+    spanStartTime: number;
+    startTime: number;
+    position: Point;
+    stackHeight: number;
+    scale: number;
+}
+
+export interface SliderCircle {
+    type: NestedHitObjectType.SliderCircle;
+    startTime: number;
+    position: Point;
+    indexInCurrentCombo: number;
+    comboIndex: number;
+}
+
+export interface SliderTailCircle {
+    type: NestedHitObjectType.SliderTailCircle;
+    startTime: number;
+    position: Point;
+    indexInCurrentCombo: number;
+    comboIndex: number;
+}
+
+export interface RepeatPoint {
+    type: NestedHitObjectType.RepeatPoint;
+    repeatIndex: number;
+    spanDuration: number;
+    startTime: number;
+    position: Point;
+    stackHeight: number;
+    scale: number;
 }
 
 export interface SpinnerMetadata {
