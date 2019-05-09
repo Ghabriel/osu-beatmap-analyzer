@@ -77,9 +77,16 @@ export interface HitObject {
     x: number;
     y: number;
     startTime: number;
-    flags: HitObjectFlags;
+    type: HitObjectType;
+    newCombo: boolean;
     soundType: number;
     metadata: HitObjectMetadata;
+}
+
+export enum HitObjectType {
+    Circle,
+    Slider,
+    Spinner,
 }
 
 export enum HitObjectFlags {

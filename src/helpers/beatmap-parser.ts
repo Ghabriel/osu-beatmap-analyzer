@@ -1,4 +1,5 @@
-import { Beatmap, CircleMetadata, HitObjectFlags, HitObjectMetadata, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
+import { Beatmap, CircleMetadata, HitObjectFlags, HitObjectMetadata, HitObjectType, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
+import { assertNever } from './assertNever';
 import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
 import { SliderPath } from './SliderPath';
 
@@ -36,6 +37,8 @@ export function parseBeatmap(content: string): Beatmap {
 
         parseBeatmapLine(beatmap, currentSection, line);
     }
+
+    beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
 
     return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
 }
@@ -209,10 +212,10 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         beatmap.hitObjects = [];
     }
 
-    const flags = parseInt(parts[3]);
-    const metadata = parseHitObjectMetadata(parts.slice(5), flags);
+    const flags = parseInt(parts[3]) as HitObjectFlags;
+    const type = getHitObjectType(flags);
 
-    if (metadata === null) {
+    if (type === null) {
         console.log('Invalid hit object. Ignoring.', line);
         return;
     }
@@ -221,26 +224,40 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         x: parseInt(parts[0]),
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
-        flags: flags,
+        type: type,
+        newCombo: (flags & HitObjectFlags.NewCombo) > 0,
         soundType: parseInt(parts[4]),
-        metadata: metadata,
+        metadata: parseHitObjectMetadata(parts.slice(5), type),
     });
 }
 
-function parseHitObjectMetadata(metadata: string[], flags: HitObjectFlags): HitObjectMetadata | null {
+function getHitObjectType(flags: HitObjectFlags): HitObjectType | null {
     if (flags & HitObjectFlags.Circle) {
-        return parseCircleMetadata(metadata);
+        return HitObjectType.Circle;
     }
 
     if (flags & HitObjectFlags.Slider) {
-        return parseSliderMetadata(metadata);
+        return HitObjectType.Slider;
     }
 
     if (flags & HitObjectFlags.Spinner) {
-        return parseSpinnerMetadata(metadata);
+        return HitObjectType.Spinner;
     }
 
     return null;
+}
+
+function parseHitObjectMetadata(metadata: string[], type: HitObjectType): HitObjectMetadata {
+    switch (type) {
+        case HitObjectType.Circle:
+            return parseCircleMetadata(metadata);
+        case HitObjectType.Slider:
+            return parseSliderMetadata(metadata);
+        case HitObjectType.Spinner:
+            return parseSpinnerMetadata(metadata);
+        default:
+            return assertNever(type);
+    }
 }
 
 function parseCircleMetadata(metadata: string[]): CircleMetadata {
