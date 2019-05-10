@@ -1,5 +1,6 @@
-import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObjectType, ParsedBeatmap, Slider } from '../types';
+import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObjectType, ParsedBeatmap, Point, Slider } from '../types';
 import { assertNever } from './assertNever';
+import { pointSum } from './point-arithmetic';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
 const SECTION_LENGTH = 400;
@@ -109,7 +110,7 @@ function applyDefaults(beatmap: ParsedBeatmap) {
     for (const hitObject of beatmap.hitObjects) {
         if (hitObject.type === HitObjectType.Slider) {
             fillSliderComputedAttributes(hitObject, beatmap);
-            createNestedHitObjects(hitObject);
+            createNestedHitObjects(hitObject, beatmap);
         }
     }
 }
@@ -157,11 +158,16 @@ enum SliderEventType {
     Tail,
 }
 
-function createNestedHitObjects(slider: Slider) {
+function createNestedHitObjects(slider: Slider, beatmap: ParsedBeatmap) {
     const computedProperties = getSliderComputedProperties(slider);
     const events = getSliderEvents(computedProperties);
 
     const { spanDuration } = computedProperties;
+    const position: Point = {
+        x: slider.x,
+        y: slider.y,
+    };
+    const path = slider.metadata.path;
 
     for (const event of events) {
         switch (event.type) {
@@ -169,10 +175,7 @@ function createNestedHitObjects(slider: Slider) {
                 slider.metadata.nestedHitObjects.push({
                     type: NestedHitObjectType.SliderCircle,
                     startTime: event.time,
-                    position: {
-                        x: slider.x,
-                        y: slider.y
-                    },
+                    position: position,
                     indexInCurrentCombo: slider.indexInCurrentCombo,
                     comboIndex: slider.comboIndex,
                 });
@@ -184,9 +187,9 @@ function createNestedHitObjects(slider: Slider) {
                     spanIndex: event.spanIndex,
                     spanStartTime: event.spanStartTime,
                     startTime: event.time,
-                    position: Position + Path.PositionAt(event.pathProgress),
-                    stackHeight: slider.stackHeight,
-                    scale: slider.scale,
+                    position: pointSum(position, path.positionAt(event.pathProgress)),
+                    stackHeight: slider.metadata.stackHeight,
+                    scale: getHitObjectScale(beatmap),
                 });
                 break;
 
@@ -196,9 +199,9 @@ function createNestedHitObjects(slider: Slider) {
                     repeatIndex: event.spanIndex,
                     spanDuration: spanDuration,
                     startTime: slider.startTime + (event.spanIndex + 1) * spanDuration,
-                    position: Position + Path.PositionAt(event.pathProgress),
-                    stackHeight: slider.stackHeight,
-                    scale: slider.scale,
+                    position: pointSum(position, path.positionAt(event.pathProgress)),
+                    stackHeight: slider.metadata.stackHeight,
+                    scale: getHitObjectScale(beatmap),
                 });
                 break;
 
@@ -206,7 +209,7 @@ function createNestedHitObjects(slider: Slider) {
                 slider.metadata.nestedHitObjects.push({
                     type: NestedHitObjectType.SliderTailCircle,
                     startTime: event.time,
-                    position: EndPosition,
+                    position: pointSum(position, path.positionAt(1)),
                     indexInCurrentCombo: slider.indexInCurrentCombo,
                     comboIndex: slider.comboIndex,
                 });
@@ -216,6 +219,10 @@ function createNestedHitObjects(slider: Slider) {
                 break;
         }
     }
+}
+
+function getHitObjectScale(beatmap: ParsedBeatmap): number {
+    return 0.85 - 0.07 * beatmap.circleSize;
 }
 
 function getSliderComputedProperties(slider: Slider): SliderComputedProperties {
@@ -269,7 +276,7 @@ function getSliderEvents(sliderProperties: SliderComputedProperties): SliderEven
     if (tickDistance !== 0) {
         for (let span = 0; span < spanCount; span++) {
             const spanStartTime = startTime + span * spanDuration;
-            const reversed = span % 2 == 1;
+            const reversed = span % 2 === 1;
 
             for (let d = tickDistance; d <= length; d += tickDistance) {
                 if (d >= length - minDistanceFromEnd) {
@@ -310,7 +317,7 @@ function getSliderEvents(sliderProperties: SliderComputedProperties): SliderEven
     );
     let finalProgress = (finalSpanEndTime - finalSpanStartTime) / spanDuration;
 
-    if (spanCount % 2 == 0) {
+    if (spanCount % 2 === 0) {
         finalProgress = 1 - finalProgress;
     }
 

@@ -195,6 +195,9 @@ export enum HitObjectFlags {
 
 export interface CircleMetadata {
     soundSamples: string[];
+
+    // Computed
+    stackHeight: number;
 }
 
 export interface SliderMetadata {
@@ -208,6 +211,7 @@ export interface SliderMetadata {
     velocity: number;
     tickDistance: number;
     nestedHitObjects: NestedHitObject[];
+    stackHeight: number;
 }
 
 export enum NestedHitObjectType {

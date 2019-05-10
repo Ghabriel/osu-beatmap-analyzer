@@ -319,6 +319,9 @@ function createHitObject(
 function parseCircleMetadata(metadata: string[]): CircleMetadata {
     return {
         soundSamples: metadata,
+
+        // Computed
+        stackHeight: 0,
     };
 }
 
@@ -345,6 +348,8 @@ function parseSliderMetadata(metadata: string[]): SliderMetadata {
         difficultyPoint: null,
         velocity: 0,
         tickDistance: 0,
+        nestedHitObjects: [],
+        stackHeight: 0,
     };
 }
 

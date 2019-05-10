@@ -9,7 +9,7 @@ export function approximateBezier(controlPoints: Point[]): Point[] {
     const output: Point[] = [];
     const count = controlPoints.length;
 
-    if (count == 0) {
+    if (count === 0) {
         return output;
     }
 
