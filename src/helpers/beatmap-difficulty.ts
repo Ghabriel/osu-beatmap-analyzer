@@ -130,7 +130,8 @@ function fillSliderComputedAttributes(slider: Slider, beatmap: ParsedBeatmap) {
 }
 
 function getControlPoint<T extends ControlPoint>(list: T[], startTime: number): T | null {
-    return list.find(t => t.time === startTime) || null;
+    const matches = list.filter(t => t.time <= startTime);
+    return matches[matches.length - 1];
 }
 
 interface SliderComputedProperties {

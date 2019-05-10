@@ -39,6 +39,7 @@ export function parseBeatmap(content: string): Beatmap {
     }
 
     beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
+    beatmap.timingPoints!.sort((a, b) => a.time - b.time);
 
     beatmap.timingControlPoints = [];
     beatmap.difficultyControlPoints = [];

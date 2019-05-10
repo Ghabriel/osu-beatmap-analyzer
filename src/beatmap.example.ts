@@ -1,10 +1,6 @@
 import { Beatmap } from './types';
 
 export const quaver: Beatmap = {
-    timingControlPoints: [],
-    difficultyControlPoints: [],
-    effectControlPoints: [],
-    legacySampleControlPoints: [],
     "audioFilename": "audio.mp3",
     "audioLeadIn": 0,
     "previewTime": 37767,
@@ -304,14 +300,59 @@ export const quaver: Beatmap = {
                             "y": 206
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 353,
+                            "y": 227
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|2|2",
                     "1:2|0:0|0:0",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 1198,
+                    "beatLength": 329,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 6472,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 6472,
+                        "position": {
+                            "x": 297,
+                            "y": 198
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 650,
+                            "y": 425
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -328,7 +369,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:0:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -351,14 +393,54 @@ export const quaver: Beatmap = {
                             "y": 346
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|6",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 1198,
+                    "beatLength": 329,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 6472,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 9110,
+                        "position": {
+                            "x": 21,
+                            "y": 177
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 21,
+                            "y": 177
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -381,14 +463,54 @@ export const quaver: Beatmap = {
                             "y": 279
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|2",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 1198,
+                    "beatLength": 329,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 6472,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 10428,
+                        "position": {
+                            "x": 214,
+                            "y": 359
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 214,
+                            "y": 359
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -411,14 +533,54 @@ export const quaver: Beatmap = {
                             "y": 124
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|0",
                     "1:2|1:2|0:0",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 1198,
+                    "beatLength": 329,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 6472,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 11088,
+                        "position": {
+                            "x": 267,
+                            "y": 204
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 267,
+                            "y": 204
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -449,14 +611,64 @@ export const quaver: Beatmap = {
                             "y": 231
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 181,
+                            "y": 196
+                        },
+                        {
+                            "x": 239.30389577288196,
+                            "y": 344.99884475292055
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        160
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|2|2",
                     "1:2|1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 13066,
+                        "position": {
+                            "x": 267,
+                            "y": 204
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 506.30389577288196,
+                            "y": 548.9988447529206
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -473,7 +685,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -500,14 +713,59 @@ export const quaver: Beatmap = {
                             "y": 102
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [
+                        {
+                            "x": 427,
+                            "y": 132
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 15022,
+                        "position": {
+                            "x": 420,
+                            "y": 189
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 847,
+                            "y": 321
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -554,14 +812,64 @@ export const quaver: Beatmap = {
                             "y": 71
                         }
                     ],
-                    "length": 240
+                    "length": 240,
+                    "calculatedPath": [
+                        {
+                            "x": 318,
+                            "y": 60
+                        },
+                        {
+                            "x": 113.21235992352985,
+                            "y": -65.14800226895399
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        240
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|8",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 15674,
+                        "position": {
+                            "x": 359,
+                            "y": 48
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 472.21235992352985,
+                            "y": -17.148002268953988
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -608,14 +916,64 @@ export const quaver: Beatmap = {
                             "y": 273
                         }
                     ],
-                    "length": 240
+                    "length": 240,
+                    "calculatedPath": [
+                        {
+                            "x": 46,
+                            "y": 83
+                        },
+                        {
+                            "x": 176.3803067577458,
+                            "y": 284.49683771651627
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        240
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 16979,
+                        "position": {
+                            "x": 56,
+                            "y": 40
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 232.3803067577458,
+                            "y": 324.49683771651627
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -642,14 +1000,59 @@ export const quaver: Beatmap = {
                             "y": 335
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 109,
+                            "y": 366
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|2",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 18283,
+                        "position": {
+                            "x": 25,
+                            "y": 346
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 134,
+                            "y": 712
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -666,7 +1069,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -689,14 +1093,54 @@ export const quaver: Beatmap = {
                             "y": 103
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|10|2",
                     "1:2|0:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 19587,
+                        "position": {
+                            "x": 253,
+                            "y": 190
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 253,
+                            "y": 190
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -723,14 +1167,59 @@ export const quaver: Beatmap = {
                             "y": 326
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 392,
+                            "y": 364
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|2",
                     "1:2|1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 20892,
+                        "position": {
+                            "x": 323,
+                            "y": 351
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 715,
+                            "y": 715
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -747,7 +1236,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -774,14 +1264,59 @@ export const quaver: Beatmap = {
                             "y": 244
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [
+                        {
+                            "x": 135,
+                            "y": 239
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|2",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 22848,
+                        "position": {
+                            "x": 179,
+                            "y": 247
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 314,
+                            "y": 486
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -808,14 +1343,59 @@ export const quaver: Beatmap = {
                             "y": 96
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 8,
+                            "y": 178
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|2|2",
                     "1:2|1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 23500,
+                        "position": {
+                            "x": 14,
+                            "y": 261
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 22,
+                            "y": 439
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -832,7 +1412,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -859,14 +1440,59 @@ export const quaver: Beatmap = {
                             "y": 367
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [
+                        {
+                            "x": 187,
+                            "y": 380
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 25457,
+                        "position": {
+                            "x": 147,
+                            "y": 369
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 334,
+                            "y": 749
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -917,14 +1543,64 @@ export const quaver: Beatmap = {
                             "y": 109
                         }
                     ],
-                    "length": 240
+                    "length": 240,
+                    "calculatedPath": [
+                        {
+                            "x": 301,
+                            "y": 288
+                        },
+                        {
+                            "x": 422.37267993098084,
+                            "y": 80.9524871765621
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        240
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 26109,
+                        "position": {
+                            "x": 304,
+                            "y": 337
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 726.3726799309809,
+                            "y": 417.9524871765621
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -975,14 +1651,64 @@ export const quaver: Beatmap = {
                             "y": 47
                         }
                     ],
-                    "length": 240
+                    "length": 240,
+                    "calculatedPath": [
+                        {
+                            "x": 308,
+                            "y": 48
+                        },
+                        {
+                            "x": 100.9524871765621,
+                            "y": 169.37267993098084
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        240
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 27413,
+                        "position": {
+                            "x": 357,
+                            "y": 51
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 457.9524871765621,
+                            "y": 220.37267993098084
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1013,14 +1739,64 @@ export const quaver: Beatmap = {
                             "y": 256
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 84,
+                            "y": 170
+                        },
+                        {
+                            "x": -74.53282688708784,
+                            "y": 191.61811275733015
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        160
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|2",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 28718,
+                        "position": {
+                            "x": 62,
+                            "y": 93
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": -12.532826887087822,
+                            "y": 284.61811275733015
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1037,7 +1813,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1060,14 +1837,54 @@ export const quaver: Beatmap = {
                             "y": 267
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|10|2",
                     "1:2|0:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 30022,
+                        "position": {
+                            "x": 200,
+                            "y": 262
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 200,
+                            "y": 262
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1094,14 +1911,59 @@ export const quaver: Beatmap = {
                             "y": 65
                         }
                     ],
-                    "length": 160
+                    "length": 160,
+                    "calculatedPath": [
+                        {
+                            "x": 236,
+                            "y": 54
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|2",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 31326,
+                        "position": {
+                            "x": 164,
+                            "y": 89
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 400,
+                            "y": 143
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1118,7 +1980,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1141,14 +2004,54 @@ export const quaver: Beatmap = {
                             "y": 257
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 32631,
+                        "position": {
+                            "x": 442,
+                            "y": 168
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 442,
+                            "y": 168
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1171,14 +2074,54 @@ export const quaver: Beatmap = {
                             "y": 300
                         }
                     ],
-                    "length": 80
+                    "length": 80,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 13066,
+                    "beatLength": 326,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 13066,
+                    "speedMultiplier": 1
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 33283,
+                        "position": {
+                            "x": 371,
+                            "y": 309
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 371,
+                            "y": 309
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1219,14 +2162,54 @@ export const quaver: Beatmap = {
                             "y": 152
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|10|2",
                     "1:2|0:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 37848,
+                        "position": {
+                            "x": 243,
+                            "y": 137
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 243,
+                            "y": 137
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1243,7 +2226,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1270,14 +2254,59 @@ export const quaver: Beatmap = {
                             "y": 274
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 411,
+                            "y": 230
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 39138,
+                        "position": {
+                            "x": 400,
+                            "y": 182
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 811,
+                            "y": 412
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1304,14 +2333,59 @@ export const quaver: Beatmap = {
                             "y": 338
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 303,
+                            "y": 348
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 39783,
+                        "position": {
+                            "x": 351,
+                            "y": 337
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 654,
+                            "y": 685
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1342,14 +2416,64 @@ export const quaver: Beatmap = {
                             "y": 359
                         }
                     ],
-                    "length": 176
+                    "length": 176,
+                    "calculatedPath": [
+                        {
+                            "x": 85,
+                            "y": 315
+                        },
+                        {
+                            "x": 153.57663838725884,
+                            "y": 477.09023618806634
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0,
+                        176
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|2",
                     "1:2|1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 40428,
+                        "position": {
+                            "x": 180,
+                            "y": 319
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 333.57663838725887,
+                            "y": 796.0902361880663
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1366,7 +2490,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1393,14 +2518,59 @@ export const quaver: Beatmap = {
                             "y": 207
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 348,
+                            "y": 242
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 42364,
+                        "position": {
+                            "x": 343,
+                            "y": 298
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 691,
+                            "y": 540
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1423,14 +2593,54 @@ export const quaver: Beatmap = {
                             "y": 50
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|10|2",
                     "1:2|0:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 43009,
+                        "position": {
+                            "x": 280,
+                            "y": 146
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 280,
+                            "y": 146
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1447,7 +2657,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1474,14 +2685,59 @@ export const quaver: Beatmap = {
                             "y": 288
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 146,
+                            "y": 299
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 44299,
+                        "position": {
+                            "x": 197,
+                            "y": 293
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 343,
+                            "y": 592
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1498,7 +2754,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1521,14 +2778,54 @@ export const quaver: Beatmap = {
                             "y": 9
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|10|2",
                     "1:2|0:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 45589,
+                        "position": {
+                            "x": 135,
+                            "y": 106
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 135,
+                            "y": 106
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1545,7 +2842,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1572,14 +2870,59 @@ export const quaver: Beatmap = {
                             "y": 122
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 318,
+                            "y": 125
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 37848,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 46880,
+                        "position": {
+                            "x": 280,
+                            "y": 146
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 598,
+                            "y": 271
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1596,7 +2939,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1613,7 +2957,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1636,14 +2981,54 @@ export const quaver: Beatmap = {
                             "y": 384
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "6|10|2",
                     "1:2|0:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 48170,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 48170,
+                        "position": {
+                            "x": 436,
+                            "y": 290
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 436,
+                            "y": 290
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1660,7 +3045,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1687,14 +3073,59 @@ export const quaver: Beatmap = {
                             "y": 281
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 234,
+                            "y": 289
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 48170,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 49460,
+                        "position": {
+                            "x": 280,
+                            "y": 280
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 514,
+                            "y": 569
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1721,14 +3152,59 @@ export const quaver: Beatmap = {
                             "y": 139
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 117,
+                            "y": 181
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|0:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 48170,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 50106,
+                        "position": {
+                            "x": 125,
+                            "y": 225
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 242,
+                            "y": 406
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1767,14 +3243,59 @@ export const quaver: Beatmap = {
                             "y": 55
                         }
                     ],
-                    "length": 176
+                    "length": 176,
+                    "calculatedPath": [
+                        {
+                            "x": 211,
+                            "y": 66
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 1,
                 "soundSamples": [
                     "2|2|2",
                     "1:2|1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 48170,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 50751,
+                        "position": {
+                            "x": 157,
+                            "y": 56
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 368,
+                            "y": 122
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1791,7 +3312,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "0:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1818,14 +3340,59 @@ export const quaver: Beatmap = {
                             "y": 195
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [
+                        {
+                            "x": 1,
+                            "y": 138
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|10",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 48170,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 52686,
+                        "position": {
+                            "x": 9,
+                            "y": 93
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 10,
+                            "y": 231
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1852,14 +3419,59 @@ export const quaver: Beatmap = {
                             "y": 220
                         }
                     ],
-                    "length": 176
+                    "length": 176,
+                    "calculatedPath": [
+                        {
+                            "x": 141,
+                            "y": 208
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "4|0",
                     "1:2|3:0",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 53331,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 53331,
+                        "position": {
+                            "x": 75,
+                            "y": 235
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 216,
+                            "y": 443
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1886,14 +3498,59 @@ export const quaver: Beatmap = {
                             "y": 352
                         }
                     ],
-                    "length": 176
+                    "length": 176,
+                    "calculatedPath": [
+                        {
+                            "x": 305,
+                            "y": 364
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "0|0",
                     "3:0|3:0",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 53331,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 54622,
+                        "position": {
+                            "x": 371,
+                            "y": 337
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 676,
+                            "y": 701
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1910,7 +3567,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:0:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1933,14 +3591,54 @@ export const quaver: Beatmap = {
                             "y": 55
                         }
                     ],
-                    "length": 176
+                    "length": 176,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "0|0",
                     "1:0|1:0",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 53331,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 55912,
+                        "position": {
+                            "x": 75,
+                            "y": 235
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 75,
+                            "y": 235
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1963,14 +3661,54 @@ export const quaver: Beatmap = {
                             "y": 112
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|6",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 57202,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 57202,
+                        "position": {
+                            "x": 262,
+                            "y": 25
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 262,
+                            "y": 25
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -1993,14 +3731,54 @@ export const quaver: Beatmap = {
                             "y": 265
                         }
                     ],
-                    "length": 88
+                    "length": 88,
+                    "calculatedPath": [],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "6|6",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 57202,
+                    "speedMultiplier": 1.1111111111111112
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 57847,
+                        "position": {
+                            "x": 327,
+                            "y": 178
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 327,
+                            "y": 178
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -2017,7 +3795,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -2034,7 +3813,8 @@ export const quaver: Beatmap = {
             "metadata": {
                 "soundSamples": [
                     "1:2:0:0:\r"
-                ]
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -2065,14 +3845,59 @@ export const quaver: Beatmap = {
                             "y": 186
                         }
                     ],
-                    "length": 143
+                    "length": 143,
+                    "calculatedPath": [
+                        {
+                            "x": 102,
+                            "y": 233
+                        }
+                    ],
+                    "cumulativeLength": [
+                        0
+                    ]
                 },
                 "repeatCount": 0,
                 "soundSamples": [
                     "2|6",
                     "1:2|1:2",
                     "0:0:0:0:\r"
-                ]
+                ],
+                "timingPoint": {
+                    "type": 0,
+                    "time": 37848,
+                    "beatLength": 322,
+                    "timeSignature": 4
+                },
+                "difficultyPoint": {
+                    "type": 1,
+                    "time": 58493,
+                    "speedMultiplier": 1.2048192771084338
+                },
+                "velocity": 0,
+                "tickDistance": 0,
+                "nestedHitObjects": [
+                    {
+                        "type": 0,
+                        "startTime": 59138,
+                        "position": {
+                            "x": 126,
+                            "y": 326
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    },
+                    {
+                        "type": 3,
+                        "startTime": null,
+                        "position": {
+                            "x": 228,
+                            "y": 559
+                        },
+                        "indexInCurrentCombo": 0,
+                        "comboIndex": 0
+                    }
+                ],
+                "stackHeight": 0
             }
         },
         {
@@ -2092,6 +3917,248 @@ export const quaver: Beatmap = {
                     "0:0:0:0:\r"
                 ]
             }
+        }
+    ],
+    "timingControlPoints": [
+        {
+            "type": 0,
+            "time": 1198,
+            "beatLength": 329,
+            "timeSignature": 4
+        },
+        {
+            "type": 0,
+            "time": 13066,
+            "beatLength": 326,
+            "timeSignature": 4
+        },
+        {
+            "type": 0,
+            "time": 37848,
+            "beatLength": 322,
+            "timeSignature": 4
+        }
+    ],
+    "difficultyControlPoints": [
+        {
+            "type": 1,
+            "time": 1198,
+            "speedMultiplier": 1
+        },
+        {
+            "type": 1,
+            "time": 1198,
+            "speedMultiplier": 0.7518796992481203
+        },
+        {
+            "type": 1,
+            "time": 6472,
+            "speedMultiplier": 1
+        },
+        {
+            "type": 1,
+            "time": 13066,
+            "speedMultiplier": 1
+        },
+        {
+            "type": 1,
+            "time": 13066,
+            "speedMultiplier": 1
+        },
+        {
+            "type": 1,
+            "time": 37848,
+            "speedMultiplier": 1
+        },
+        {
+            "type": 1,
+            "time": 37848,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "type": 1,
+            "time": 48170,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "type": 1,
+            "time": 53331,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "type": 1,
+            "time": 57202,
+            "speedMultiplier": 1.1111111111111112
+        },
+        {
+            "type": 1,
+            "time": 58493,
+            "speedMultiplier": 1.2048192771084338
+        },
+        {
+            "type": 1,
+            "time": 64944,
+            "speedMultiplier": 1.1111111111111112
+        }
+    ],
+    "effectControlPoints": [
+        {
+            "type": 2,
+            "time": 1198,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 1198,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 6472,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 13066,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 13066,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 37848,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 37848,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 48170,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 53331,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 57202,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 58493,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        },
+        {
+            "type": 2,
+            "time": 64944,
+            "kiaiMode": false,
+            "omitFirstBarSignature": false
+        }
+    ],
+    "legacySampleControlPoints": [
+        {
+            "type": 3,
+            "time": 1198,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 32
+        },
+        {
+            "type": 3,
+            "time": 1198,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 32
+        },
+        {
+            "type": 3,
+            "time": 6472,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 52
+        },
+        {
+            "type": 3,
+            "time": 13066,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 62
+        },
+        {
+            "type": 3,
+            "time": 13066,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 62
+        },
+        {
+            "type": 3,
+            "time": 37848,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 72
+        },
+        {
+            "type": 3,
+            "time": 37848,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 72
+        },
+        {
+            "type": 3,
+            "time": 48170,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 82
+        },
+        {
+            "type": 3,
+            "time": 53331,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 72
+        },
+        {
+            "type": 3,
+            "time": 57202,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 82
+        },
+        {
+            "type": 3,
+            "time": 58493,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 92
+        },
+        {
+            "type": 3,
+            "time": 64944,
+            "customSampleBank": 22,
+            "sampleSet": 2,
+            "sampleVolume": 5
         }
     ],
     "aimStrain": 0,
