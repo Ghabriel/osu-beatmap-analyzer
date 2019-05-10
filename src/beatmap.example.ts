@@ -5,7 +5,7 @@ export const quaver: Beatmap = {
     "audioLeadIn": 0,
     "previewTime": 37767,
     "countdown": 0,
-    "stackLeniency": 0,
+    "stackLeniency": 0.7,
     "mode": 0,
     "distanceSpacing": 1,
     "beatDivisor": 4,
@@ -83,12 +83,12 @@ export const quaver: Beatmap = {
     "circleSize": 3,
     "overallDifficulty": 2,
     "approachRate": 3,
-    "sliderMultiplier": 0,
+    "sliderMultiplier": 0.8,
     "sliderTickRate": 1,
     "timingPoints": [
         {
             "time": 1198,
-            "beatLength": 329,
+            "beatLength": 329.67032967033,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -100,7 +100,7 @@ export const quaver: Beatmap = {
         },
         {
             "time": 1198,
-            "beatLength": -133,
+            "beatLength": -133.333333333333,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -108,7 +108,7 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 0.7518796992481203
+            "speedMultiplier": 0.7500000000000019
         },
         {
             "time": 6472,
@@ -124,7 +124,7 @@ export const quaver: Beatmap = {
         },
         {
             "time": 13066,
-            "beatLength": 326,
+            "beatLength": 326.086956521739,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -148,7 +148,7 @@ export const quaver: Beatmap = {
         },
         {
             "time": 37848,
-            "beatLength": 322,
+            "beatLength": 322.58064516129,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -160,7 +160,7 @@ export const quaver: Beatmap = {
         },
         {
             "time": 37848,
-            "beatLength": -90,
+            "beatLength": -90.9090909090909,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -168,11 +168,11 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "time": 48170,
-            "beatLength": -90,
+            "beatLength": -90.9090909090909,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -180,11 +180,11 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "time": 53331,
-            "beatLength": -90,
+            "beatLength": -90.9090909090909,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -192,11 +192,11 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "time": 57202,
-            "beatLength": -90,
+            "beatLength": -90.9090909090909,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -204,11 +204,11 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "time": 58493,
-            "beatLength": -83,
+            "beatLength": -83.3333333333333,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -216,11 +216,11 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 1.2048192771084338
+            "speedMultiplier": 1.2000000000000004
         },
         {
             "time": 64944,
-            "beatLength": -90,
+            "beatLength": -90.9090909090909,
             "timeSignature": 4,
             "sampleSet": 2,
             "customSampleBank": 22,
@@ -228,7 +228,7 @@ export const quaver: Beatmap = {
             "timingChange": false,
             "kiaiMode": false,
             "omitFirstBarSignature": false,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         }
     ],
     "colors": [
@@ -320,7 +320,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 1198,
-                    "beatLength": 329,
+                    "beatLength": 329.67032967033,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -328,8 +328,8 @@ export const quaver: Beatmap = {
                     "time": 6472,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24266666666666645,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -342,8 +342,44 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 6472,
+                        "startTime": 6801.67032967033,
+                        "position": {
+                            "x": 650,
+                            "y": 425
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 659.3406593406598,
+                        "startTime": 7131.34065934066,
+                        "position": {
+                            "x": 650,
+                            "y": 425
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 1,
+                        "spanStartTime": 7131.34065934066,
+                        "startTime": 7461.01098901099,
+                        "position": {
+                            "x": 650,
+                            "y": 425
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 7754.68131868132,
                         "position": {
                             "x": 650,
                             "y": 425
@@ -408,7 +444,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 1198,
-                    "beatLength": 329,
+                    "beatLength": 329.67032967033,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -416,8 +452,8 @@ export const quaver: Beatmap = {
                     "time": 6472,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24266666666666645,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -430,8 +466,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 9110,
+                        "startTime": 9439.67032967033,
+                        "position": {
+                            "x": 21,
+                            "y": 177
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 9733.34065934066,
                         "position": {
                             "x": 21,
                             "y": 177
@@ -478,7 +526,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 1198,
-                    "beatLength": 329,
+                    "beatLength": 329.67032967033,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -486,8 +534,8 @@ export const quaver: Beatmap = {
                     "time": 6472,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24266666666666645,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -501,7 +549,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 10721.67032967033,
                         "position": {
                             "x": 214,
                             "y": 359
@@ -548,7 +596,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 1198,
-                    "beatLength": 329,
+                    "beatLength": 329.67032967033,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -556,8 +604,8 @@ export const quaver: Beatmap = {
                     "time": 6472,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24266666666666645,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -570,8 +618,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 329.6703296703299,
+                        "startTime": 11417.67032967033,
+                        "position": {
+                            "x": 267,
+                            "y": 204
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 11711.340659340662,
                         "position": {
                             "x": 267,
                             "y": 204
@@ -636,7 +696,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -644,8 +704,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -658,8 +718,44 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 13066,
+                        "startTime": 13392.08695652174,
+                        "position": {
+                            "x": 448,
+                            "y": 400
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 652.173913043478,
+                        "startTime": 13718.173913043478,
+                        "position": {
+                            "x": 506.30389577288196,
+                            "y": 548.9988447529206
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 1,
+                        "spanStartTime": 13718.173913043478,
+                        "startTime": 14044.260869565216,
+                        "position": {
+                            "x": 448,
+                            "y": 400
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 14334.347826086956,
                         "position": {
                             "x": 506.30389577288196,
                             "y": 548.9988447529206
@@ -733,7 +829,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -741,8 +837,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -756,7 +852,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 15312.08695652174,
                         "position": {
                             "x": 847,
                             "y": 321
@@ -837,7 +933,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -845,8 +941,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -859,8 +955,32 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 15674,
+                        "startTime": 16000.086956521738,
+                        "position": {
+                            "x": 677,
+                            "y": 108
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 15674,
+                        "startTime": 16326.173913043478,
+                        "position": {
+                            "x": 677,
+                            "y": 108
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 16616.260869565216,
                         "position": {
                             "x": 472.21235992352985,
                             "y": -17.148002268953988
@@ -941,7 +1061,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -949,8 +1069,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -963,8 +1083,32 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 16979,
+                        "startTime": 17305.08695652174,
+                        "position": {
+                            "x": 102,
+                            "y": 123
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 16979,
+                        "startTime": 17631.173913043476,
+                        "position": {
+                            "x": 102,
+                            "y": 123
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 17921.260869565216,
                         "position": {
                             "x": 232.3803067577458,
                             "y": 324.49683771651627
@@ -1020,7 +1164,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1028,8 +1172,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1042,8 +1186,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 18283,
+                        "startTime": 18609.08695652174,
+                        "position": {
+                            "x": 134,
+                            "y": 712
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 18899.17391304348,
                         "position": {
                             "x": 134,
                             "y": 712
@@ -1108,7 +1264,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1116,8 +1272,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1130,8 +1286,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 326.0869565217399,
+                        "startTime": 19913.08695652174,
+                        "position": {
+                            "x": 253,
+                            "y": 190
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 20203.17391304348,
                         "position": {
                             "x": 253,
                             "y": 190
@@ -1187,7 +1355,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1195,8 +1363,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1209,8 +1377,44 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 20892,
+                        "startTime": 21218.08695652174,
+                        "position": {
+                            "x": 715,
+                            "y": 715
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 652.173913043478,
+                        "startTime": 21544.17391304348,
+                        "position": {
+                            "x": 715,
+                            "y": 715
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 1,
+                        "spanStartTime": 21544.17391304348,
+                        "startTime": 21870.26086956522,
+                        "position": {
+                            "x": 715,
+                            "y": 715
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 22160.34782608696,
                         "position": {
                             "x": 715,
                             "y": 715
@@ -1284,7 +1488,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1292,8 +1496,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1307,7 +1511,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 23138.08695652174,
                         "position": {
                             "x": 314,
                             "y": 486
@@ -1363,7 +1567,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1371,8 +1575,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1385,8 +1589,44 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 23500,
+                        "startTime": 23826.08695652174,
+                        "position": {
+                            "x": 22,
+                            "y": 439
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 652.173913043478,
+                        "startTime": 24152.17391304348,
+                        "position": {
+                            "x": 22,
+                            "y": 439
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 1,
+                        "spanStartTime": 24152.17391304348,
+                        "startTime": 24478.26086956522,
+                        "position": {
+                            "x": 22,
+                            "y": 439
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 24768.34782608696,
                         "position": {
                             "x": 22,
                             "y": 439
@@ -1460,7 +1700,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1468,8 +1708,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1483,7 +1723,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 25747.08695652174,
                         "position": {
                             "x": 334,
                             "y": 749
@@ -1568,7 +1808,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1576,8 +1816,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1590,8 +1830,32 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 26109,
+                        "startTime": 26435.08695652174,
+                        "position": {
+                            "x": 605,
+                            "y": 625
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 26109,
+                        "startTime": 26761.173913043476,
+                        "position": {
+                            "x": 605,
+                            "y": 625
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 27051.260869565216,
                         "position": {
                             "x": 726.3726799309809,
                             "y": 417.9524871765621
@@ -1676,7 +1940,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1684,8 +1948,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1698,8 +1962,32 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 27413,
+                        "startTime": 27739.08695652174,
+                        "position": {
+                            "x": 665,
+                            "y": 99
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 27413,
+                        "startTime": 28065.173913043476,
+                        "position": {
+                            "x": 665,
+                            "y": 99
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 28355.260869565216,
                         "position": {
                             "x": 457.9524871765621,
                             "y": 220.37267993098084
@@ -1764,7 +2052,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1772,8 +2060,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1786,8 +2074,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 28718,
+                        "startTime": 29044.08695652174,
+                        "position": {
+                            "x": 146,
+                            "y": 263
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 29334.17391304348,
                         "position": {
                             "x": -12.532826887087822,
                             "y": 284.61811275733015
@@ -1852,7 +2152,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1860,8 +2160,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1874,8 +2174,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 326.0869565217399,
+                        "startTime": 30348.08695652174,
+                        "position": {
+                            "x": 200,
+                            "y": 262
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 30638.17391304348,
                         "position": {
                             "x": 200,
                             "y": 262
@@ -1931,7 +2243,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -1939,8 +2251,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -1953,8 +2265,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 31326,
+                        "startTime": 31652.08695652174,
+                        "position": {
+                            "x": 400,
+                            "y": 143
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 31942.17391304348,
                         "position": {
                             "x": 400,
                             "y": 143
@@ -2019,7 +2343,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -2027,8 +2351,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2042,7 +2366,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 32921.086956521736,
                         "position": {
                             "x": 442,
                             "y": 168
@@ -2089,7 +2413,7 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 13066,
-                    "beatLength": 326,
+                    "beatLength": 326.086956521739,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
@@ -2097,8 +2421,8 @@ export const quaver: Beatmap = {
                     "time": 13066,
                     "speedMultiplier": 1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.24533333333333343,
+                "tickDistance": 80,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2112,7 +2436,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 33573.086956521736,
                         "position": {
                             "x": 371,
                             "y": 309
@@ -2177,16 +2501,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2199,8 +2523,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 322.5806451612916,
+                        "startTime": 38170.58064516129,
+                        "position": {
+                            "x": 243,
+                            "y": 137
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 38457.161290322576,
                         "position": {
                             "x": 243,
                             "y": 137
@@ -2274,16 +2610,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2297,7 +2633,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 39424.58064516129,
                         "position": {
                             "x": 811,
                             "y": 412
@@ -2353,16 +2689,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2376,7 +2712,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 40069.58064516129,
                         "position": {
                             "x": 654,
                             "y": 685
@@ -2441,16 +2777,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2463,8 +2799,44 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 40428,
+                        "startTime": 40750.58064516129,
+                        "position": {
+                            "x": 265,
+                            "y": 634
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 645.1612903225796,
+                        "startTime": 41073.161290322576,
+                        "position": {
+                            "x": 333.57663838725887,
+                            "y": 796.0902361880663
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 1,
+                        "spanStartTime": 41073.161290322576,
+                        "startTime": 41395.741935483864,
+                        "position": {
+                            "x": 265,
+                            "y": 634
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 41682.32258064515,
                         "position": {
                             "x": 333.57663838725887,
                             "y": 796.0902361880663
@@ -2538,16 +2910,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2561,7 +2933,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 42650.58064516129,
                         "position": {
                             "x": 691,
                             "y": 540
@@ -2608,16 +2980,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2630,8 +3002,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 322.5806451612916,
+                        "startTime": 43331.58064516129,
+                        "position": {
+                            "x": 280,
+                            "y": 146
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 43618.161290322576,
                         "position": {
                             "x": 280,
                             "y": 146
@@ -2705,16 +3089,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2728,7 +3112,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 44585.58064516129,
                         "position": {
                             "x": 343,
                             "y": 592
@@ -2793,16 +3177,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2815,8 +3199,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 322.5806451612916,
+                        "startTime": 45911.58064516129,
+                        "position": {
+                            "x": 135,
+                            "y": 106
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 46198.161290322576,
                         "position": {
                             "x": 135,
                             "y": 106
@@ -2890,16 +3286,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 37848,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -2913,7 +3309,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 47166.58064516129,
                         "position": {
                             "x": 598,
                             "y": 271
@@ -2996,16 +3392,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 48170,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3018,8 +3414,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 322.5806451612916,
+                        "startTime": 48492.58064516129,
+                        "position": {
+                            "x": 436,
+                            "y": 290
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 48779.161290322576,
                         "position": {
                             "x": 436,
                             "y": 290
@@ -3093,16 +3501,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 48170,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3116,7 +3524,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 49746.58064516129,
                         "position": {
                             "x": 514,
                             "y": 569
@@ -3172,16 +3580,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 48170,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3195,7 +3603,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 50392.58064516129,
                         "position": {
                             "x": 242,
                             "y": 406
@@ -3263,16 +3671,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 48170,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3285,8 +3693,44 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 50751,
+                        "startTime": 51073.58064516129,
+                        "position": {
+                            "x": 368,
+                            "y": 122
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 2,
+                        "repeatIndex": 0,
+                        "spanDuration": 645.1612903225796,
+                        "startTime": 51396.161290322576,
+                        "position": {
+                            "x": 368,
+                            "y": 122
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
+                        "type": 1,
+                        "spanIndex": 1,
+                        "spanStartTime": 51396.161290322576,
+                        "startTime": 51718.741935483864,
+                        "position": {
+                            "x": 368,
+                            "y": 122
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 52005.32258064515,
                         "position": {
                             "x": 368,
                             "y": 122
@@ -3360,16 +3804,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 48170,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3383,7 +3827,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 52972.58064516129,
                         "position": {
                             "x": 10,
                             "y": 231
@@ -3439,16 +3883,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 53331,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3461,8 +3905,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 53331,
+                        "startTime": 53653.58064516129,
+                        "position": {
+                            "x": 216,
+                            "y": 443
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 53940.16129032258,
                         "position": {
                             "x": 216,
                             "y": 443
@@ -3518,16 +3974,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 53331,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3540,8 +3996,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 54622,
+                        "startTime": 54944.58064516129,
+                        "position": {
+                            "x": 676,
+                            "y": 701
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 55231.16129032258,
                         "position": {
                             "x": 676,
                             "y": 701
@@ -3606,16 +4074,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 53331,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3628,8 +4096,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 55912,
+                        "startTime": 56234.58064516129,
+                        "position": {
+                            "x": 75,
+                            "y": 235
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 56521.16129032258,
                         "position": {
                             "x": 75,
                             "y": 235
@@ -3676,16 +4156,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 57202,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3699,7 +4179,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 57488.58064516129,
                         "position": {
                             "x": 262,
                             "y": 25
@@ -3746,16 +4226,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 57202,
-                    "speedMultiplier": 1.1111111111111112
+                    "speedMultiplier": 1.1
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.27280000000000026,
+                "tickDistance": 88,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3769,7 +4249,7 @@ export const quaver: Beatmap = {
                     },
                     {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 58133.58064516129,
                         "position": {
                             "x": 327,
                             "y": 178
@@ -3865,16 +4345,16 @@ export const quaver: Beatmap = {
                 "timingPoint": {
                     "type": 0,
                     "time": 37848,
-                    "beatLength": 322,
+                    "beatLength": 322.58064516129,
                     "timeSignature": 4
                 },
                 "difficultyPoint": {
                     "type": 1,
                     "time": 58493,
-                    "speedMultiplier": 1.2048192771084338
+                    "speedMultiplier": 1.2000000000000004
                 },
-                "velocity": 0,
-                "tickDistance": 0,
+                "velocity": 0.29760000000000036,
+                "tickDistance": 96.00000000000003,
                 "nestedHitObjects": [
                     {
                         "type": 0,
@@ -3887,8 +4367,20 @@ export const quaver: Beatmap = {
                         "comboIndex": 0
                     },
                     {
+                        "type": 1,
+                        "spanIndex": 0,
+                        "spanStartTime": 59138,
+                        "startTime": 59460.58064516129,
+                        "position": {
+                            "x": 228,
+                            "y": 559
+                        },
+                        "stackHeight": 0,
+                        "scale": 0.6399999999999999
+                    },
+                    {
                         "type": 3,
-                        "startTime": null,
+                        "startTime": 59582.51075268817,
                         "position": {
                             "x": 228,
                             "y": 559
@@ -3923,19 +4415,19 @@ export const quaver: Beatmap = {
         {
             "type": 0,
             "time": 1198,
-            "beatLength": 329,
+            "beatLength": 329.67032967033,
             "timeSignature": 4
         },
         {
             "type": 0,
             "time": 13066,
-            "beatLength": 326,
+            "beatLength": 326.086956521739,
             "timeSignature": 4
         },
         {
             "type": 0,
             "time": 37848,
-            "beatLength": 322,
+            "beatLength": 322.58064516129,
             "timeSignature": 4
         }
     ],
@@ -3948,7 +4440,7 @@ export const quaver: Beatmap = {
         {
             "type": 1,
             "time": 1198,
-            "speedMultiplier": 0.7518796992481203
+            "speedMultiplier": 0.7500000000000019
         },
         {
             "type": 1,
@@ -3973,32 +4465,32 @@ export const quaver: Beatmap = {
         {
             "type": 1,
             "time": 37848,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "type": 1,
             "time": 48170,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "type": 1,
             "time": 53331,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "type": 1,
             "time": 57202,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         },
         {
             "type": 1,
             "time": 58493,
-            "speedMultiplier": 1.2048192771084338
+            "speedMultiplier": 1.2000000000000004
         },
         {
             "type": 1,
             "time": 64944,
-            "speedMultiplier": 1.1111111111111112
+            "speedMultiplier": 1.1
         }
     ],
     "effectControlPoints": [
