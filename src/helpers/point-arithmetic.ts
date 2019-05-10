@@ -60,3 +60,9 @@ export function getMidPoint(a: Point, b: Point): Point {
 export function isSamePoint(a: Point, b: Point): boolean {
     return a.x === b.x && a.y === b.y;
 }
+
+export function pointNormalize(point: Point) {
+    const norm = getNorm(point);
+    point.x /= norm;
+    point.y /= norm;
+}

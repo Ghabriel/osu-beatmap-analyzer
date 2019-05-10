@@ -1,6 +1,6 @@
 import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip } from '../types';
 import { assertNever } from './assertNever';
-import { pointSum } from './point-arithmetic';
+import { getNorm, operate, pointMultiply, pointNormalize, pointSum } from './point-arithmetic';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
 const SECTION_LENGTH = 400;
@@ -401,4 +401,99 @@ function isSliderCircle(hitObject: NestedHitObject): hitObject is SliderCircle {
 
 function isSliderTailCircle(hitObject: NestedHitObject): hitObject is SliderTailCircle {
     return hitObject.type === NestedHitObjectType.SliderTailCircle;
+}
+
+function createDifficultyHitObjects(beatmap: ParsedBeatmap) {
+    const hitObjectScale = getHitObjectScale(beatmap);
+    const hitObjectRadius = getHitObjectRadius(hitObjectScale);
+
+    return beatmap.hitObjects
+        .slice(1)
+        .map((current, i) => {
+            const lastLast = i > 1 ? beatmap.hitObjects[i - 2] : null;
+            const last = beatmap.hitObjects[i - 1];
+
+            const deltaTime = (current.startTime - last.startTime) / CLOCK_RATE;
+            const strainTime = Math.max(50, deltaTime);
+            const scalingFactor = getScalingFactor(hitObjectRadius);
+
+            if (isSlider(last)) {
+                computeSliderCursorPosition(last, beatmap);
+                // TODO
+            }
+
+            return { lastLast, last, current };
+        });
+}
+
+function getHitObjectRadius(hitObjectScale: number): number {
+    return OBJECT_RADIUS * hitObjectScale;
+}
+
+function getScalingFactor(hitObjectRadius: number): number {
+    const scalingFactor = NORMALIZED_RADIUS / hitObjectRadius;
+
+    if (hitObjectRadius < 30) {
+        const smallCircleBonus = Math.min(30 - hitObjectRadius, 5) / 50;
+        return scalingFactor * (1 + smallCircleBonus);
+    }
+
+    return scalingFactor;
+}
+
+interface SliderTraversalData {
+    lazyEndPosition: Point;
+    lazyTravelDistance: number;
+}
+
+function computeSliderCursorPosition(slider: Slider, beatmap: ParsedBeatmap): SliderTraversalData {
+    const stackHeight = slider.metadata.stackHeight;
+    const scale = getHitObjectScale(beatmap);
+    const stackOffset = stackHeight * scale * -6.4;
+
+    const stackedPosition: Point = {
+        x: slider.x + stackOffset,
+        y: slider.y + stackOffset,
+    }
+
+    let lazyEndPosition = stackedPosition;
+    let lazyTravelDistance = 0;
+
+    const approxFollowCircleRadius = getHitObjectRadius(scale) * 3;
+    const computedProperties = getSliderComputedProperties(slider);
+
+    slider.metadata.nestedHitObjects.slice(1).map(nested => {
+        const progress = getNestedHitObjectProgress(nested, computedProperties);
+        const pathPosition = slider.metadata.path.positionAt(progress);
+
+        const diff = operate(stackedPosition)
+            .sum(pathPosition)
+            .subtract(lazyEndPosition)
+            .get();
+
+        let dist = getNorm(diff);
+
+        if (dist > approxFollowCircleRadius) {
+            pointNormalize(diff);
+            dist -= approxFollowCircleRadius;
+            lazyEndPosition = pointSum(lazyEndPosition, pointMultiply(diff, dist));
+            lazyTravelDistance += dist;
+        }
+    });
+
+    return { lazyEndPosition, lazyTravelDistance };
+}
+
+function getNestedHitObjectProgress(
+    nestedHitObject: NestedHitObject,
+    sliderProperties: SliderComputedProperties,
+): number {
+    const { startTime, spanDuration } = sliderProperties;
+    const progress = (nestedHitObject.startTime - startTime) / spanDuration;
+
+    if (progress % 2 >= 1) {
+        return 1 - progress % 1;
+    } else {
+        return progress % 1;
+    }
 }
