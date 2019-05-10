@@ -16,6 +16,51 @@ export class SliderPath {
         this.calculateCumulativeLength();
     }
 
+    positionAt(progress: number): Point {
+        const distance = this.progressToDistance(progress);
+        const index = this.indexOfDistance(distance);
+        return this.interpolateVertices(index, distance);
+    }
+
+    private progressToDistance(progress: number): number {
+        return Math.max(0, Math.min(1, progress)) * this.length;
+    }
+
+    private indexOfDistance(distance: number): number {
+        const index = this.cumulativeLength.findIndex(v => Math.abs(v - distance) < 1e-3);
+        return (index < 0) ? ~index : index;
+    }
+
+    private interpolateVertices(index: number, distance: number): Point {
+        if (this.calculatedPath.length === 0) {
+            return { x: 0, y: 0 };
+        }
+
+        if (index <= 0) {
+            return this.calculatedPath[0];
+        }
+        if (index >= this.calculatedPath.length) {
+            return this.calculatedPath[this.calculatePath.length - 1];
+        }
+
+        const p0 = this.calculatedPath[index - 1];
+        const p1 = this.calculatedPath[index];
+
+        const d0 = this.cumulativeLength[index - 1];
+        const d1 = this.cumulativeLength[index];
+
+        if (Math.abs(d0 - d1) < 1e-3) {
+            return p0;
+        }
+
+        const w = (distance - d0) / (d1 - d0);
+        return operate(p1)
+            .subtract(p0)
+            .multiply(w)
+            .sum(p0)
+            .get();
+    }
+
     private calculatePath() {
         let start = 0;
 
