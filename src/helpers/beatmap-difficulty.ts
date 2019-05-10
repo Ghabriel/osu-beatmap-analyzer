@@ -1,4 +1,4 @@
-import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObjectType, ParsedBeatmap, Point, Slider } from '../types';
+import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip } from '../types';
 import { assertNever } from './assertNever';
 import { pointSum } from './point-arithmetic';
 
@@ -27,6 +27,8 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
     // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L97
 
     preProcessBeatmap(beatmap);
+
+    // TODO: do we need to apply defaults again?
 
     // TODO: apply mods, if any
     // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L114
@@ -220,6 +222,8 @@ function createNestedHitObjects(slider: Slider, beatmap: ParsedBeatmap) {
                 break;
         }
     }
+
+    slider.metadata.nestedHitObjects.sort((a, b) => a.startTime - b.startTime);
 }
 
 function getHitObjectScale(beatmap: ParsedBeatmap): number {
@@ -364,5 +368,37 @@ function preProcessBeatmap(beatmap: ParsedBeatmap) {
 }
 
 function postProcessBeatmap(beatmap: ParsedBeatmap) {
+    // for (const hitObject of beatmap.hitObjects) {
+    //     if (isSlider(hitObject)) {
+    //         for (const nested of hitObject.metadata.nestedHitObjects) {
+    //             if (isSliderTip(nested)) {
+    //                 nested.comboIndex = hitObject.comboIndex;
+    //                 nested.indexInCurrentCombo = hitObject.indexInCurrentCombo;
+    //             }
+    //         }
+    //     }
+    // }
 
+    beatmap.hitObjects.filter(isSlider).map(slider => {
+        slider.metadata.nestedHitObjects.filter(isSliderTip).map(nested => {
+            nested.comboIndex = slider.comboIndex;
+            nested.indexInCurrentCombo = slider.indexInCurrentCombo;
+        });
+    });
+}
+
+function isSlider(hitObject: HitObject): hitObject is Slider {
+    return hitObject.type === HitObjectType.Slider;
+}
+
+function isSliderTip(hitObject: NestedHitObject): hitObject is SliderTip {
+    return isSliderCircle(hitObject) || isSliderTailCircle(hitObject);
+}
+
+function isSliderCircle(hitObject: NestedHitObject): hitObject is SliderCircle {
+    return hitObject.type === NestedHitObjectType.SliderCircle;
+}
+
+function isSliderTailCircle(hitObject: NestedHitObject): hitObject is SliderTailCircle {
+    return hitObject.type === NestedHitObjectType.SliderTailCircle;
 }

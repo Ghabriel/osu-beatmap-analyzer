@@ -233,6 +233,8 @@ export interface SliderTick {
     scale: number;
 }
 
+export type SliderTip = SliderCircle | SliderTailCircle;
+
 export interface SliderCircle {
     type: NestedHitObjectType.SliderCircle;
     startTime: number;
