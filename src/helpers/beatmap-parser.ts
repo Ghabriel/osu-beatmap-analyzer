@@ -96,7 +96,7 @@ function parseGeneralLine(beatmap: Partial<Beatmap>, line: string) {
             beatmap.countdown = parseInt(value);
             break;
         case 'StackLeniency':
-            beatmap.stackLeniency = parseInt(value);
+            beatmap.stackLeniency = parseFloat(value);
             break;
         case 'Mode':
             beatmap.mode = parseInt(value);
@@ -165,22 +165,22 @@ function parseDifficultyLine(beatmap: Partial<Beatmap>, line: string) {
 
     switch (key) {
         case 'HPDrainRate':
-            beatmap.hpDrainRate = parseInt(value);
+            beatmap.hpDrainRate = parseFloat(value);
             break;
         case 'CircleSize':
-            beatmap.circleSize = parseInt(value);
+            beatmap.circleSize = parseFloat(value);
             break;
         case 'OverallDifficulty':
-            beatmap.overallDifficulty = parseInt(value);
+            beatmap.overallDifficulty = parseFloat(value);
             break;
         case 'ApproachRate':
-            beatmap.approachRate = parseInt(value);
+            beatmap.approachRate = parseFloat(value);
             break;
         case 'SliderMultiplier':
-            beatmap.sliderMultiplier = parseInt(value);
+            beatmap.sliderMultiplier = parseFloat(value);
             break;
         case 'SliderTickRate':
-            beatmap.sliderTickRate = parseInt(value);
+            beatmap.sliderTickRate = parseFloat(value);
             break;
         default:
     }
@@ -197,7 +197,7 @@ function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
         beatmap.timingPoints = [];
     }
 
-    const beatLength = parseInt(parts[1]);
+    const beatLength = parseFloat(parts[1]);
     const timeSignature = parts.length > 2 ? parseInt(parts[2]) : 4;
 
     let kiaiMode = false;
