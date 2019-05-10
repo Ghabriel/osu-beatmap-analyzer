@@ -1,5 +1,6 @@
 import { PathType, Point } from '../types';
 import { assertNever } from './assertNever';
+import * as PathApproximator from './path-approximation';
 
 export class SliderPath {
     private calculatedPath: Point[] = [];
