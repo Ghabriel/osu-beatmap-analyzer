@@ -1,6 +1,7 @@
 import { PathType, Point } from '../types';
 import { assertNever } from './assertNever';
 import * as PathApproximator from './path-approximation';
+import { getNorm, operate, pointSubtract } from './point-arithmetic';
 
 export class SliderPath {
     private calculatedPath: Point[] = [];
@@ -53,13 +54,13 @@ export class SliderPath {
                 return PathApproximator.approximateBezier(subControlPoints);
 
             case PathType.Linear:
-                return PathApproximator.approximateLinear(subControlPoints);
+                return subControlPoints;
 
             case PathType.PerfectCurve:
                 if (this.controlPoints.length === 3 && subControlPoints.length === 3) {
                     const subPath = PathApproximator.approximateCircularArc(subControlPoints);
 
-                    if (subPath.length !== 0) {
+                    if (subPath !== null) {
                         return subPath;
                     }
                 }
@@ -72,6 +73,48 @@ export class SliderPath {
     }
 
     private calculateCumulativeLength() {
-        throw new Error("Method not implemented.");
+        let l = 0;
+
+        this.cumulativeLength.push(l);
+
+        for (let i = 0; i < this.calculatedPath.length - 1; i++) {
+            const diff = pointSubtract(this.calculatedPath[i + 1], this.calculatedPath[i]);
+            let d = getNorm(diff);
+
+            if (this.length - l < d) {
+                this.calculatedPath[i + 1] = operate(diff)
+                    .multiply((this.length - l) / d)
+                    .sum(this.calculatedPath[i])
+                    .get();
+                this.calculatedPath.splice(i + 2, this.calculatedPath.length - 2 - i);
+
+                l = this.length;
+                this.cumulativeLength.push(l);
+                break;
+            }
+
+            l += d;
+            this.cumulativeLength.push(l);
+        }
+
+        if (l < this.length && this.calculatedPath.length > 1) {
+            const diff = pointSubtract(
+                this.calculatedPath[this.calculatedPath.length - 1],
+                this.calculatedPath[this.calculatedPath.length - 2],
+            );
+            let d = getNorm(diff);
+
+            // TODO: investigate
+            if (d <= 0) {
+                return;
+            }
+
+            // this.calculatedPath[this.calculatedPath.Count - 1] += diff * (float)((this.length - l) / d);
+            this.calculatedPath[this.calculatedPath.length - 1] = operate(diff)
+                .multiply((this.length - l) / d)
+                .sum(this.calculatedPath[this.calculatedPath.length - 1])
+                .get();
+            this.cumulativeLength[this.calculatedPath.length - 1] = this.length;
+        }
     }
 }

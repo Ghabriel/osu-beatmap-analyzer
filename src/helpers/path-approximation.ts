@@ -1,4 +1,5 @@
 import { Point } from '../types';
+import { dotProduct, getMidPoint, getNorm, getSquaredNorm, operate, pointMultiply, pointSubtract, pointSum } from './point-arithmetic';
 
 const BEZIER_TOLERANCE = 0.25;
 const CATMULL_DETAIL = 50;
@@ -45,63 +46,6 @@ export function approximateBezier(controlPoints: Point[]): Point[] {
     output.push(controlPoints[count - 1]);
 
     return output;
-}
-
-function pointSum(a: Point, b: Point): Point {
-    return {
-        x: a.x + b.x,
-        y: a.y + b.y,
-    };
-}
-
-function pointSubtract(a: Point, b: Point): Point {
-    return {
-        x: a.x - b.x,
-        y: a.y - b.y,
-    };
-}
-
-function pointMultiply(point: Point, scalar: number): Point {
-    return {
-        x: point.x * scalar,
-        y: point.y * scalar,
-    };
-}
-
-function pointDivide(point: Point, scalar: number): Point {
-    return {
-        x: point.x / scalar,
-        y: point.y / scalar,
-    };
-}
-
-function operate(point: Point) {
-    return {
-        sum: (other: Point) => operate(pointSum(point, other)),
-        subtract: (other: Point) => operate(pointSubtract(point, other)),
-        multiply: (scalar: number) => operate(pointMultiply(point, scalar)),
-        divide: (scalar: number) => operate(pointDivide(point, scalar)),
-        get: () => point,
-    };
-}
-
-function getNorm(point: Point): number {
-    return Math.sqrt(getSquaredNorm(point));
-}
-
-function getSquaredNorm(point: Point): number {
-    return point.x * point.x + point.y * point.y;
-}
-
-function dotProduct(a: Point, b: Point): number {
-    return a.x * b.x + a.y * b.y;
-}
-
-function getMidPoint(a: Point, b: Point): Point {
-    return {
-        x: (a.x + b.x) / 2,
-        y: (a.y + b.y) / 2,
-    };
 }
 
 function bezierIsFlatEnough(controlPoints: Point[]): boolean {
