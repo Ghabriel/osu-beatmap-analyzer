@@ -14,6 +14,10 @@ export interface DifficultyHitObject {
     lastLast: HitObject | null;
     last: HitObject;
     current: HitObject;
+    strainTime: number;
+    travelDistance: number;
+    jumpDistance: number;
+    angle: number | null;
 }
 
 export enum PathType {
@@ -198,6 +202,7 @@ export interface CircleMetadata {
 
     // Computed
     stackHeight: number;
+    stackedPosition: Point;
 }
 
 export interface SliderMetadata {
@@ -212,6 +217,7 @@ export interface SliderMetadata {
     tickDistance: number;
     nestedHitObjects: NestedHitObject[];
     stackHeight: number;
+    stackedPosition: Point;
 }
 
 export enum NestedHitObjectType {
@@ -264,4 +270,7 @@ export interface RepeatPoint {
 export interface SpinnerMetadata {
     endTime: number;
     soundSamples: string[];
+
+    // Computed
+    stackedPosition: Point;
 }

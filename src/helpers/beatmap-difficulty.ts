@@ -1,4 +1,4 @@
-import { Beatmap, ControlPoint, ControlPointType, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip, Spinner } from '../types';
+import { Beatmap, Circle, ControlPoint, ControlPointType, DifficultyHitObject, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip, Spinner } from '../types';
 import { assertNever } from './assertNever';
 import { dotProduct, getNorm, operate, pointMultiply, pointNormalize, pointSubtract, pointSum } from './point-arithmetic';
 
@@ -37,6 +37,8 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 
     // TODO: apply mods, if any
     // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs#L45
+
+    fillStackedPositions(beatmap);
 
     return {
         ...beatmap,
@@ -387,6 +389,10 @@ function postProcessBeatmap(beatmap: ParsedBeatmap) {
     });
 }
 
+function isCircle(hitObject: HitObject): hitObject is Circle {
+    return hitObject.type === HitObjectType.Circle;
+}
+
 function isSlider(hitObject: HitObject): hitObject is Slider {
     return hitObject.type === HitObjectType.Slider;
 }
@@ -407,7 +413,24 @@ function isSpinner(hitObject: HitObject): hitObject is Spinner {
     return hitObject.type === HitObjectType.Spinner;
 }
 
-function createDifficultyHitObjects(beatmap: ParsedBeatmap) {
+function fillStackedPositions(beatmap: ParsedBeatmap) {
+    const hitObjectScale = getHitObjectScale(beatmap);
+
+    for (const hitObject of beatmap.hitObjects) {
+        const stackHeight = (isCircle(hitObject) || isSlider(hitObject))
+            ? hitObject.metadata.stackHeight
+            : 0;
+
+        const stackOffset = stackHeight * hitObjectScale * -6.4;
+
+        hitObject.metadata.stackedPosition = {
+            x: hitObject.x + stackOffset,
+            y: hitObject.y + stackOffset,
+        };
+    }
+}
+
+function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject[] {
     const hitObjectScale = getHitObjectScale(beatmap);
     const hitObjectRadius = getHitObjectRadius(hitObjectScale);
 
@@ -421,51 +444,74 @@ function createDifficultyHitObjects(beatmap: ParsedBeatmap) {
             const strainTime = Math.max(50, deltaTime);
             const scalingFactor = getScalingFactor(hitObjectRadius);
 
-            const lastStackedPosition = getStackedPosition(last, hitObjectScale);
-            const currentStackedPosition = getStackedPosition(current, hitObjectScale);
+            const lastTraversalData = getHitObjectTraversalData(last, beatmap);
+            const travelDistance = lastTraversalData.lazyTravelDistance * scalingFactor;
+            const lastCursorPosition = lastTraversalData.lazyEndPosition;
+            const jumpDistance = scalingFactor * getBaseJumpDistance(lastCursorPosition, current);
 
-            let lastCursorPosition: Point;
-            let travelDistance = 0;
-            if (isSlider(last)) {
-                const lastTraversalData = getSliderTraversalData(last, beatmap);
-                travelDistance = lastTraversalData.lazyTravelDistance * scalingFactor;
-                lastCursorPosition = lastTraversalData.lazyEndPosition;
-            } else {
-                lastCursorPosition = lastStackedPosition;
-            }
+            const angle = (lastLast === null)
+                ? null
+                : getAngle(lastLast, last, current, lastCursorPosition, beatmap);
 
-            const jumpDistance = isSpinner(current)
-                ? 0
-                : scalingFactor * getNorm(pointSubtract(currentStackedPosition, lastCursorPosition));
-
-            let angle: number | null = null;
-            if (lastLast !== null) {
-                let lastLastCursorPosition: Point;
-                switch (lastLast.type) {
-                    case HitObjectType.Circle:
-                    case HitObjectType.Spinner:
-                        lastLastCursorPosition = getStackedPosition(lastLast, hitObjectScale);
-                        break;
-                    case HitObjectType.Slider:
-                        const traversalData = getSliderTraversalData(lastLast, beatmap);
-                        lastLastCursorPosition = traversalData.lazyEndPosition;
-                        break;
-                    default:
-                        return assertNever(lastLast);
-                }
-
-                const v1 = pointSubtract(lastLastCursorPosition, lastStackedPosition);
-                const v2 = pointSubtract(currentStackedPosition, lastCursorPosition);
-
-                const dot = dotProduct(v1, v2);
-                const det = v1.x * v2.y - v1.y * v2.x;
-
-                angle = Math.abs(Math.atan2(det, dot));
-            }
-
-            // return { lastLast, last, current };
-            return { strainTime, travelDistance, jumpDistance, angle };
+            return {
+                lastLast,
+                last,
+                current,
+                strainTime,
+                travelDistance,
+                jumpDistance,
+                angle,
+            };
         });
+}
+
+function getAngle(
+    lastLast: HitObject,
+    last: HitObject,
+    current: HitObject,
+    lastCursorPosition: Point,
+    beatmap: ParsedBeatmap,
+): number {
+    const lastLastTraversalData = getHitObjectTraversalData(lastLast, beatmap);
+    const lastLastCursorPosition = lastLastTraversalData.lazyEndPosition;
+
+    const v1 = pointSubtract(lastLastCursorPosition, last.metadata.stackedPosition);
+    const v2 = pointSubtract(current.metadata.stackedPosition, lastCursorPosition);
+
+    const dot = dotProduct(v1, v2);
+    const det = v1.x * v2.y - v1.y * v2.x;
+
+    return Math.abs(Math.atan2(det, dot));
+}
+
+function getBaseJumpDistance(lastCursorPosition: Point, current: HitObject) {
+    if (isSpinner(current)) {
+        return 0;
+    }
+
+    return getNorm(pointSubtract(current.metadata.stackedPosition, lastCursorPosition));
+}
+
+function getHitObjectTraversalData(hitObject: HitObject, beatmap: ParsedBeatmap): SliderTraversalData {
+    switch (hitObject.type) {
+        case HitObjectType.Circle:
+            return {
+                lazyEndPosition: hitObject.metadata.stackedPosition,
+                lazyTravelDistance: 0,
+            };
+
+        case HitObjectType.Slider:
+            return getSliderTraversalData(hitObject, beatmap);
+
+        case HitObjectType.Spinner:
+            return {
+                lazyEndPosition: { x: 0, y: 0 },
+                lazyTravelDistance: 0,
+            };
+
+        default:
+            return assertNever(hitObject);
+    }
 }
 
 function getHitObjectRadius(hitObjectScale: number): number {
@@ -490,8 +536,7 @@ interface SliderTraversalData {
 
 function getSliderTraversalData(slider: Slider, beatmap: ParsedBeatmap): SliderTraversalData {
     const scale = getHitObjectScale(beatmap);
-    const stackedPosition = getStackedPosition(slider, scale);
-    let lazyEndPosition = stackedPosition;
+    let lazyEndPosition = slider.metadata.stackedPosition;
     let lazyTravelDistance = 0;
 
     const approxFollowCircleRadius = getHitObjectRadius(scale) * 3;
@@ -501,7 +546,7 @@ function getSliderTraversalData(slider: Slider, beatmap: ParsedBeatmap): SliderT
         const progress = getNestedHitObjectProgress(nested, computedProperties);
         const pathPosition = slider.metadata.path.positionAt(progress);
 
-        const diff = operate(stackedPosition)
+        const diff = operate(slider.metadata.stackedPosition)
             .sum(pathPosition)
             .subtract(lazyEndPosition)
             .get();
@@ -517,16 +562,6 @@ function getSliderTraversalData(slider: Slider, beatmap: ParsedBeatmap): SliderT
     });
 
     return { lazyEndPosition, lazyTravelDistance };
-}
-
-function getStackedPosition(hitObject: HitObject, scale: number): Point {
-    const stackHeight = isSpinner(hitObject) ? 0 : hitObject.metadata.stackHeight;
-    const stackOffset = stackHeight * scale * -6.4;
-
-    return {
-        x: hitObject.x + stackOffset,
-        y: hitObject.y + stackOffset,
-    };
 }
 
 function getNestedHitObjectProgress(
