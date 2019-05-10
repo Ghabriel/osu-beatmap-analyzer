@@ -56,3 +56,7 @@ export function getMidPoint(a: Point, b: Point): Point {
         y: (a.y + b.y) / 2,
     };
 }
+
+export function isSamePoint(a: Point, b: Point): boolean {
+    return a.x === b.x && a.y === b.y;
+}

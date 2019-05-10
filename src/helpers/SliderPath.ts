@@ -1,7 +1,7 @@
 import { PathType, Point } from '../types';
 import { assertNever } from './assertNever';
 import * as PathApproximator from './path-approximation';
-import { getNorm, operate, pointSubtract } from './point-arithmetic';
+import { getNorm, isSamePoint, operate, pointSubtract } from './point-arithmetic';
 
 export class SliderPath {
     private calculatedPath: Point[] = [];
@@ -24,14 +24,14 @@ export class SliderPath {
             const currentPoint = this.controlPoints[i];
             const nextPoint = this.controlPoints[i + 1];
 
-            if (isLastPoint || this.isSamePoint(currentPoint, nextPoint)) {
+            if (isLastPoint || isSamePoint(currentPoint, nextPoint)) {
                 const cpSpan = this.controlPoints.slice(start, i - start);
 
                 for (const subPath of this.calculateSubpath(cpSpan)) {
                     const isFirstPath = this.calculatedPath.length === 0;
                     const lastPath = this.calculatedPath[this.calculatedPath.length - 1];
 
-                    if (isFirstPath || !this.isSamePoint(lastPath, subPath)) {
+                    if (isFirstPath || !isSamePoint(lastPath, subPath)) {
                         this.calculatedPath.push(subPath);
                     }
                 }
@@ -39,10 +39,6 @@ export class SliderPath {
                 start = i;
             }
         }
-    }
-
-    private isSamePoint(a: Point, b: Point) {
-        return a.x === b.x && a.y === b.y;
     }
 
     private calculateSubpath(subControlPoints: Point[]): Point[] {
