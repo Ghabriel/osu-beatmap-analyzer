@@ -47,40 +47,40 @@ export function approximateBezier(controlPoints: Point[]): Point[] {
     return output;
 }
 
-function operate(point: Point) {
-    function pointSum(other: Point): Point {
-        return {
-            x: point.x + other.x,
-            y: point.y + other.y,
-        };
-    }
-
-    function pointSubtract(other: Point): Point {
-        return {
-            x: point.x - other.x,
-            y: point.y - other.y,
-        };
-    }
-
-    function pointMultiply(scalar: number): Point {
-        return {
-            x: scalar * point.x,
-            y: scalar * point.y,
-        };
-    }
-
-    function pointDivide(scalar: number): Point {
-        return {
-            x: point.x / scalar,
-            y: point.y / scalar,
-        };
-    }
-
+function pointSum(a: Point, b: Point): Point {
     return {
-        sum: (other: Point) => operate(pointSum(other)),
-        subtract: (other: Point) => operate(pointSubtract(other)),
-        multiply: (scalar: number) => operate(pointMultiply(scalar)),
-        divide: (scalar: number) => operate(pointDivide(scalar)),
+        x: a.x + b.x,
+        y: a.y + b.y,
+    };
+}
+
+function pointSubtract(a: Point, b: Point): Point {
+    return {
+        x: a.x - b.x,
+        y: a.y - b.y,
+    };
+}
+
+function pointMultiply(point: Point, scalar: number): Point {
+    return {
+        x: point.x * scalar,
+        y: point.y * scalar,
+    };
+}
+
+function pointDivide(point: Point, scalar: number): Point {
+    return {
+        x: point.x / scalar,
+        y: point.y / scalar,
+    };
+}
+
+function operate(point: Point) {
+    return {
+        sum: (other: Point) => operate(pointSum(point, other)),
+        subtract: (other: Point) => operate(pointSubtract(point, other)),
+        multiply: (scalar: number) => operate(pointMultiply(point, scalar)),
+        divide: (scalar: number) => operate(pointDivide(point, scalar)),
         get: () => point,
     };
 }
@@ -112,9 +112,7 @@ function bezierIsFlatEnough(controlPoints: Point[]): boolean {
 
         // point = previous - 2 * current + next
         const point = operate(previous)
-            .subtract(
-                operate(current).multiply(2).get()
-            )
+            .subtract(pointMultiply(current, 2))
             .sum(next)
             .get();
 
@@ -175,9 +173,7 @@ function bezierApproximate(
 
         // point = 0.25 * (previous + 2 * current + next)
         const point = operate(previous)
-            .sum(
-                operate(current).multiply(2).get()
-            )
+            .sum(pointMultiply(current, 2))
             .sum(next)
             .multiply(0.25)
             .get();
@@ -215,21 +211,21 @@ function catmullFindPoint(vec1: Point, vec2: Point, vec3: Point, vec4: Point, t:
     const factor1 = operate(vec1).multiply(-1).sum(vec3).get();
 
     const factor2 = operate(vec1).multiply(2)
-        .subtract(operate(vec2).multiply(5).get())
-        .sum(operate(vec3).multiply(4).get())
+        .subtract(pointMultiply(vec2, 5))
+        .sum(pointMultiply(vec3, 4))
         .subtract(vec4)
         .get();
 
     const factor3 = operate(vec1).multiply(-1)
-        .sum(operate(vec2).multiply(3).get())
-        .subtract(operate(vec3).multiply(3).get())
+        .sum(pointMultiply(vec2, 3))
+        .subtract(pointMultiply(vec3, 3))
         .sum(vec4)
         .get();
 
     return operate(vec2).multiply(2)
-        .sum(operate(factor1).multiply(t).get())
-        .sum(operate(factor2).multiply(t2).get())
-        .sum(operate(factor3).multiply(t3).get())
+        .sum(pointMultiply(factor1, t))
+        .sum(pointMultiply(factor2, t2))
+        .sum(pointMultiply(factor3, t3))
         .multiply(0.5)
         .get();
 }
@@ -237,9 +233,9 @@ function catmullFindPoint(vec1: Point, vec2: Point, vec3: Point, vec4: Point, t:
 export function approximateCircularArc(controlPoints: Point[]): Point[] | null {
     const [a, b, c] = controlPoints;
 
-    const aSq = getSquaredNorm(operate(b).subtract(c).get());
-    const bSq = getSquaredNorm(operate(a).subtract(c).get());
-    const cSq = getSquaredNorm(operate(a).subtract(b).get());
+    const aSq = getSquaredNorm(pointSubtract(b, c));
+    const bSq = getSquaredNorm(pointSubtract(a, c));
+    const cSq = getSquaredNorm(pointSubtract(a, b));
 
     if (aSq < 1e-3 || bSq < 1e-3 || cSq < 1e-3) {
         return null;
@@ -256,13 +252,13 @@ export function approximateCircularArc(controlPoints: Point[]): Point[] | null {
     }
 
     const centre = operate(a).multiply(s)
-        .sum(operate(b).multiply(t).get())
-        .sum(operate(c).multiply(u).get())
+        .sum(pointMultiply(b, t))
+        .sum(pointMultiply(c, u))
         .divide(sum)
         .get();
 
-    const dA = operate(a).subtract(centre).get();
-    const dC = operate(c).subtract(centre).get();
+    const dA = pointSubtract(a, centre);
+    const dC = pointSubtract(c, centre);
 
     const r = getNorm(dA);
 
@@ -276,13 +272,13 @@ export function approximateCircularArc(controlPoints: Point[]): Point[] | null {
     let dir = 1;
     let thetaRange = thetaEnd - thetaStart;
 
-    let orthoAtoC = operate(c).subtract(a).get();
+    let orthoAtoC = pointSubtract(c, a);
     orthoAtoC = {
         x: orthoAtoC.y,
         y: -orthoAtoC.x
     };
 
-    if (dotProduct(orthoAtoC, operate(b).subtract(a).get()) < 0) {
+    if (dotProduct(orthoAtoC, pointSubtract(b, a)) < 0) {
         dir = -dir;
         thetaRange = 2 * Math.PI - thetaRange;
     }
@@ -300,7 +296,7 @@ export function approximateCircularArc(controlPoints: Point[]): Point[] | null {
             x: r * Math.cos(theta),
             y: r * Math.sin(theta),
         };
-        output.push(operate(centre).sum(o).get());
+        output.push(pointSum(centre, o));
     }
 
     return output;
