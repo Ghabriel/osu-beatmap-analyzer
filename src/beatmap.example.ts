@@ -1,4 +1,4 @@
-import { Beatmap } from './types';
+import { Beatmap } from './types/Beatmap';
 
 export const quaver: Beatmap = {
     "audioFilename": "audio.mp3",
@@ -273,7 +273,11 @@ export const quaver: Beatmap = {
                 "endTime": 5154,
                 "soundSamples": [
                     "0:0:0:0:\r"
-                ]
+                ],
+                "stackedPosition": {
+                    "x": 256,
+                    "y": 192
+                }
             }
         },
         {
@@ -339,7 +343,7 @@ export const quaver: Beatmap = {
                             "y": 198
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 2
                     },
                     {
                         "type": 1,
@@ -385,10 +389,14 @@ export const quaver: Beatmap = {
                             "y": 425
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 2
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 297,
+                    "y": 198
+                }
             }
         },
         {
@@ -406,7 +414,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:0:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 167,
+                    "y": 78
+                }
             }
         },
         {
@@ -463,7 +475,7 @@ export const quaver: Beatmap = {
                             "y": 177
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 3
                     },
                     {
                         "type": 1,
@@ -485,10 +497,14 @@ export const quaver: Beatmap = {
                             "y": 177
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 3
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 21,
+                    "y": 177
+                }
             }
         },
         {
@@ -544,8 +560,8 @@ export const quaver: Beatmap = {
                             "x": 214,
                             "y": 359
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 3
                     },
                     {
                         "type": 3,
@@ -554,11 +570,15 @@ export const quaver: Beatmap = {
                             "x": 214,
                             "y": 359
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 3
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 214,
+                    "y": 359
+                }
             }
         },
         {
@@ -614,8 +634,8 @@ export const quaver: Beatmap = {
                             "x": 267,
                             "y": 204
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 3
                     },
                     {
                         "type": 2,
@@ -636,11 +656,15 @@ export const quaver: Beatmap = {
                             "x": 267,
                             "y": 204
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 3
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 267,
+                    "y": 204
+                }
             }
         },
         {
@@ -715,7 +739,7 @@ export const quaver: Beatmap = {
                             "y": 204
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 4
                     },
                     {
                         "type": 1,
@@ -761,10 +785,14 @@ export const quaver: Beatmap = {
                             "y": 548.9988447529206
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 4
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 267,
+                    "y": 204
+                }
             }
         },
         {
@@ -782,7 +810,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 347,
+                    "y": 239
+                }
             }
         },
         {
@@ -847,8 +879,8 @@ export const quaver: Beatmap = {
                             "x": 420,
                             "y": 189
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 4
                     },
                     {
                         "type": 3,
@@ -857,11 +889,15 @@ export const quaver: Beatmap = {
                             "x": 847,
                             "y": 321
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 4
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 420,
+                    "y": 189
+                }
             }
         },
         {
@@ -952,7 +988,7 @@ export const quaver: Beatmap = {
                             "y": 48
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 5
                     },
                     {
                         "type": 1,
@@ -986,10 +1022,14 @@ export const quaver: Beatmap = {
                             "y": -17.148002268953988
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 5
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 359,
+                    "y": 48
+                }
             }
         },
         {
@@ -1079,8 +1119,8 @@ export const quaver: Beatmap = {
                             "x": 56,
                             "y": 40
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 5
                     },
                     {
                         "type": 1,
@@ -1113,11 +1153,15 @@ export const quaver: Beatmap = {
                             "x": 232.3803067577458,
                             "y": 324.49683771651627
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 5
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 56,
+                    "y": 40
+                }
             }
         },
         {
@@ -1183,7 +1227,7 @@ export const quaver: Beatmap = {
                             "y": 346
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 6
                     },
                     {
                         "type": 1,
@@ -1205,10 +1249,14 @@ export const quaver: Beatmap = {
                             "y": 712
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 6
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 25,
+                    "y": 346
+                }
             }
         },
         {
@@ -1226,7 +1274,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 234,
+                    "y": 276
+                }
             }
         },
         {
@@ -1282,8 +1334,8 @@ export const quaver: Beatmap = {
                             "x": 253,
                             "y": 190
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 6
                     },
                     {
                         "type": 2,
@@ -1304,11 +1356,15 @@ export const quaver: Beatmap = {
                             "x": 253,
                             "y": 190
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 6
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 253,
+                    "y": 190
+                }
             }
         },
         {
@@ -1374,7 +1430,7 @@ export const quaver: Beatmap = {
                             "y": 351
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 7
                     },
                     {
                         "type": 1,
@@ -1420,10 +1476,14 @@ export const quaver: Beatmap = {
                             "y": 715
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 7
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 323,
+                    "y": 351
+                }
             }
         },
         {
@@ -1441,7 +1501,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 250,
+                    "y": 300
+                }
             }
         },
         {
@@ -1506,8 +1570,8 @@ export const quaver: Beatmap = {
                             "x": 179,
                             "y": 247
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 7
                     },
                     {
                         "type": 3,
@@ -1516,11 +1580,15 @@ export const quaver: Beatmap = {
                             "x": 314,
                             "y": 486
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 7
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 179,
+                    "y": 247
+                }
             }
         },
         {
@@ -1586,7 +1654,7 @@ export const quaver: Beatmap = {
                             "y": 261
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 8
                     },
                     {
                         "type": 1,
@@ -1632,10 +1700,14 @@ export const quaver: Beatmap = {
                             "y": 439
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 8
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 14,
+                    "y": 261
+                }
             }
         },
         {
@@ -1653,7 +1725,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 70,
+                    "y": 328
+                }
             }
         },
         {
@@ -1718,8 +1794,8 @@ export const quaver: Beatmap = {
                             "x": 147,
                             "y": 369
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 8
                     },
                     {
                         "type": 3,
@@ -1728,11 +1804,15 @@ export const quaver: Beatmap = {
                             "x": 334,
                             "y": 749
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 8
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 147,
+                    "y": 369
+                }
             }
         },
         {
@@ -1827,7 +1907,7 @@ export const quaver: Beatmap = {
                             "y": 337
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 9
                     },
                     {
                         "type": 1,
@@ -1861,10 +1941,14 @@ export const quaver: Beatmap = {
                             "y": 417.9524871765621
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 9
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 304,
+                    "y": 337
+                }
             }
         },
         {
@@ -1958,8 +2042,8 @@ export const quaver: Beatmap = {
                             "x": 357,
                             "y": 51
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 9
                     },
                     {
                         "type": 1,
@@ -1992,11 +2076,15 @@ export const quaver: Beatmap = {
                             "x": 457.9524871765621,
                             "y": 220.37267993098084
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 9
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 357,
+                    "y": 51
+                }
             }
         },
         {
@@ -2071,7 +2159,7 @@ export const quaver: Beatmap = {
                             "y": 93
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 10
                     },
                     {
                         "type": 1,
@@ -2093,10 +2181,14 @@ export const quaver: Beatmap = {
                             "y": 284.61811275733015
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 10
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 62,
+                    "y": 93
+                }
             }
         },
         {
@@ -2114,7 +2206,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 124,
+                    "y": 306
+                }
             }
         },
         {
@@ -2170,8 +2266,8 @@ export const quaver: Beatmap = {
                             "x": 200,
                             "y": 262
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 10
                     },
                     {
                         "type": 2,
@@ -2192,11 +2288,15 @@ export const quaver: Beatmap = {
                             "x": 200,
                             "y": 262
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 10
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 200,
+                    "y": 262
+                }
             }
         },
         {
@@ -2262,7 +2362,7 @@ export const quaver: Beatmap = {
                             "y": 89
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 11
                     },
                     {
                         "type": 1,
@@ -2284,10 +2384,14 @@ export const quaver: Beatmap = {
                             "y": 143
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 11
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 164,
+                    "y": 89
+                }
             }
         },
         {
@@ -2305,7 +2409,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 393,
+                    "y": 95
+                }
             }
         },
         {
@@ -2361,8 +2469,8 @@ export const quaver: Beatmap = {
                             "x": 442,
                             "y": 168
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 11
                     },
                     {
                         "type": 3,
@@ -2371,11 +2479,15 @@ export const quaver: Beatmap = {
                             "x": 442,
                             "y": 168
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 11
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 442,
+                    "y": 168
+                }
             }
         },
         {
@@ -2431,8 +2543,8 @@ export const quaver: Beatmap = {
                             "x": 371,
                             "y": 309
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 3,
+                        "comboIndex": 11
                     },
                     {
                         "type": 3,
@@ -2441,11 +2553,15 @@ export const quaver: Beatmap = {
                             "x": 371,
                             "y": 309
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 3,
+                        "comboIndex": 11
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 371,
+                    "y": 309
+                }
             }
         },
         {
@@ -2463,7 +2579,11 @@ export const quaver: Beatmap = {
                 "endTime": 36544,
                 "soundSamples": [
                     "0:0:0:0:\r"
-                ]
+                ],
+                "stackedPosition": {
+                    "x": 256,
+                    "y": 192
+                }
             }
         },
         {
@@ -2520,7 +2640,7 @@ export const quaver: Beatmap = {
                             "y": 137
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 13
                     },
                     {
                         "type": 2,
@@ -2542,10 +2662,14 @@ export const quaver: Beatmap = {
                             "y": 137
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 13
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 243,
+                    "y": 137
+                }
             }
         },
         {
@@ -2563,7 +2687,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 330,
+                    "y": 129
+                }
             }
         },
         {
@@ -2628,8 +2756,8 @@ export const quaver: Beatmap = {
                             "x": 400,
                             "y": 182
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 13
                     },
                     {
                         "type": 3,
@@ -2638,11 +2766,15 @@ export const quaver: Beatmap = {
                             "x": 811,
                             "y": 412
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 13
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 400,
+                    "y": 182
+                }
             }
         },
         {
@@ -2707,8 +2839,8 @@ export const quaver: Beatmap = {
                             "x": 351,
                             "y": 337
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 3,
+                        "comboIndex": 13
                     },
                     {
                         "type": 3,
@@ -2717,11 +2849,15 @@ export const quaver: Beatmap = {
                             "x": 654,
                             "y": 685
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 3,
+                        "comboIndex": 13
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 351,
+                    "y": 337
+                }
             }
         },
         {
@@ -2796,7 +2932,7 @@ export const quaver: Beatmap = {
                             "y": 319
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 14
                     },
                     {
                         "type": 1,
@@ -2842,10 +2978,14 @@ export const quaver: Beatmap = {
                             "y": 796.0902361880663
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 14
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 180,
+                    "y": 319
+                }
             }
         },
         {
@@ -2863,7 +3003,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 266,
+                    "y": 341
+                }
             }
         },
         {
@@ -2928,8 +3072,8 @@ export const quaver: Beatmap = {
                             "x": 343,
                             "y": 298
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 14
                     },
                     {
                         "type": 3,
@@ -2938,11 +3082,15 @@ export const quaver: Beatmap = {
                             "x": 691,
                             "y": 540
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 14
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 343,
+                    "y": 298
+                }
             }
         },
         {
@@ -2999,7 +3147,7 @@ export const quaver: Beatmap = {
                             "y": 146
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 15
                     },
                     {
                         "type": 2,
@@ -3021,10 +3169,14 @@ export const quaver: Beatmap = {
                             "y": 146
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 15
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 280,
+                    "y": 146
+                }
             }
         },
         {
@@ -3042,7 +3194,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 259,
+                    "y": 231
+                }
             }
         },
         {
@@ -3107,8 +3263,8 @@ export const quaver: Beatmap = {
                             "x": 197,
                             "y": 293
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 15
                     },
                     {
                         "type": 3,
@@ -3117,11 +3273,15 @@ export const quaver: Beatmap = {
                             "x": 343,
                             "y": 592
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 15
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 197,
+                    "y": 293
+                }
             }
         },
         {
@@ -3139,7 +3299,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 33,
+                    "y": 249
+                }
             }
         },
         {
@@ -3196,7 +3360,7 @@ export const quaver: Beatmap = {
                             "y": 106
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 16
                     },
                     {
                         "type": 2,
@@ -3218,10 +3382,14 @@ export const quaver: Beatmap = {
                             "y": 106
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 16
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 135,
+                    "y": 106
+                }
             }
         },
         {
@@ -3239,7 +3407,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 195,
+                    "y": 169
+                }
             }
         },
         {
@@ -3304,8 +3476,8 @@ export const quaver: Beatmap = {
                             "x": 280,
                             "y": 146
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 16
                     },
                     {
                         "type": 3,
@@ -3314,11 +3486,15 @@ export const quaver: Beatmap = {
                             "x": 598,
                             "y": 271
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 16
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 280,
+                    "y": 146
+                }
             }
         },
         {
@@ -3336,7 +3512,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 447,
+                    "y": 139
+                }
             }
         },
         {
@@ -3354,7 +3534,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 485,
+                    "y": 217
+                }
             }
         },
         {
@@ -3411,7 +3595,7 @@ export const quaver: Beatmap = {
                             "y": 290
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 17
                     },
                     {
                         "type": 2,
@@ -3433,10 +3617,14 @@ export const quaver: Beatmap = {
                             "y": 290
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 17
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 436,
+                    "y": 290
+                }
             }
         },
         {
@@ -3454,7 +3642,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 360,
+                    "y": 244
+                }
             }
         },
         {
@@ -3519,8 +3711,8 @@ export const quaver: Beatmap = {
                             "x": 280,
                             "y": 280
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 17
                     },
                     {
                         "type": 3,
@@ -3529,11 +3721,15 @@ export const quaver: Beatmap = {
                             "x": 514,
                             "y": 569
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 17
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 280,
+                    "y": 280
+                }
             }
         },
         {
@@ -3598,8 +3794,8 @@ export const quaver: Beatmap = {
                             "x": 125,
                             "y": 225
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 3,
+                        "comboIndex": 17
                     },
                     {
                         "type": 3,
@@ -3608,11 +3804,15 @@ export const quaver: Beatmap = {
                             "x": 242,
                             "y": 406
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 3,
+                        "comboIndex": 17
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 125,
+                    "y": 225
+                }
             }
         },
         {
@@ -3690,7 +3890,7 @@ export const quaver: Beatmap = {
                             "y": 56
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 18
                     },
                     {
                         "type": 1,
@@ -3736,10 +3936,14 @@ export const quaver: Beatmap = {
                             "y": 122
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 18
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 157,
+                    "y": 56
+                }
             }
         },
         {
@@ -3757,7 +3961,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "0:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 72,
+                    "y": 31
+                }
             }
         },
         {
@@ -3822,8 +4030,8 @@ export const quaver: Beatmap = {
                             "x": 9,
                             "y": 93
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 18
                     },
                     {
                         "type": 3,
@@ -3832,11 +4040,15 @@ export const quaver: Beatmap = {
                             "x": 10,
                             "y": 231
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 18
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 9,
+                    "y": 93
+                }
             }
         },
         {
@@ -3902,7 +4114,7 @@ export const quaver: Beatmap = {
                             "y": 235
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 19
                     },
                     {
                         "type": 1,
@@ -3924,10 +4136,14 @@ export const quaver: Beatmap = {
                             "y": 443
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 19
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 75,
+                    "y": 235
+                }
             }
         },
         {
@@ -3992,8 +4208,8 @@ export const quaver: Beatmap = {
                             "x": 371,
                             "y": 337
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 19
                     },
                     {
                         "type": 1,
@@ -4014,11 +4230,15 @@ export const quaver: Beatmap = {
                             "x": 676,
                             "y": 701
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 19
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 371,
+                    "y": 337
+                }
             }
         },
         {
@@ -4036,7 +4256,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:0:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 129,
+                    "y": 306
+                }
             }
         },
         {
@@ -4093,7 +4317,7 @@ export const quaver: Beatmap = {
                             "y": 235
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 20
                     },
                     {
                         "type": 1,
@@ -4115,10 +4339,14 @@ export const quaver: Beatmap = {
                             "y": 235
                         },
                         "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "comboIndex": 20
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 75,
+                    "y": 235
+                }
             }
         },
         {
@@ -4174,8 +4402,8 @@ export const quaver: Beatmap = {
                             "x": 262,
                             "y": 25
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 20
                     },
                     {
                         "type": 3,
@@ -4184,11 +4412,15 @@ export const quaver: Beatmap = {
                             "x": 262,
                             "y": 25
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 1,
+                        "comboIndex": 20
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 262,
+                    "y": 25
+                }
             }
         },
         {
@@ -4244,8 +4476,8 @@ export const quaver: Beatmap = {
                             "x": 327,
                             "y": 178
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 20
                     },
                     {
                         "type": 3,
@@ -4254,11 +4486,15 @@ export const quaver: Beatmap = {
                             "x": 327,
                             "y": 178
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 20
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 327,
+                    "y": 178
+                }
             }
         },
         {
@@ -4276,7 +4512,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 304,
+                    "y": 360
+                }
             }
         },
         {
@@ -4294,7 +4534,11 @@ export const quaver: Beatmap = {
                 "soundSamples": [
                     "1:2:0:0:\r"
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 209,
+                    "y": 376
+                }
             }
         },
         {
@@ -4363,8 +4607,8 @@ export const quaver: Beatmap = {
                             "x": 126,
                             "y": 326
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 21
                     },
                     {
                         "type": 1,
@@ -4385,11 +4629,15 @@ export const quaver: Beatmap = {
                             "x": 228,
                             "y": 559
                         },
-                        "indexInCurrentCombo": 0,
-                        "comboIndex": 0
+                        "indexInCurrentCombo": 2,
+                        "comboIndex": 21
                     }
                 ],
-                "stackHeight": 0
+                "stackHeight": 0,
+                "stackedPosition": {
+                    "x": 126,
+                    "y": 326
+                }
             }
         },
         {
@@ -4407,7 +4655,11 @@ export const quaver: Beatmap = {
                 "endTime": 64944,
                 "soundSamples": [
                     "0:0:0:0:\r"
-                ]
+                ],
+                "stackedPosition": {
+                    "x": 256,
+                    "y": 192
+                }
             }
         }
     ],
