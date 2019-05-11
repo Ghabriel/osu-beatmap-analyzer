@@ -20,7 +20,7 @@ export class Aim extends Skill {
         let result = 0;
 
         if (this.previous.length > 0) {
-            const previousObject = this.previous[0];
+            const previousObject = this.previous[this.previous.length - 1];
 
             if (object.angle !== null && object.angle > this.ANGLE_BONUS_BEGIN) {
                 const scale = 90;

@@ -46,7 +46,8 @@ export abstract class Skill {
     // Sets the initial strain level for a new section.
     startNewSectionFrom(offset: number) {
         if (this.previous.length > 0) {
-            const decayedStrain = this.strainDecay(offset - this.previous[0].current.startTime);
+            const previousObject = this.previous[this.previous.length - 1].current;
+            const decayedStrain = this.strainDecay(offset - previousObject.startTime);
             this.currentSectionPeak = this.currentStrain * decayedStrain;
         }
     }
