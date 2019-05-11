@@ -1,7 +1,8 @@
-import { Beatmap, Circle, ControlPoint, ControlPointType, DifficultyHitObject, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip, Spinner } from '../types';
+import { Beatmap, Circle, ControlPoint, ControlPointType, DifficultyHitObject, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip } from '../types';
 import { assertNever } from './assertNever';
 import { dotProduct, getNorm, operate, pointMultiply, pointNormalize, pointSubtract, pointSum } from './point-arithmetic';
-import { Aim, Skill } from './skills/Aim';
+import { Aim } from './skills/Aim';
+import { Skill } from './skills/Skill';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
 const SECTION_LENGTH = 400;
@@ -415,10 +416,6 @@ function isSliderTailCircle(hitObject: NestedHitObject): hitObject is SliderTail
     return hitObject.type === NestedHitObjectType.SliderTailCircle;
 }
 
-function isSpinner(hitObject: HitObject): hitObject is Spinner {
-    return hitObject.type === HitObjectType.Spinner;
-}
-
 function fillStackedPositions(beatmap: ParsedBeatmap) {
     const hitObjectScale = getHitObjectScale(beatmap);
 
@@ -485,6 +482,7 @@ function createDifficultyHitObject(
         lastLast,
         last,
         current,
+        deltaTime,
         strainTime,
         travelDistance,
         jumpDistance,
