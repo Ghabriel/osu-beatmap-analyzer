@@ -28,17 +28,21 @@ const styles: StyleMap = {
     }
 };
 
+function clamp(value: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, value));
+}
+
 export const PartialBar: React.FunctionComponent<PartialBarProps> = props => {
     return (
         <div style={styles.container}>
             <div style={merge(
                 styles.filled,
-                { flexBasis: (100 * props.fraction) + '%' }
+                { flexBasis: clamp(100 * props.fraction, 0, 100) + '%' }
             )}></div>
 
             <div style={merge(
                 styles.empty,
-                { flexBasis: (100 * (1 - props.fraction)) + '%' }
+                { flexBasis: clamp(100 * (1 - props.fraction), 0, 100) + '%' }
             )}></div>
         </div>
     );
