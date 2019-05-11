@@ -71,7 +71,7 @@ export class SliderPath {
             const nextPoint = this.controlPoints[i + 1];
 
             if (isLastPoint || isSamePoint(currentPoint, nextPoint)) {
-                const cpSpan = this.controlPoints.slice(start, i - start);
+                const cpSpan = this.controlPoints.slice(start, i + 1 - start);
 
                 for (const subPath of this.calculateSubpath(cpSpan)) {
                     const isFirstPath = this.calculatedPath.length === 0;
@@ -82,7 +82,7 @@ export class SliderPath {
                     }
                 }
 
-                start = i;
+                start = i + 1;
             }
         }
     }
