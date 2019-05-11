@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
+import { getSliderComputedProperties } from '../helpers/beatmap-difficulty';
 import { isSlider, isSpinner } from '../helpers/type-inference';
 import { Beatmap } from '../types/Beatmap';
 import { HitObject, HitObjectType } from '../types/HitObject';
@@ -18,7 +19,11 @@ const styles: StyleMap = {
 
     value: {
         textAlign: 'right',
-    }
+    },
+
+    centered: {
+        textAlign: 'center',
+    },
 };
 
 interface TableColumn {
@@ -40,19 +45,25 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
             content: hitObject => hitObject.startTime,
             style: styles.value,
         },
+        // {
+        //     header: 'x',
+        //     content: hitObject => hitObject.x,
+        //     style: styles.value,
+        // },
+        // {
+        //     header: 'y',
+        //     content: hitObject => hitObject.y,
+        //     style: styles.value,
+        // },
         {
-            header: 'x',
-            content: hitObject => hitObject.x,
-            style: styles.value,
-        },
-        {
-            header: 'y',
-            content: hitObject => hitObject.y,
-            style: styles.value,
+            header: 'Position',
+            content: hitObject => `(${hitObject.x}, ${hitObject.y})`,
+            style: styles.centered,
         },
         {
             header: 'Type',
             content: hitObject => HitObjectType[hitObject.type],
+            style: styles.centered,
         },
         {
             header: 'Index in Combo',
@@ -72,10 +83,16 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
         {
             header: 'Stacked Position',
             content: hitObject => `(${hitObject.metadata.stackedPosition.x}, ${hitObject.metadata.stackedPosition.y})`,
+            style: styles.centered,
         },
         {
             header: 'Stack Height',
             content: hitObject => isSpinner(hitObject) ? '-' : hitObject.metadata.stackHeight,
+            style: styles.value,
+        },
+        {
+            header: 'Repeat Count',
+            content: hitObject => isSlider(hitObject) ? hitObject.metadata.repeatCount : '-',
             style: styles.value,
         },
         {
@@ -88,6 +105,35 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
             content: hitObject => isSlider(hitObject) ? round(hitObject.metadata.tickDistance, 2) : '-',
             style: styles.value,
         },
+        {
+            header: '# Nested',
+            content: hitObject => isSlider(hitObject) ? hitObject.metadata.nestedHitObjects.length : '-',
+            style: styles.value,
+        },
+        {
+            header: 'Path Distance',
+            content: hitObject => {
+                if (!isSlider(hitObject)) {
+                    return '-';
+                }
+
+                const computedProperties = getSliderComputedProperties(hitObject);
+                return computedProperties.pathDistance;
+            },
+            style: styles.value,
+        },
+        {
+            header: 'Span Duration',
+            content: hitObject => {
+                if (!isSlider(hitObject)) {
+                    return '-';
+                }
+
+                const computedProperties = getSliderComputedProperties(hitObject);
+                return round(computedProperties.spanDuration, 2);
+            },
+            style: styles.value,
+        },
         // {
         //     header: 'Time',
         //     content: hitObject => hitObject.startTime,
@@ -95,12 +141,14 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
         // },
     ];
 
+    const numColumns = tableContent.length;
+
     return (
         <Table style={styles.table}>
             <thead>
                 <tr>
-                    {tableContent.map(column => (
-                        <th scope="col" style={column.style}>{column.header}</th>
+                    {tableContent.map((column, index) => (
+                        <th key={index} scope="col" style={column.style}>{column.header}</th>
                     ))}
                 </tr>
             </thead>
@@ -108,8 +156,13 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
                 {beatmap.hitObjects.map((hitObject, objIndex) => {
                     return (
                         <tr key={objIndex}>
-                            {tableContent.map(column => (
-                                <td style={column.style}>{column.content(hitObject)}</td>
+                            {tableContent.map((column, columnIndex) => (
+                                <td
+                                    key={(objIndex * numColumns + columnIndex)}
+                                    style={column.style}
+                                >
+                                    {column.content(hitObject)}
+                                </td>
                             ))}
                         </tr>
                     );

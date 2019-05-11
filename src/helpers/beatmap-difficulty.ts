@@ -249,7 +249,7 @@ function getHitObjectScale(beatmap: ParsedBeatmap): number {
     return 0.85 - 0.07 * beatmap.circleSize;
 }
 
-function getSliderComputedProperties(slider: Slider): SliderComputedProperties {
+export function getSliderComputedProperties(slider: Slider): SliderComputedProperties {
     const startTime = slider.startTime;
     const spanCount = slider.metadata.repeatCount + 1;
     const pathDistance = slider.metadata.path.length;
