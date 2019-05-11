@@ -1,9 +1,6 @@
-import { DifficultyHitObject, HitObject, HitObjectType, Spinner } from '../../types';
+import { DifficultyHitObject } from '../../types';
+import { isSpinner } from '../type-inference';
 import { Skill } from './Skill';
-
-function isSpinner(hitObject: HitObject): hitObject is Spinner {
-    return hitObject.type === HitObjectType.Spinner;
-}
 
 export class Aim extends Skill {
     private readonly ANGLE_BONUS_BEGIN = Math.PI / 3;
