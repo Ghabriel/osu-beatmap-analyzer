@@ -1,6 +1,7 @@
 import { Beatmap, Circle, ControlPoint, ControlPointType, DifficultyHitObject, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider, SliderCircle, SliderTailCircle, SliderTip, Spinner } from '../types';
 import { assertNever } from './assertNever';
 import { dotProduct, getNorm, operate, pointMultiply, pointNormalize, pointSubtract, pointSum } from './point-arithmetic';
+import { Aim, Skill } from './skills/Aim';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
 const SECTION_LENGTH = 400;
@@ -11,7 +12,8 @@ const STACK_DISTANCE = 3;
 // HitObject.cs (25)
 const CONTROL_POINT_LENIENCY = 1;
 
-const CLOCK_RATE = 1000 / 30;
+// const CLOCK_RATE = 1000 / 30;
+const CLOCK_RATE = 1;
 const NORMALIZED_RADIUS = 52;
 const OBJECT_RADIUS = 64;
 
@@ -40,7 +42,9 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 
     fillStackedPositions(beatmap);
 
-    console.log(createDifficultyHitObjects(beatmap));
+    const difficultyHitObjects = createDifficultyHitObjects(beatmap);
+
+    calculate(difficultyHitObjects, beatmap);
 
     return {
         ...beatmap,
@@ -453,7 +457,7 @@ function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject
         result.push(difficultyHitObject);
     }
 
-    return result;
+    return result.sort((a, b) => a.current.startTime - b.current.startTime);
 }
 
 function createDifficultyHitObject(
@@ -591,4 +595,34 @@ function getNestedHitObjectProgress(
     } else {
         return progress % 1;
     }
+}
+
+function calculate(difficultyHitObjects: DifficultyHitObject[], beatmap: ParsedBeatmap) {
+    const BASE_SECTION_LENGTH = 400;
+    const sectionLength = BASE_SECTION_LENGTH * CLOCK_RATE;
+
+    let currentSectionEnd = Math.ceil(beatmap.hitObjects[0].startTime / sectionLength) * sectionLength;
+
+   const skills: Skill[] = [new Aim()];
+
+    for (const object of difficultyHitObjects) {
+        while (object.current.startTime > currentSectionEnd) {
+            for (const skill of skills) {
+                skill.saveCurrentPeak();
+                skill.startNewSectionFrom(currentSectionEnd);
+            }
+
+            currentSectionEnd += sectionLength;
+        }
+
+        for (const skill of skills) {
+            skill.process(object);
+        }
+    }
+
+    for (const skill of skills) {
+        skill.saveCurrentPeak();
+    }
+
+    // return CreateDifficultyAttributes(beatmap, mods, skills, clockRate);
 }
