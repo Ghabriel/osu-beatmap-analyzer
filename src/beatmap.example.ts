@@ -4905,7 +4905,7 @@ export const quaver: Beatmap = {
             "sampleVolume": 5
         }
     ],
-    "aimStrain": 0,
-    "speedStrain": 0,
-    "starRating": 0
+    "aimStrain": 1.6071405433965376,
+    "speedStrain": 0.7922378664269464,
+    "starRating": 2.80682974830828
 };

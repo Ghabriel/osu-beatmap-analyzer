@@ -51,13 +51,17 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 
     const difficultyHitObjects = createDifficultyHitObjects(beatmap);
 
-    calculate(difficultyHitObjects, beatmap);
+    const difficultyAttributes = calculate(difficultyHitObjects, beatmap);
+
+    if (difficultyAttributes === null) {
+        throw new Error('Beatmap too small');
+    }
 
     return {
         ...beatmap,
-        aimStrain: 0,//getAimStrain(beatmap),
-        speedStrain: 0,
-        starRating: 0,
+        aimStrain: difficultyAttributes.aimStrain,
+        speedStrain: difficultyAttributes.speedStrain,
+        starRating: difficultyAttributes.starRating,
     };
 }
 
@@ -581,7 +585,10 @@ function getNestedHitObjectProgress(
     }
 }
 
-function calculate(difficultyHitObjects: DifficultyHitObject[], beatmap: ParsedBeatmap) {
+function calculate(
+    difficultyHitObjects: DifficultyHitObject[],
+    beatmap: ParsedBeatmap
+): DifficultyAttributes | null {
     const BASE_SECTION_LENGTH = 400;
     const sectionLength = BASE_SECTION_LENGTH * CLOCK_RATE;
 
@@ -613,12 +620,12 @@ function calculate(difficultyHitObjects: DifficultyHitObject[], beatmap: ParsedB
 
 interface DifficultyAttributes {
     starRating: number;
-    mods: number;
+    // mods: number;
     aimStrain: number;
     speedStrain: number;
-    approachRate: number;
-    overallDifficulty: number;
-    maxCombo: number;
+    // approachRate: number;
+    // overallDifficulty: number;
+    // maxCombo: number;
 }
 
 function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): DifficultyAttributes | null {
@@ -629,14 +636,11 @@ function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): Di
     const DIFFICULTY_MULTIPLIER = 0.0675;
 
     const [aim, speed] = skills;
-    const aimRating = Math.sqrt(aim.difficultyValue()) * DIFFICULTY_MULTIPLIER;
-    const speedRating = Math.sqrt(speed.difficultyValue()) * DIFFICULTY_MULTIPLIER;
-    const starRating = aimRating + speedRating + Math.abs(aimRating - speedRating) / 2;
+    const aimStrain = Math.sqrt(aim.difficultyValue()) * DIFFICULTY_MULTIPLIER;
+    const speedStrain = Math.sqrt(speed.difficultyValue()) * DIFFICULTY_MULTIPLIER;
+    const starRating = aimStrain + speedStrain + Math.abs(aimStrain - speedStrain) / 2;
 
-    console.log('[AIM STRAIN]', aimRating);
-    console.log('[SPEED STRAIN]', speedRating);
-    console.log('[STAR RATING]', starRating);
-    return null;
+    return { aimStrain, speedStrain, starRating };
 
     // Todo: These int casts are temporary to achieve 1:1 results with osu!stable, and should be removed in the future
     // double hitWindowGreat = (int)(beatmap.HitObjects.First().HitWindows.Great / 2) / clockRate;
