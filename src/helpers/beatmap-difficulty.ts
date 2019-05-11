@@ -62,6 +62,7 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
         aimStrain: difficultyAttributes.aimStrain,
         speedStrain: difficultyAttributes.speedStrain,
         starRating: difficultyAttributes.starRating,
+        difficultyHitObjects,
     };
 }
 

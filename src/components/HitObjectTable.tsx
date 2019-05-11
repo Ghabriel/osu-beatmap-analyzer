@@ -32,7 +32,7 @@ interface TableColumn {
     style?: CSSProperties;
 }
 
-function round(value: number, decimalPlaces: number): string {
+export function round(value: number, decimalPlaces: number): string {
     const exponent = Math.pow(10, decimalPlaces);
 
     return (Math.round(value * exponent) / exponent).toString();

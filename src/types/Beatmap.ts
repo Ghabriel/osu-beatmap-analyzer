@@ -1,5 +1,6 @@
 import { Color } from './Color';
 import { DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from './ControlPoint';
+import { DifficultyHitObject } from './DifficultyHitObject';
 import { HitObject } from './HitObject';
 import { TimingPoint } from './TimingPoint';
 
@@ -52,4 +53,5 @@ export type Beatmap = ParsedBeatmap & {
     aimStrain: number;
     speedStrain: number;
     starRating: number;
+    difficultyHitObjects: DifficultyHitObject[];
 };
