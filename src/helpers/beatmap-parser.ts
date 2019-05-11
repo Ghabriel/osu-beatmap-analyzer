@@ -1,4 +1,7 @@
-import { BaseHitObject, Beatmap, CircleMetadata, EffectFlags, HitObject, HitObjectFlags, HitObjectType, ParsedBeatmap, PathType, Point, SliderMetadata, SpinnerMetadata } from '../types';
+import { EffectFlags, HitObjectFlags, PathType } from '../types';
+import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
+import { BaseHitObject, CircleMetadata, HitObject, HitObjectType, SliderMetadata, SpinnerMetadata } from '../types/HitObject';
+import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
 import { SliderPath } from './SliderPath';

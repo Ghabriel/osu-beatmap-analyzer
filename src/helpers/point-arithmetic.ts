@@ -1,4 +1,4 @@
-import { Point } from '../types';
+import { Point } from '../types/Point';
 
 export function pointSum(a: Point, b: Point): Point {
     return {

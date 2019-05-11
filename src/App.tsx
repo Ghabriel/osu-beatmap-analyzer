@@ -4,7 +4,7 @@ import { quaver } from './beatmap.example';
 import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
 import { parseBeatmap } from './helpers/beatmap-parser';
-import { Beatmap } from './types';
+import { Beatmap } from './types/Beatmap';
 
 const quaverCopy: Beatmap = {
     ...quaver,

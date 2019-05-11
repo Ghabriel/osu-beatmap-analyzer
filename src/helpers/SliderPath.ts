@@ -1,4 +1,5 @@
-import { PathType, Point } from '../types';
+import { PathType } from '../types';
+import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import * as PathApproximator from './path-approximation';
 import { getNorm, isSamePoint, operate, pointSubtract } from './point-arithmetic';

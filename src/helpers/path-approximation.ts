@@ -1,4 +1,4 @@
-import { Point } from '../types';
+import { Point } from '../types/Point';
 import { dotProduct, getMidPoint, getNorm, getSquaredNorm, operate, pointMultiply, pointSubtract, pointSum } from './point-arithmetic';
 
 const BEZIER_TOLERANCE = 0.25;

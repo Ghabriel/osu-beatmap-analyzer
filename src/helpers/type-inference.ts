@@ -1,4 +1,4 @@
-import { Circle, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, Slider, SliderCircle, SliderTailCircle, SliderTip, Spinner } from '../types';
+import { Circle, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, Slider, SliderCircle, SliderTailCircle, SliderTip, Spinner } from "../types/HitObject";
 
 export function isCircle(hitObject: HitObject): hitObject is Circle {
     return hitObject.type === HitObjectType.Circle;

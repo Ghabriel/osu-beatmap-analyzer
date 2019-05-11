@@ -1,4 +1,8 @@
-import { Beatmap, ControlPoint, ControlPointType, DifficultyHitObject, HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, ParsedBeatmap, Point, Slider } from '../types';
+import { DifficultyHitObject } from '../types';
+import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
+import { ControlPoint, ControlPointType } from '../types/ControlPoint';
+import { HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, Slider } from '../types/HitObject';
+import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import { dotProduct, getNorm, operate, pointMultiply, pointNormalize, pointSubtract, pointSum } from './point-arithmetic';
 import { Aim } from './skills/Aim';
