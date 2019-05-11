@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import { quaver } from './beatmap.example';
 import { Main } from './components/Main';
-import { Sidebar } from './components/Sidebar';
 import { parseBeatmap } from './helpers/beatmap-parser';
 import { Beatmap } from './types/Beatmap';
 
@@ -34,14 +33,14 @@ const App: React.FunctionComponent = () => {
             </div>
 
             <div className="body">
-                <div className="sidebar">
+                {/* <div className="sidebar">
                     <Sidebar
                         beatmapList={beatmapList}
                         selectedBeatmap={selectedBeatmap}
                         onImportBeatmap={handleImportBeatmap}
                         onSelectBeatmap={beatmapIndex => setSelectedBeatmap(beatmapIndex)}
                     />
-                </div>
+                </div> */}
                 <div className="main">
                     <Main
                         beatmap={
