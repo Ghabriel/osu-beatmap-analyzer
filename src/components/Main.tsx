@@ -1,7 +1,7 @@
 import React from 'react';
 import { colors } from '../helpers/style-variables';
-import { StyleMap } from '../types';
 import { Beatmap } from '../types/Beatmap';
+import { StyleMap } from '../types/StyleMap';
 import { PartialBar } from './PartialBar';
 
 export interface MainProps {

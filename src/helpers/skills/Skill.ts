@@ -1,4 +1,4 @@
-import { DifficultyHitObject } from '../../types';
+import { DifficultyHitObject } from '../../types/DifficultyHitObject';
 
 export abstract class Skill {
     // The peak strain for each section of the beatmap.

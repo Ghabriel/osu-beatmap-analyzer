@@ -1,6 +1,8 @@
-import { EffectFlags, HitObjectFlags, PathType } from '../types';
 import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
+import { EffectFlags } from '../types/EffectFlags';
 import { BaseHitObject, CircleMetadata, HitObject, HitObjectType, SliderMetadata, SpinnerMetadata } from '../types/HitObject';
+import { HitObjectParsingFlags } from '../types/HitObjectParsingFlags';
+import { PathType } from '../types/PathType';
 import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
@@ -249,7 +251,7 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         beatmap.hitObjects = [];
     }
 
-    const flags = parseInt(parts[3]) as HitObjectFlags;
+    const flags = parseInt(parts[3]) as HitObjectParsingFlags;
     const type = getHitObjectType(flags);
 
     if (type === null) {
@@ -261,8 +263,8 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
         x: parseInt(parts[0]),
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
-        newCombo: (flags & HitObjectFlags.NewCombo) > 0,
-        comboOffset: (type & HitObjectFlags.ComboOffset) / 16,
+        newCombo: (flags & HitObjectParsingFlags.NewCombo) > 0,
+        comboOffset: (type & HitObjectParsingFlags.ComboOffset) / 16,
         soundType: parseInt(parts[4]),
 
         indexInCurrentCombo: 0,
@@ -275,16 +277,16 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
     beatmap.hitObjects.push(hitObject);
 }
 
-function getHitObjectType(flags: HitObjectFlags): HitObjectType | null {
-    if (flags & HitObjectFlags.Circle) {
+function getHitObjectType(flags: HitObjectParsingFlags): HitObjectType | null {
+    if (flags & HitObjectParsingFlags.Circle) {
         return HitObjectType.Circle;
     }
 
-    if (flags & HitObjectFlags.Slider) {
+    if (flags & HitObjectParsingFlags.Slider) {
         return HitObjectType.Slider;
     }
 
-    if (flags & HitObjectFlags.Spinner) {
+    if (flags & HitObjectParsingFlags.Spinner) {
         return HitObjectType.Spinner;
     }
 

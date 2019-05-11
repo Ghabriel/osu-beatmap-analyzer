@@ -1,4 +1,4 @@
-import { DifficultyHitObject } from '../../types';
+import { DifficultyHitObject } from '../../types/DifficultyHitObject';
 import { isSpinner } from '../type-inference';
 import { Skill } from './Skill';
 

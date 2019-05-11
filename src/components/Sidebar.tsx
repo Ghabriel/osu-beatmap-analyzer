@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useFileUpload } from '../hooks/useFileUpload';
-import { StyleMap } from '../types';
 import { Beatmap } from '../types/Beatmap';
+import { StyleMap } from '../types/StyleMap';
 import { BeatmapSummary } from './BeatmapSummary';
 
 export interface SidebarProps {

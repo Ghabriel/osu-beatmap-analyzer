@@ -1,4 +1,4 @@
-import { PathType } from '../types';
+import { PathType } from '../types/PathType';
 import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import * as PathApproximator from './path-approximation';

@@ -1,6 +1,6 @@
-import { DifficultyHitObject } from '../types';
 import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
 import { ControlPoint, ControlPointType } from '../types/ControlPoint';
+import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, Slider } from '../types/HitObject';
 import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
