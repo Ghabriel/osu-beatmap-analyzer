@@ -69,7 +69,8 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
             header: 'End Pos',
             content: hitObject => {
                 if (isCircle(hitObject)) {
-                    return pointToString(hitObject);
+                    // return pointToString(hitObject);
+                    return '-';
                 }
 
                 if (isSpinner(hitObject)) {
@@ -88,11 +89,11 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
             content: hitObject => HitObjectType[hitObject.type],
             style: styles.centered,
         },
-        {
-            header: 'Index in Combo',
-            content: hitObject => hitObject.indexInCurrentCombo,
-            style: styles.value,
-        },
+        // {
+        //     header: 'Index in Combo',
+        //     content: hitObject => hitObject.indexInCurrentCombo,
+        //     style: styles.value,
+        // },
         // {
         //     header: 'Combo Index',
         //     content: hitObject => hitObject.comboIndex,

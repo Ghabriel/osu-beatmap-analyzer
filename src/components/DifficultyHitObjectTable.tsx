@@ -1,9 +1,7 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
-import { isSlider } from '../helpers/type-inference';
 import { Beatmap } from '../types/Beatmap';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
-import { HitObjectType } from '../types/HitObject';
 import { StyleMap } from '../types/StyleMap';
 import { round } from './HitObjectTable';
 
@@ -35,82 +33,97 @@ export const DifficultyHitObjectTable: React.FunctionComponent<DifficultyHitObje
     const tableContent: TableColumn[] = [
         {
             header: 'lastLast',
-            content: object => {
-                if (object.lastLast === null) {
-                    return '-';
-                }
-
-                return `(${object.lastLast.x}, ${object.lastLast.y})`;
-            },
-            style: styles.centered,
+            content: object => (object.lastLast === null) ? '-' : object.lastLast.startTime,
+            style: styles.value,
         },
         {
             header: 'last',
-            content: object => `(${object.last.x}, ${object.last.y})`,
-            style: styles.centered,
+            content: object => object.last.startTime,
+            style: styles.value,
         },
         {
             header: 'current',
-            content: object => `(${object.current.x}, ${object.current.y})`,
-            style: styles.centered,
+            content: object => object.current.startTime,
+            style: styles.value,
         },
-        {
-            header: 'lastLast Type',
-            content: object => (object.lastLast === null) ? '-' : HitObjectType[object.lastLast.type],
-            style: styles.centered,
-        },
-        {
-            header: 'last Type',
-            content: object => HitObjectType[object.last.type],
-            style: styles.centered,
-        },
-        {
-            header: 'current Type',
-            content: object => HitObjectType[object.current.type],
-            style: styles.centered,
-        },
-        {
-            header: 'lastLast End Position',
-            content: object => {
-                if (object.lastLast === null || !isSlider(object.lastLast)) {
-                    return '-';
-                }
+        // {
+        //     header: 'lastLast',
+        //     content: object => {
+        //         if (object.lastLast === null) {
+        //             return '-';
+        //         }
 
-                const nestedObjects = object.lastLast.metadata.nestedHitObjects;
-                const legacyLastTick = nestedObjects[nestedObjects.length - 1];
-                const position = legacyLastTick.position;
-                return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
-            },
-            style: styles.centered,
-        },
-        {
-            header: 'last End Position',
-            content: object => {
-                if (!isSlider(object.last)) {
-                    return '-';
-                }
+        //         return `(${object.lastLast.x}, ${object.lastLast.y})`;
+        //     },
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'last',
+        //     content: object => `(${object.last.x}, ${object.last.y})`,
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'current',
+        //     content: object => `(${object.current.x}, ${object.current.y})`,
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'lastLast Type',
+        //     content: object => (object.lastLast === null) ? '-' : HitObjectType[object.lastLast.type],
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'last Type',
+        //     content: object => HitObjectType[object.last.type],
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'current Type',
+        //     content: object => HitObjectType[object.current.type],
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'lastLast End Position',
+        //     content: object => {
+        //         if (object.lastLast === null || !isSlider(object.lastLast)) {
+        //             return '-';
+        //         }
 
-                const nestedObjects = object.last.metadata.nestedHitObjects;
-                const legacyLastTick = nestedObjects[nestedObjects.length - 1];
-                const position = legacyLastTick.position;
-                return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
-            },
-            style: styles.centered,
-        },
-        {
-            header: 'current End Position',
-            content: object => {
-                if (!isSlider(object.current)) {
-                    return '-';
-                }
+        //         const nestedObjects = object.lastLast.metadata.nestedHitObjects;
+        //         const legacyLastTick = nestedObjects[nestedObjects.length - 1];
+        //         const position = legacyLastTick.position;
+        //         return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
+        //     },
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'last End Position',
+        //     content: object => {
+        //         if (!isSlider(object.last)) {
+        //             return '-';
+        //         }
 
-                const nestedObjects = object.current.metadata.nestedHitObjects;
-                const legacyLastTick = nestedObjects[nestedObjects.length - 1];
-                const position = legacyLastTick.position;
-                return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
-            },
-            style: styles.centered,
-        },
+        //         const nestedObjects = object.last.metadata.nestedHitObjects;
+        //         const legacyLastTick = nestedObjects[nestedObjects.length - 1];
+        //         const position = legacyLastTick.position;
+        //         return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
+        //     },
+        //     style: styles.centered,
+        // },
+        // {
+        //     header: 'current End Position',
+        //     content: object => {
+        //         if (!isSlider(object.current)) {
+        //             return '-';
+        //         }
+
+        //         const nestedObjects = object.current.metadata.nestedHitObjects;
+        //         const legacyLastTick = nestedObjects[nestedObjects.length - 1];
+        //         const position = legacyLastTick.position;
+        //         return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
+        //     },
+        //     style: styles.centered,
+        // },
         {
             header: 'deltaTime',
             content: object => object.deltaTime,
