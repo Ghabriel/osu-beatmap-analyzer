@@ -1,9 +1,10 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
 import { getSliderComputedProperties } from '../helpers/beatmap-difficulty';
-import { isSlider, isSpinner } from '../helpers/type-inference';
+import { isCircle, isSlider, isSpinner } from '../helpers/type-inference';
 import { Beatmap } from '../types/Beatmap';
 import { HitObject, HitObjectType } from '../types/HitObject';
+import { Point } from '../types/Point';
 import { StyleMap } from '../types/StyleMap';
 
 export interface HitObjectTableProps {
@@ -38,6 +39,10 @@ export function round(value: number, decimalPlaces: number): string {
     return (Math.round(value * exponent) / exponent).toString();
 }
 
+export function pointToString(point: Point): string {
+    return `(${point.x}, ${point.y})`;
+}
+
 export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ beatmap }) => {
     const tableContent: TableColumn[] = [
         {
@@ -57,7 +62,25 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
         // },
         {
             header: 'Position',
-            content: hitObject => `(${hitObject.x}, ${hitObject.y})`,
+            content: hitObject => pointToString(hitObject),
+            style: styles.centered,
+        },
+        {
+            header: 'End Pos',
+            content: hitObject => {
+                if (isCircle(hitObject)) {
+                    return pointToString(hitObject);
+                }
+
+                if (isSpinner(hitObject)) {
+                    return '-';
+                }
+
+                const nestedObjects = hitObject.metadata.nestedHitObjects;
+                const legacyLastTick = nestedObjects[nestedObjects.length - 1];
+                const position = legacyLastTick.position;
+                return `(${Math.round(position.x)}, ${Math.round(position.y)})`;
+            },
             style: styles.centered,
         },
         {
@@ -85,11 +108,11 @@ export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ b
             content: hitObject => `(${hitObject.metadata.stackedPosition.x}, ${hitObject.metadata.stackedPosition.y})`,
             style: styles.centered,
         },
-        {
-            header: 'Stack Height',
-            content: hitObject => isSpinner(hitObject) ? '-' : hitObject.metadata.stackHeight,
-            style: styles.value,
-        },
+        // {
+        //     header: 'Stack Height',
+        //     content: hitObject => isSpinner(hitObject) ? '-' : hitObject.metadata.stackHeight,
+        //     style: styles.value,
+        // },
         {
             header: 'Repeat Count',
             content: hitObject => isSlider(hitObject) ? hitObject.metadata.repeatCount : '-',
