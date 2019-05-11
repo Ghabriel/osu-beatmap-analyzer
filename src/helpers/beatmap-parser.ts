@@ -323,6 +323,7 @@ function parseCircleMetadata(metadata: string[]): CircleMetadata {
 
         // Computed
         stackHeight: 0,
+        stackedPosition: {} as Point, // TODO
     };
 }
 
@@ -351,6 +352,7 @@ function parseSliderMetadata(metadata: string[]): SliderMetadata {
         tickDistance: 0,
         nestedHitObjects: [],
         stackHeight: 0,
+        stackedPosition: {} as Point, // TODO
     };
 }
 
@@ -358,5 +360,6 @@ function parseSpinnerMetadata(metadata: string[], baseHitObject: BaseHitObject):
     return {
         endTime: Math.max(parseInt(metadata[0]), baseHitObject.startTime),
         soundSamples: metadata.slice(1),
+        stackedPosition: {} as Point, // TODO
     };
 }

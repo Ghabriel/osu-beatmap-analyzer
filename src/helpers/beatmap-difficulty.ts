@@ -40,6 +40,8 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 
     fillStackedPositions(beatmap);
 
+    console.log(createDifficultyHitObjects(beatmap));
+
     return {
         ...beatmap,
         aimStrain: 0,//getAimStrain(beatmap),
@@ -433,36 +435,57 @@ function fillStackedPositions(beatmap: ParsedBeatmap) {
 function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject[] {
     const hitObjectScale = getHitObjectScale(beatmap);
     const hitObjectRadius = getHitObjectRadius(hitObjectScale);
+    const scalingFactor = getScalingFactor(hitObjectRadius);
+    const result: DifficultyHitObject[] = [];
 
-    return beatmap.hitObjects
-        .slice(1)
-        .map((current, i) => {
-            const lastLast = i > 1 ? beatmap.hitObjects[i - 2] : null;
-            const last = beatmap.hitObjects[i - 1];
+    for (let i = 1; i < beatmap.hitObjects.length; i++) {
+        const lastLast = i > 1 ? beatmap.hitObjects[i - 2] : null;
+        const last = beatmap.hitObjects[i - 1];
+        const current = beatmap.hitObjects[i];
 
-            const deltaTime = (current.startTime - last.startTime) / CLOCK_RATE;
-            const strainTime = Math.max(50, deltaTime);
-            const scalingFactor = getScalingFactor(hitObjectRadius);
+        const difficultyHitObject = createDifficultyHitObject(
+            lastLast,
+            last,
+            current,
+            beatmap,
+            scalingFactor
+        );
+        result.push(difficultyHitObject);
+    }
 
-            const lastTraversalData = getHitObjectTraversalData(last, beatmap);
-            const travelDistance = lastTraversalData.lazyTravelDistance * scalingFactor;
-            const lastCursorPosition = lastTraversalData.lazyEndPosition;
-            const jumpDistance = scalingFactor * getBaseJumpDistance(lastCursorPosition, current);
+    return result;
+}
 
-            const angle = (lastLast === null)
-                ? null
-                : getAngle(lastLast, last, current, lastCursorPosition, beatmap);
+function createDifficultyHitObject(
+    lastLast: HitObject | null,
+    last: HitObject,
+    current: HitObject,
+    beatmap: ParsedBeatmap,
+    scalingFactor: number,
+): DifficultyHitObject {
+    const deltaTime = (current.startTime - last.startTime) / CLOCK_RATE;
+    const strainTime = Math.max(50, deltaTime);
 
-            return {
-                lastLast,
-                last,
-                current,
-                strainTime,
-                travelDistance,
-                jumpDistance,
-                angle,
-            };
-        });
+    const lastTraversalData = getHitObjectTraversalData(last, beatmap);
+    const travelDistance = lastTraversalData.lazyTravelDistance * scalingFactor;
+    const lastCursorPosition = lastTraversalData.lazyEndPosition;
+    const jumpDistance = scalingFactor * getNorm(
+        pointSubtract(current.metadata.stackedPosition, lastCursorPosition)
+    );
+
+    const angle = (lastLast === null)
+        ? null
+        : getAngle(lastLast, last, current, lastCursorPosition, beatmap);
+
+    return {
+        lastLast,
+        last,
+        current,
+        strainTime,
+        travelDistance,
+        jumpDistance,
+        angle,
+    };
 }
 
 function getAngle(
@@ -482,14 +505,6 @@ function getAngle(
     const det = v1.x * v2.y - v1.y * v2.x;
 
     return Math.abs(Math.atan2(det, dot));
-}
-
-function getBaseJumpDistance(lastCursorPosition: Point, current: HitObject) {
-    if (isSpinner(current)) {
-        return 0;
-    }
-
-    return getNorm(pointSubtract(current.metadata.stackedPosition, lastCursorPosition));
 }
 
 function getHitObjectTraversalData(hitObject: HitObject, beatmap: ParsedBeatmap): SliderTraversalData {
