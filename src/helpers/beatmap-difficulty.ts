@@ -1,5 +1,5 @@
 import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
-import { ControlPoint, ControlPointType } from '../types/ControlPoint';
+import { ControlPoint, ControlPointType, DifficultyControlPoint, TimingControlPoint } from '../types/ControlPoint';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, Slider } from '../types/HitObject';
 import { Point } from '../types/Point';
@@ -141,19 +141,61 @@ function fillSliderComputedAttributes(slider: Slider, beatmap: ParsedBeatmap) {
     const BASE_SCORING_DISTANCE = 100;
     const TICK_DISTANCE_MULTIPLIER = 1;
 
-    const timingPoint = getControlPoint(beatmap.timingControlPoints, slider.startTime);
-    const difficultyPoint = getControlPoint(beatmap.difficultyControlPoints, slider.startTime);
-    const scoringDistance = BASE_SCORING_DISTANCE * beatmap.sliderMultiplier * difficultyPoint!.speedMultiplier;
+    const timingPoint = getTimingControlPoint(beatmap.timingControlPoints, slider.startTime);
+    const difficultyPoint = getDifficultyControlPoint(beatmap.difficultyControlPoints, slider.startTime);
+    const scoringDistance = BASE_SCORING_DISTANCE * beatmap.sliderMultiplier * difficultyPoint.speedMultiplier;
 
     slider.metadata.timingPoint = timingPoint;
     slider.metadata.difficultyPoint = difficultyPoint;
-    slider.metadata.velocity = scoringDistance / timingPoint!.beatLength;
+    slider.metadata.velocity = scoringDistance / timingPoint.beatLength;
     slider.metadata.tickDistance = scoringDistance / beatmap.sliderTickRate * TICK_DISTANCE_MULTIPLIER;
+}
+
+function getTimingControlPoint(
+    list: TimingControlPoint[],
+    startTime: number
+): TimingControlPoint {
+    const controlPoint = getControlPoint(list, startTime);
+
+    if (controlPoint === null) {
+        if (list.length > 0) {
+            return list[0];
+        }
+
+        return {
+            type: ControlPointType.Timing,
+            time: 0,
+            beatLength: 1000,
+            timeSignature: 4,
+        };
+    }
+
+    return controlPoint;
+}
+
+function getDifficultyControlPoint(
+    list: DifficultyControlPoint[],
+    startTime: number
+): DifficultyControlPoint {
+    const controlPoint = getControlPoint(list, startTime);
+
+    if (controlPoint === null) {
+        return {
+            type: ControlPointType.Difficulty,
+            time: 0,
+            speedMultiplier: 1,
+        };
+    }
+
+    return controlPoint;
 }
 
 function getControlPoint<T extends ControlPoint>(list: T[], startTime: number): T | null {
     const matches = list.filter(t => t.time <= startTime);
-    return matches[matches.length - 1];
+
+    return matches.length > 0
+        ? matches[matches.length - 1]
+        : null;
 }
 
 interface SliderComputedProperties {
