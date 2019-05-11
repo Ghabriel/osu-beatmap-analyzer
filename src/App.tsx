@@ -1,29 +1,21 @@
 import React, { useState } from 'react';
 import './App.css';
-import { quaver } from './beatmap.example';
+import { quaver } from './beatmap-input.example';
 import { Main } from './components/Main';
 import { parseBeatmap } from './helpers/beatmap-parser';
 import { Beatmap } from './types/Beatmap';
 
-const quaverCopy: Beatmap = {
-    ...quaver,
-    beatmapId: quaver.beatmapId + 1,
-    title: 'quaver (mock copy)',
-};
-
-const quaverCopy2: Beatmap = {
-    ...quaver,
-    beatmapId: quaver.beatmapId + 2,
-    title: 'quaver (mock copy 2)',
-};
-
 const App: React.FunctionComponent = () => {
-    const [beatmapList, setBeatmapList] = useState<Beatmap[]>([quaver, quaverCopy, quaverCopy2]);
+    const [beatmapList, setBeatmapList] = useState<Beatmap[]>([]);
     const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(0);
 
     function handleImportBeatmap(beatmapString: string) {
         const beatmap = parseBeatmap(beatmapString);
         setBeatmapList(beatmapList.concat([beatmap]));
+    }
+
+    if (beatmapList.length === 0) {
+        handleImportBeatmap(quaver);
     }
 
     return (
