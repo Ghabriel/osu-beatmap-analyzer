@@ -28,8 +28,15 @@ export class SliderPath {
     }
 
     private indexOfDistance(distance: number): number {
-        const index = this.cumulativeLength.findIndex(v => Math.abs(v - distance) < 1e-3);
-        return (index < 0) ? ~index : index;
+        const biggerDistancesIndexes = this.cumulativeLength
+            .map((v, i) => [v, i])
+            .filter(([v, _]) => v > distance - 1e-3)
+            .sort(([a, _i1], [b, _i2]) => a - b)
+            .map(([_, i]) => i);
+
+        return biggerDistancesIndexes.length > 0
+            ? biggerDistancesIndexes[0]
+            : this.cumulativeLength.length;
     }
 
     private interpolateVertices(index: number, distance: number): Point {
@@ -41,7 +48,7 @@ export class SliderPath {
             return this.calculatedPath[0];
         }
         if (index >= this.calculatedPath.length) {
-            return this.calculatedPath[this.calculatePath.length - 1];
+            return this.calculatedPath[this.calculatedPath.length - 1];
         }
 
         const p0 = this.calculatedPath[index - 1];
