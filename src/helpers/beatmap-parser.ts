@@ -6,6 +6,7 @@ import { PathType } from '../types/PathType';
 import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
+import { pointSubtract } from './point-arithmetic';
 import { SliderPath } from './SliderPath';
 
 enum BeatmapSection {
@@ -309,7 +310,7 @@ function createHitObject(
             return {
                 ...baseHitObject,
                 type: type,
-                metadata: parseSliderMetadata(metadata),
+                metadata: parseSliderMetadata(metadata, baseHitObject),
             };
         case HitObjectType.Spinner:
             return {
@@ -332,13 +333,13 @@ function parseCircleMetadata(metadata: string[]): CircleMetadata {
     };
 }
 
-function parseSliderMetadata(metadata: string[]): SliderMetadata {
+function parseSliderMetadata(metadata: string[], baseHitObject: BaseHitObject): SliderMetadata {
     const [pathType, ...points] = metadata[0].split('|');
     const pathLength = metadata.length <= 2 ? 0 : parseInt(metadata[2]);
 
     const controlPoints = points.map(pair => {
         const [x, y] = pair.split(':').map(v => parseInt(v));
-        return { x, y } as Point;
+        return pointSubtract({ x, y }, baseHitObject);
     });
 
     return {
