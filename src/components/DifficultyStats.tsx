@@ -4,7 +4,7 @@ import { propertyTableStyles as styles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { PartialBar } from './PartialBar';
 
-export interface DifficultyAttributesProps {
+export interface DifficultyStatsProps {
     beatmap: Beatmap;
 }
 
@@ -24,7 +24,7 @@ function trait(key: string, value: number, decimalPlaces?: number): JSX.Element 
     );
 }
 
-export const DifficultyAttributes: React.FunctionComponent<DifficultyAttributesProps> = ({ beatmap }) => {
+export const DifficultyStats: React.FunctionComponent<DifficultyStatsProps> = ({ beatmap }) => {
     return (
         <div style={styles.frame}>
             {trait('HP Drain', beatmap.hpDrainRate)}

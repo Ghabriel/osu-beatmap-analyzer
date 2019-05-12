@@ -1,7 +1,7 @@
 import React from 'react';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
-import { DifficultyAttributes } from './DifficultyAttributes';
+import { DifficultyStats } from './DifficultyStats';
 import { HitObjectStats } from './HitObjectStats';
 import { MiscStats } from './MiscStats';
 
@@ -49,14 +49,8 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
                 {beatmap.source} {artist ? `(${artist})` : ''} - Mapped by {beatmap.creator}
             </div>
 
-            <DifficultyAttributes beatmap={beatmap} />
-
-            {/* <HitObjectTable beatmap={beatmap} /> */}
-
-            {/* <DifficultyHitObjectTable beatmap={beatmap} /> */}
-
+            <DifficultyStats beatmap={beatmap} />
             <HitObjectStats beatmap={beatmap} />
-
             <MiscStats beatmap={beatmap} />
         </div>
     );
