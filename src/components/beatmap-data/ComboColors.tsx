@@ -1,5 +1,5 @@
 import React from 'react';
-import { Beatmap } from '../types/Beatmap';
+import { Beatmap } from '../../types/Beatmap';
 import { HitObject } from './HitObject';
 
 export interface ComboColorsProps {

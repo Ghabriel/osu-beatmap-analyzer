@@ -1,7 +1,7 @@
 import React from 'react';
-import { colors } from '../helpers/style-variables';
-import { merge } from '../helpers/utilities';
-import { StyleMap } from '../types/StyleMap';
+import { colors } from '../../helpers/style-variables';
+import { merge } from '../../helpers/utilities';
+import { StyleMap } from '../../types/StyleMap';
 
 export interface PartialBarProps {
     fraction: number;

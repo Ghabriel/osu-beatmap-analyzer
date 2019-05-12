@@ -4,7 +4,7 @@ import { coalesce } from '../helpers/utilities';
 import { useFileUpload } from '../hooks/useFileUpload';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
-import { BeatmapSummary } from './BeatmapSummary';
+import { BeatmapSummary } from './beatmap-data/BeatmapSummary';
 
 export interface SidebarProps {
     beatmapList: Beatmap[];

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
-import { DifficultyStats } from './DifficultyStats';
-import { HitObjectStats } from './HitObjectStats';
-import { MiscStats } from './MiscStats';
+import { DifficultyStats } from './beatmap-data/DifficultyStats';
+import { HitObjectStats } from './beatmap-data/HitObjectStats';
+import { MiscStats } from './beatmap-data/MiscStats';
 
 export interface MainProps {
     beatmap: Beatmap | null;

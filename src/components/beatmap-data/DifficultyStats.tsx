@@ -1,9 +1,9 @@
 import React from 'react';
-import { round } from '../helpers/utilities';
-import { Beatmap } from '../types/Beatmap';
-import { FractionalStat } from './FractionalStat';
-import { StatDivider } from './StatDivider';
-import { StatGroup } from './StatGroup';
+import { round } from '../../helpers/utilities';
+import { Beatmap } from '../../types/Beatmap';
+import { FractionalStat } from '../base/stats/FractionalStat';
+import { StatDivider } from '../base/stats/StatDivider';
+import { StatGroup } from '../base/stats/StatGroup';
 
 export interface DifficultyStatsProps {
     beatmap: Beatmap;

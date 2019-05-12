@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { colors } from '../helpers/style-variables';
-import { merge } from '../helpers/utilities';
-import { Beatmap } from '../types/Beatmap';
-import { StyleMap } from '../types/StyleMap';
+import { colors } from '../../helpers/style-variables';
+import { merge } from '../../helpers/utilities';
+import { Beatmap } from '../../types/Beatmap';
+import { StyleMap } from '../../types/StyleMap';
 
 export interface BeatmapSummaryProps {
     beatmap: Beatmap;

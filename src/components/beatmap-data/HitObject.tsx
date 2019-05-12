@@ -1,8 +1,8 @@
 import React from 'react';
-import { colors } from '../helpers/style-variables';
-import { merge } from '../helpers/utilities';
-import { Color } from '../types/Color';
-import { StyleMap } from '../types/StyleMap';
+import { colors } from '../../helpers/style-variables';
+import { merge } from '../../helpers/utilities';
+import { Color } from '../../types/Color';
+import { StyleMap } from '../../types/StyleMap';
 
 export interface HitObjectProps {
     backgroundColor: Color;

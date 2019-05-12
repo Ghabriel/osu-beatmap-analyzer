@@ -1,8 +1,8 @@
 import React from 'react';
-import { Beatmap } from '../types/Beatmap';
-import { BasicStat } from './BasicStat';
+import { Beatmap } from '../../types/Beatmap';
+import { BasicStat } from '../base/stats/BasicStat';
+import { StatGroup } from '../base/stats/StatGroup';
 import { ComboColors } from './ComboColors';
-import { StatGroup } from './StatGroup';
 
 export interface MiscStatsProps {
     beatmap: Beatmap;

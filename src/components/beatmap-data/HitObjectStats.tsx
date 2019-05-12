@@ -1,10 +1,10 @@
 import React from 'react';
-import { isCircle, isSlider, isSpinner } from '../helpers/type-inference';
-import { getListMode, round } from '../helpers/utilities';
-import { Beatmap } from '../types/Beatmap';
-import { BasicStat } from './BasicStat';
-import { StatDivider } from './StatDivider';
-import { StatGroup } from './StatGroup';
+import { isCircle, isSlider, isSpinner } from '../../helpers/type-inference';
+import { getListMode, round } from '../../helpers/utilities';
+import { Beatmap } from '../../types/Beatmap';
+import { BasicStat } from '../base/stats/BasicStat';
+import { StatDivider } from '../base/stats/StatDivider';
+import { StatGroup } from '../base/stats/StatGroup';
 
 export interface HitObjectStatsProps {
     beatmap: Beatmap;
