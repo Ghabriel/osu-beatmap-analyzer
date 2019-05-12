@@ -70,8 +70,7 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
     const maxVelocity = sliderVelocities[sliderVelocities.length - 1];
     const modeVelocity = getListMode(sliderVelocities);
 
-    const source = beatmap.source || <i>unknown source</i>;
-    const artist = beatmap.artist || <i>unknown artist</i>;
+    const artist = beatmap.artist;
 
     return (
         <div>
@@ -84,7 +83,7 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
             </div>
 
             <div style={styles.author}>
-                {source} ({artist}) - Mapped by {beatmap.creator}
+                {beatmap.source} {artist ? `(${artist})` : ''} - Mapped by {beatmap.creator}
             </div>
 
             <DifficultyAttributes beatmap={beatmap} />
@@ -117,7 +116,7 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
                 {trait('Combo Colors',
                     (beatmap.colors.length > 0)
                     ? <ComboColors beatmap={beatmap} />
-                    : <i>none</i>
+                    : 'none'
                 )}
             </div>
         </div>
