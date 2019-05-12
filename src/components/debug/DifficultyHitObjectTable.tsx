@@ -1,9 +1,9 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
-import { round } from '../helpers/utilities';
-import { Beatmap } from '../types/Beatmap';
-import { DifficultyHitObject } from '../types/DifficultyHitObject';
-import { StyleMap } from '../types/StyleMap';
+import { round } from '../../helpers/utilities';
+import { Beatmap } from '../../types/Beatmap';
+import { DifficultyHitObject } from '../../types/DifficultyHitObject';
+import { StyleMap } from '../../types/StyleMap';
 
 export interface DifficultyHitObjectTableProps {
     beatmap: Beatmap;

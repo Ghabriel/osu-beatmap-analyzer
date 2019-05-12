@@ -1,12 +1,12 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
-import { getSliderComputedProperties } from '../helpers/beatmap-difficulty';
-import { isCircle, isSlider, isSpinner } from '../helpers/type-inference';
-import { round } from '../helpers/utilities';
-import { Beatmap } from '../types/Beatmap';
-import { HitObject, HitObjectType } from '../types/HitObject';
-import { Point } from '../types/Point';
-import { StyleMap } from '../types/StyleMap';
+import { getSliderComputedProperties } from '../../helpers/beatmap-difficulty';
+import { isCircle, isSlider, isSpinner } from '../../helpers/type-inference';
+import { round } from '../../helpers/utilities';
+import { Beatmap } from '../../types/Beatmap';
+import { HitObject, HitObjectType } from '../../types/HitObject';
+import { Point } from '../../types/Point';
+import { StyleMap } from '../../types/StyleMap';
 
 export interface HitObjectTableProps {
     beatmap: Beatmap;
