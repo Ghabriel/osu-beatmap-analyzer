@@ -25,7 +25,12 @@ export function parseBeatmap(content: string): Beatmap {
         .split('\n')
         .filter(line => line.trim().length > 0);
 
-    const beatmap: Partial<Beatmap> = {};
+    const beatmap: Partial<Beatmap> = {
+        timingPoints: [],
+        colors: [],
+        hitObjects: [],
+    };
+
     let currentSection: BeatmapSection | null = null;
 
     for (const line of lines) {
@@ -199,10 +204,6 @@ function parseEventLine(beatmap: Partial<Beatmap>, line: string) {
 function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
     const parts = line.split(',');
 
-    if (beatmap.timingPoints === undefined) {
-        beatmap.timingPoints = [];
-    }
-
     const beatLength = parseFloat(parts[1]);
     const timeSignature = parts.length > 2 ? parseInt(parts[2]) : 4;
 
@@ -214,7 +215,7 @@ function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
         omitFirstBarSignature = (effectFlags & EffectFlags.OmitFirstBarLine) > 0;
     }
 
-    beatmap.timingPoints.push({
+    beatmap.timingPoints!.push({
         time: parseInt(parts[0]),
         beatLength: beatLength,
         timeSignature: timeSignature !== 0 ? timeSignature : 4,
@@ -231,13 +232,9 @@ function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
 function parseColorLine(beatmap: Partial<Beatmap>, line: string) {
     // eslint-disable-next-line
     const [_, value] = line.split(':').map(p => p.trim());
-
-    if (beatmap.colors === undefined) {
-        beatmap.colors = [];
-    }
-
     const colorComponents = value.split(',').map(p => parseInt(p));
-    beatmap.colors.push({
+
+    beatmap.colors!.push({
         red: colorComponents[0],
         green: colorComponents[1],
         blue: colorComponents[2],
@@ -247,10 +244,6 @@ function parseColorLine(beatmap: Partial<Beatmap>, line: string) {
 
 function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
     const parts = line.split(',');
-
-    if (beatmap.hitObjects === undefined) {
-        beatmap.hitObjects = [];
-    }
 
     const flags = parseInt(parts[3]) as HitObjectParsingFlags;
     const type = getHitObjectType(flags);
@@ -274,8 +267,7 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
     };
 
     const hitObject = createHitObject(baseHitObject, type, parts.slice(5));
-
-    beatmap.hitObjects.push(hitObject);
+    beatmap.hitObjects!.push(hitObject);
 }
 
 function getHitObjectType(flags: HitObjectParsingFlags): HitObjectType | null {

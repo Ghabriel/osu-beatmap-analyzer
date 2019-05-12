@@ -24,6 +24,7 @@ export const propertyTableStyles: StyleMap = {
     },
 
     traitDivisor: {
+        backgroundColor: colors.primaryBorder,
         marginBottom: '5px',
         marginTop: '5px',
     },

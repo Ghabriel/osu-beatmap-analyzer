@@ -1,5 +1,4 @@
 import React from 'react';
-import { colors } from '../helpers/style-variables';
 import { round } from '../helpers/utilities';
 import { propertyTableStyles as styles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
@@ -36,7 +35,7 @@ export const DifficultyAttributes: React.FunctionComponent<DifficultyAttributesP
                 <div style={styles.traitValue}>{beatmap.approachRate}</div>
             </div>
 
-            <hr color={colors.primaryBorder} style={styles.traitDivisor} />
+            <hr style={styles.traitDivisor} />
 
             <div style={styles.trait}>
                 <div style={styles.traitKey}>Aim Strain</div>

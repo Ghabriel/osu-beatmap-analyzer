@@ -25,3 +25,19 @@ export function coalesce<T, U>(value: T | undefined, fallback: U): T | U {
 
     return value;
 }
+
+export function getListMode(list: number[]): number {
+    type Table = { [value: number]: number };
+
+    const valueFrequencies = list
+        .reduce((table, value) => {
+            table[value] = (table[value] || 0) + 1;
+            return table;
+        }, {} as Table);
+
+    return parseFloat(
+        Object.entries(valueFrequencies)
+            .sort(([v1, count1], [v2, count2]) => count2 - count1)
+            .map(([v, _]) => v)[0]
+    );
+}
