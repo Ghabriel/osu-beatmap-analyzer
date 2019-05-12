@@ -36,15 +36,18 @@ const styles: StyleMap = {
     title: {
         fontWeight: 'bold',
         fontSize: '1.1rem',
+        wordBreak: 'break-word',
     },
 
     author: {
         fontSize: '0.8rem',
+        wordBreak: 'break-word',
     },
 
     version: {
         fontSize: '0.9rem',
         fontWeight: 'bold',
+        wordBreak: 'break-word',
     },
 };
 
