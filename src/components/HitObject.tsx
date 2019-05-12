@@ -46,7 +46,7 @@ const styles: StyleMap = {
     },
 };
 
-export const HitObject: React.FunctionComponent<HitObjectProps> = ({ backgroundColor }) => {
+export const HitObject: React.FC<HitObjectProps> = ({ backgroundColor }) => {
     const { red, green, blue, alpha } = backgroundColor;
 
     return (

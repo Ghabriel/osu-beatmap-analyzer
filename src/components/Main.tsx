@@ -24,7 +24,7 @@ const styles: StyleMap = {
     },
 };
 
-export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
+export const Main: React.FC<MainProps> = ({ beatmap }) => {
     if (beatmap === null) {
         return (
             <div>

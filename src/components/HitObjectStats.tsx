@@ -21,7 +21,7 @@ function getMaxCombo(beatmap: Beatmap): number {
     return result;
 }
 
-export const HitObjectStats: React.FunctionComponent<HitObjectStatsProps> = ({ beatmap }) => {
+export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
     const hitObjects = beatmap.hitObjects;
     const sliders = hitObjects.filter(isSlider);
     const sliderVelocities = sliders.map(s => s.metadata.velocity).sort();

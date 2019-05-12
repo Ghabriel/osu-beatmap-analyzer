@@ -29,7 +29,7 @@ interface TableColumn {
     style?: CSSProperties;
 }
 
-export const DifficultyHitObjectTable: React.FunctionComponent<DifficultyHitObjectTableProps> = ({ beatmap }) => {
+export const DifficultyHitObjectTable: React.FC<DifficultyHitObjectTableProps> = ({ beatmap }) => {
     const tableContent: TableColumn[] = [
         {
             header: 'lastLast',

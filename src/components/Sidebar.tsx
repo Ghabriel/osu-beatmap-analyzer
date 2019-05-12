@@ -20,7 +20,7 @@ const styles: StyleMap = {
     }
 };
 
-export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
+export const Sidebar: React.FC<SidebarProps> = props => {
     const handleImportClick = useFileUpload(props.onImportBeatmap);
 
     return (

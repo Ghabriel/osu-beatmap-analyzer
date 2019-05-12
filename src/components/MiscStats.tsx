@@ -8,7 +8,7 @@ export interface MiscStatsProps {
     beatmap: Beatmap;
 }
 
-export const MiscStats: React.FunctionComponent<MiscStatsProps> = ({ beatmap }) => {
+export const MiscStats: React.FC<MiscStatsProps> = ({ beatmap }) => {
     return (
         <div style={propertyTableStyles.frame}>
             <BasicStat label='Beat Divisor' value={beatmap.beatDivisor} />

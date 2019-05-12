@@ -6,7 +6,7 @@ export interface ComboColorsProps {
     beatmap: Beatmap;
 }
 
-export const ComboColors: React.FunctionComponent<ComboColorsProps> = ({ beatmap }) => {
+export const ComboColors: React.FC<ComboColorsProps> = ({ beatmap }) => {
     return (
         <>
             {beatmap.colors.map((color, index) => (

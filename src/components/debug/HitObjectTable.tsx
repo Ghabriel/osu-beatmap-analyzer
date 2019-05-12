@@ -38,7 +38,7 @@ export function pointToString(point: Point): string {
     return `(${point.x}, ${point.y})`;
 }
 
-export const HitObjectTable: React.FunctionComponent<HitObjectTableProps> = ({ beatmap }) => {
+export const HitObjectTable: React.FC<HitObjectTableProps> = ({ beatmap }) => {
     const tableContent: TableColumn[] = [
         {
             header: 'Time',

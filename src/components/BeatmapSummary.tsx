@@ -51,7 +51,7 @@ const styles: StyleMap = {
     },
 };
 
-export const BeatmapSummary: React.FunctionComponent<BeatmapSummaryProps> = props => {
+export const BeatmapSummary: React.FC<BeatmapSummaryProps> = props => {
     const [hovered, setHovered] = useState(false);
 
     return (

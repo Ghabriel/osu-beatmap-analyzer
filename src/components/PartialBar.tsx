@@ -32,7 +32,7 @@ function clamp(value: number, min: number, max: number) {
     return Math.max(min, Math.min(max, value));
 }
 
-export const PartialBar: React.FunctionComponent<PartialBarProps> = props => {
+export const PartialBar: React.FC<PartialBarProps> = props => {
     return (
         <div style={styles.container}>
             <div style={merge(

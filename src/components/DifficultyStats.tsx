@@ -24,7 +24,7 @@ function trait(key: string, value: number, decimalPlaces?: number): JSX.Element 
     );
 }
 
-export const DifficultyStats: React.FunctionComponent<DifficultyStatsProps> = ({ beatmap }) => {
+export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => {
     return (
         <div style={styles.frame}>
             {trait('HP Drain', beatmap.hpDrainRate)}

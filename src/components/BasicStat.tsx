@@ -6,7 +6,7 @@ export interface BasicStatProps {
     value: string | number | JSX.Element;
 }
 
-export const BasicStat: React.FunctionComponent<BasicStatProps> = ({ label: key, value }) => {
+export const BasicStat: React.FC<BasicStatProps> = ({ label: key, value }) => {
     return (
         <div style={propertyTableStyles.trait}>
             <div style={propertyTableStyles.traitKey}>
