@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import { coalesce } from '../helpers/utilities';
 import { useFileUpload } from '../hooks/useFileUpload';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
@@ -31,7 +32,7 @@ export const Sidebar: React.FunctionComponent<SidebarProps> = props => {
             <div className="beatmap-list">
                 {props.beatmapList.map((beatmap, index) => (
                     <BeatmapSummary
-                        key={beatmap.beatmapId}
+                        key={coalesce(beatmap.beatmapId, beatmap.title)}
                         beatmap={beatmap}
                         isSelected={index === props.selectedBeatmap}
                         onClick={() => props.onSelectBeatmap(index)}

@@ -20,15 +20,15 @@ export interface ParsedBeatmap {
 
     // Metadata
     title: string;
-    titleUnicode: string;
+    titleUnicode?: string;
     artist: string;
-    artistUnicode: string;
+    artistUnicode?: string;
     creator: string;
     version: string;
-    source: string;
-    tags: string[];
-    beatmapId: number;
-    beatmapSetId: number;
+    source?: string;
+    tags?: string[];
+    beatmapId?: number;
+    beatmapSetId?: number;
 
     // Difficulty
     hpDrainRate: number;
