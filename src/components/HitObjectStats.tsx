@@ -4,6 +4,7 @@ import { getListMode, round } from '../helpers/utilities';
 import { propertyTableStyles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { BasicStat } from './BasicStat';
+import { StatDivider } from './StatDivider';
 
 export interface HitObjectStatsProps {
     beatmap: Beatmap;
@@ -38,7 +39,7 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
             <BasicStat label='Slider Count' value={hitObjects.filter(isSlider).length} />
             <BasicStat label='Spinner Count' value={hitObjects.filter(isSpinner).length} />
 
-            <hr style={propertyTableStyles.traitDivisor} />
+            <StatDivider />
 
             <BasicStat
                 label='Slider Velocity'

@@ -3,6 +3,7 @@ import { round } from '../helpers/utilities';
 import { propertyTableStyles as styles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { FractionalStat } from './FractionalStat';
+import { StatDivider } from './StatDivider';
 
 export interface DifficultyStatsProps {
     beatmap: Beatmap;
@@ -29,7 +30,7 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
             <IntStat label='Overall Difficulty' value={beatmap.overallDifficulty} />
             <IntStat label='Approach Rate' value={beatmap.approachRate} />
 
-            <hr style={styles.traitDivisor} />
+            <StatDivider />
 
             <FloatStat label='Aim Strain' value={beatmap.aimStrain} />
             <FloatStat label='Speed Strain' value={beatmap.speedStrain} />

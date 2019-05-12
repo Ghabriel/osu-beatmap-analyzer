@@ -22,10 +22,4 @@ export const propertyTableStyles: StyleMap = {
     traitValue: {
         marginLeft: '10px',
     },
-
-    traitDivisor: {
-        backgroundColor: colors.primaryBorder,
-        marginBottom: '5px',
-        marginTop: '5px',
-    },
 };
