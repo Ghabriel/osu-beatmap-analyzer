@@ -2,7 +2,7 @@ import React from 'react';
 import { isCircle, isSlider, isSpinner } from '../../helpers/type-inference';
 import { getListMode, round } from '../../helpers/utilities';
 import { Beatmap } from '../../types/Beatmap';
-import { BasicStat } from '../base/stats/BasicStat';
+import { Stat } from '../base/stats/Stat';
 import { StatDivider } from '../base/stats/StatDivider';
 import { StatGroup } from '../base/stats/StatGroup';
 
@@ -32,21 +32,33 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
 
     return (
         <StatGroup>
-            {/* {trait('Duration', beatmap.beatDivisor)} */}
-            <BasicStat label='Max Combo' value={getMaxCombo(beatmap)} />
-            <BasicStat label='Number of Objects' value={hitObjects.length} />
-            <BasicStat label='Circle Count' value={hitObjects.filter(isCircle).length} />
-            <BasicStat label='Slider Count' value={hitObjects.filter(isSlider).length} />
-            <BasicStat label='Spinner Count' value={hitObjects.filter(isSpinner).length} />
+            <Stat label='Max Combo'>
+                {getMaxCombo(beatmap)}
+            </Stat>
+
+            <Stat label='Number of Objects'>
+                {hitObjects.length}
+            </Stat>
+
+            <Stat label='Circle Count'>
+                {hitObjects.filter(isCircle).length}
+            </Stat>
+
+            <Stat label='Slider Count'>
+                {hitObjects.filter(isSlider).length}
+            </Stat>
+
+            <Stat label='Spinner Count'>
+                {hitObjects.filter(isSpinner).length}
+            </Stat>
 
             <StatDivider />
 
-            <BasicStat
-                label='Slider Velocity'
-                value={(maxVelocity - minVelocity < 1e-3)
-                    ? `${round(minVelocity, 3)}`
+            <Stat label='Slider Velocity'>
+                {(maxVelocity - minVelocity < 1e-3)
+                    ? round(minVelocity, 3)
                     : `${round(minVelocity, 3)} - ${round(maxVelocity, 3)} (${round(modeVelocity, 3)})`}
-            />
+            </Stat>
         </StatGroup>
     );
 };

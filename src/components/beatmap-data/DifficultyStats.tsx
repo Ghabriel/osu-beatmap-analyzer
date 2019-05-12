@@ -16,11 +16,15 @@ interface StatProps {
 
 export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => {
     const IntStat: React.FC<StatProps> = ({ label, value }) => (
-        <FractionalStat label={label} value={value} fraction={value / 10} />
+        <FractionalStat label={label} fraction={value / 10}>
+            {value}
+        </FractionalStat>
     );
 
     const FloatStat: React.FC<StatProps> = ({ label, value }) => (
-        <FractionalStat label={label} value={round(value, 3)} fraction={value / 10} />
+        <FractionalStat label={label} fraction={value / 10}>
+            {round(value, 3)}
+        </FractionalStat>
     );
 
     return (
