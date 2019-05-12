@@ -2,41 +2,38 @@ import React from 'react';
 import { round } from '../helpers/utilities';
 import { propertyTableStyles as styles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
-import { PartialBar } from './PartialBar';
+import { FractionalStat } from './FractionalStat';
 
 export interface DifficultyStatsProps {
     beatmap: Beatmap;
 }
 
-function trait(key: string, value: number, decimalPlaces?: number): JSX.Element {
-    return (
-        <div style={styles.trait}>
-            <div style={styles.traitKey}>
-                {key}
-            </div>
-
-            <PartialBar fraction={value / 10} />
-
-            <div style={styles.traitValue}>
-                {decimalPlaces === undefined ? value : round(value, decimalPlaces)}
-            </div>
-        </div>
-    );
+interface StatProps {
+    label: string;
+    value: number;
 }
 
 export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => {
+    const IntStat: React.FC<StatProps> = ({ label, value }) => (
+        <FractionalStat label={label} value={value} fraction={value / 10} />
+    );
+
+    const FloatStat: React.FC<StatProps> = ({ label, value }) => (
+        <FractionalStat label={label} value={round(value, 3)} fraction={value / 10} />
+    );
+
     return (
         <div style={styles.frame}>
-            {trait('HP Drain', beatmap.hpDrainRate)}
-            {trait('Circle Size', beatmap.circleSize)}
-            {trait('Overall Difficulty', beatmap.overallDifficulty)}
-            {trait('Approach Rate', beatmap.approachRate)}
+            <IntStat label='HP Drain' value={beatmap.hpDrainRate} />
+            <IntStat label='Circle Size' value={beatmap.circleSize} />
+            <IntStat label='Overall Difficulty' value={beatmap.overallDifficulty} />
+            <IntStat label='Approach Rate' value={beatmap.approachRate} />
 
             <hr style={styles.traitDivisor} />
 
-            {trait('Aim Strain', beatmap.aimStrain, 3)}
-            {trait('Speed Strain', beatmap.speedStrain, 3)}
-            {trait('Star Rating', beatmap.starRating, 3)}
+            <FloatStat label='Aim Strain' value={beatmap.aimStrain} />
+            <FloatStat label='Speed Strain' value={beatmap.speedStrain} />
+            <FloatStat label='Star Rating' value={beatmap.starRating} />
         </div>
     );
 };
