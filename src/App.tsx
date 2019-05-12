@@ -1,12 +1,48 @@
 import React, { useState } from 'react';
-import './App.css';
 import { quaver } from './beatmap-input.example';
 import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
 import { parseBeatmap } from './helpers/beatmap-parser';
+import { colors } from './helpers/style-variables';
 import { Beatmap } from './types/Beatmap';
+import { StyleMap } from './types/StyleMap';
 
-const App: React.FunctionComponent = () => {
+const styles: StyleMap = {
+    page: {
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100%',
+    },
+
+    header: {
+        backgroundColor: colors.primaryDark,
+        color: 'white',
+        flex: '0 0 auto',
+        fontSize: '20px',
+        padding: '3px',
+    },
+
+    body: {
+        display: 'flex',
+        flexDirection: 'row',
+        flex: '1 1',
+    },
+
+    sidebar: {
+        backgroundColor: '#ccc',
+        borderRight: `1px solid ${colors.secondary}`,
+        flex: '20 0 20%',
+        padding: '3px',
+    },
+
+    main: {
+        backgroundColor: '#eee',
+        flex: '80 0 80%',
+        padding: '0 5px',
+    }
+};
+
+export const App: React.FC = () => {
     const [beatmapList, setBeatmapList] = useState<Beatmap[]>([]);
     const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(0);
 
@@ -20,13 +56,13 @@ const App: React.FunctionComponent = () => {
     }
 
     return (
-        <div className="page">
-            <div className="header">
+        <div style={styles.page}>
+            <div style={styles.header}>
                 osu! Beatmap Analyzer
             </div>
 
-            <div className="body">
-                <div className="sidebar">
+            <div style={styles.body}>
+                <div style={styles.sidebar}>
                     <Sidebar
                         beatmapList={beatmapList}
                         selectedBeatmap={selectedBeatmap}
@@ -34,7 +70,7 @@ const App: React.FunctionComponent = () => {
                         onSelectBeatmap={beatmapIndex => setSelectedBeatmap(beatmapIndex)}
                     />
                 </div>
-                <div className="main">
+                <div style={styles.main}>
                     <Main
                         beatmap={
                             selectedBeatmap === null
@@ -47,5 +83,3 @@ const App: React.FunctionComponent = () => {
         </div>
     );
 }
-
-export default App;
