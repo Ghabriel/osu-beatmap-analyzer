@@ -1,45 +1,17 @@
 import React from 'react';
 import { colors } from '../helpers/style-variables';
 import { round } from '../helpers/utilities';
+import { propertyTableStyles as styles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
-import { StyleMap } from '../types/StyleMap';
 import { PartialBar } from './PartialBar';
 
 export interface DifficultyAttributesProps {
     beatmap: Beatmap;
 }
 
-const styles: StyleMap = {
-    difficulty: {
-        border: `1px solid ${colors.primaryBorder}`,
-        marginTop: '15px',
-        padding: '5px',
-    },
-
-    trait: {
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-    },
-
-    traitKey: {
-        fontWeight: 'bold',
-        width: '150px',
-    },
-
-    traitValue: {
-        marginLeft: '10px',
-    },
-
-    traitDivisor: {
-        marginBottom: '5px',
-        marginTop: '5px',
-    },
-};
-
 export const DifficultyAttributes: React.FunctionComponent<DifficultyAttributesProps> = ({ beatmap }) => {
     return (
-        <div style={styles.difficulty}>
+        <div style={styles.frame}>
             <div style={styles.trait}>
                 <div style={styles.traitKey}>HP Drain</div>
                 <PartialBar fraction={beatmap.hpDrainRate / 10} />

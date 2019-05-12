@@ -1,5 +1,6 @@
 import React from 'react';
 import { coalesce } from '../helpers/utilities';
+import { propertyTableStyles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
 import { ComboColors } from './ComboColors';
@@ -22,11 +23,23 @@ const styles: StyleMap = {
     author: {
         fontSize: '1.1rem',
     },
-
-    comboColorsLabel: {
-        marginRight: '10px',
-    },
 };
+
+type JSXValue = string | number | JSX.Element;
+
+function trait(key: JSXValue, value: JSXValue): JSX.Element {
+    return (
+        <div style={propertyTableStyles.trait}>
+            <div style={propertyTableStyles.traitKey}>
+                {key}
+            </div>
+
+            <div style={propertyTableStyles.traitValue}>
+                {value}
+            </div>
+        </div>
+    );
+}
 
 export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
     if (beatmap === null) {
@@ -60,13 +73,11 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
 
             {/* <DifficultyHitObjectTable beatmap={beatmap} /> */}
 
-            <div>Beat Divisor: {beatmap.beatDivisor}</div>
-            <div>Slider Multiplier: {beatmap.sliderMultiplier}</div>
-            <div>Slider Tick Rate: {beatmap.sliderTickRate}</div>
-
-            <div>
-                <span style={styles.comboColorsLabel}>Combo Colors:</span>
-                <ComboColors beatmap={beatmap}></ComboColors>
+            <div style={propertyTableStyles.frame}>
+                {trait('Beat Divisor', beatmap.beatDivisor)}
+                {trait('Slider Multiplier', beatmap.sliderMultiplier)}
+                {trait('Slider Tick Rate', beatmap.sliderTickRate)}
+                {trait('Combo Colors', <ComboColors beatmap={beatmap} />)}
             </div>
         </div>
     );
