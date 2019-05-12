@@ -11,3 +11,9 @@ export function merge(...styles: (CSSProperties | boolean)[]): CSSProperties {
 
     return result;
 }
+
+export function round(value: number, decimalPlaces: number): string {
+    const exponent = Math.pow(10, decimalPlaces);
+
+    return (Math.round(value * exponent) / exponent).toString();
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { merge } from '../helpers/merge';
 import { colors } from '../helpers/style-variables';
+import { merge } from '../helpers/utilities';
 import { StyleMap } from '../types/StyleMap';
 
 export interface PartialBarProps {

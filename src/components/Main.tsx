@@ -2,8 +2,6 @@ import React from 'react';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
 import { DifficultyAttributes } from './DifficultyAttributes';
-import { DifficultyHitObjectTable } from './DifficultyHitObjectTable';
-import { HitObjectTable } from './HitObjectTable';
 
 export interface MainProps {
     beatmap: Beatmap | null;
@@ -49,9 +47,9 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
 
             <DifficultyAttributes beatmap={beatmap} />
 
-            <HitObjectTable beatmap={beatmap} />
+            {/* <HitObjectTable beatmap={beatmap} /> */}
 
-            <DifficultyHitObjectTable beatmap={beatmap} />
+            {/* <DifficultyHitObjectTable beatmap={beatmap} /> */}
         </div>
     );
 };

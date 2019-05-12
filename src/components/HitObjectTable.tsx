@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
 import { getSliderComputedProperties } from '../helpers/beatmap-difficulty';
 import { isCircle, isSlider, isSpinner } from '../helpers/type-inference';
+import { round } from '../helpers/utilities';
 import { Beatmap } from '../types/Beatmap';
 import { HitObject, HitObjectType } from '../types/HitObject';
 import { Point } from '../types/Point';
@@ -31,12 +32,6 @@ interface TableColumn {
     header: string;
     content: (hitObject: HitObject) => number | string;
     style?: CSSProperties;
-}
-
-export function round(value: number, decimalPlaces: number): string {
-    const exponent = Math.pow(10, decimalPlaces);
-
-    return (Math.round(value * exponent) / exponent).toString();
 }
 
 export function pointToString(point: Point): string {

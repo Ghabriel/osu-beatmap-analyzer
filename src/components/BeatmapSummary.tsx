@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { merge } from '../helpers/merge';
 import { colors } from '../helpers/style-variables';
+import { merge } from '../helpers/utilities';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
 

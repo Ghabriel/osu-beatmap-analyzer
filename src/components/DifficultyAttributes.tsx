@@ -1,5 +1,6 @@
 import React from 'react';
 import { colors } from '../helpers/style-variables';
+import { round } from '../helpers/utilities';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
 import { PartialBar } from './PartialBar';
@@ -68,19 +69,19 @@ export const DifficultyAttributes: React.FunctionComponent<DifficultyAttributesP
             <div style={styles.trait}>
                 <div style={styles.traitKey}>Aim Strain</div>
                 <PartialBar fraction={beatmap.aimStrain / 10} />
-                <div style={styles.traitValue}>{beatmap.aimStrain}</div>
+                <div style={styles.traitValue}>{round(beatmap.aimStrain, 3)}</div>
             </div>
 
             <div style={styles.trait}>
                 <div style={styles.traitKey}>Speed Strain</div>
                 <PartialBar fraction={beatmap.speedStrain / 10} />
-                <div style={styles.traitValue}>{beatmap.speedStrain}</div>
+                <div style={styles.traitValue}>{round(beatmap.speedStrain, 3)}</div>
             </div>
 
             <div style={styles.trait}>
                 <div style={styles.traitKey}>Star Rating</div>
                 <PartialBar fraction={beatmap.starRating / 10} />
-                <div style={styles.traitValue}>{beatmap.starRating}</div>
+                <div style={styles.traitValue}>{round(beatmap.starRating, 3)}</div>
             </div>
         </div>
     );
