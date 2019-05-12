@@ -2,6 +2,7 @@ import React from 'react';
 import { coalesce } from '../helpers/utilities';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
+import { ComboColors } from './ComboColors';
 import { DifficultyAttributes } from './DifficultyAttributes';
 
 export interface MainProps {
@@ -20,6 +21,10 @@ const styles: StyleMap = {
 
     author: {
         fontSize: '1.1rem',
+    },
+
+    comboColorsLabel: {
+        marginRight: '10px',
     },
 };
 
@@ -54,6 +59,15 @@ export const Main: React.FunctionComponent<MainProps> = ({ beatmap }) => {
             {/* <HitObjectTable beatmap={beatmap} /> */}
 
             {/* <DifficultyHitObjectTable beatmap={beatmap} /> */}
+
+            <div>Beat Divisor: {beatmap.beatDivisor}</div>
+            <div>Slider Multiplier: {beatmap.sliderMultiplier}</div>
+            <div>Slider Tick Rate: {beatmap.sliderTickRate}</div>
+
+            <div>
+                <span style={styles.comboColorsLabel}>Combo Colors:</span>
+                <ComboColors beatmap={beatmap}></ComboColors>
+            </div>
         </div>
     );
 };
