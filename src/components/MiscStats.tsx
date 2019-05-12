@@ -1,8 +1,8 @@
 import React from 'react';
-import { propertyTableStyles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { BasicStat } from './BasicStat';
 import { ComboColors } from './ComboColors';
+import { StatGroup } from './StatGroup';
 
 export interface MiscStatsProps {
     beatmap: Beatmap;
@@ -10,7 +10,7 @@ export interface MiscStatsProps {
 
 export const MiscStats: React.FC<MiscStatsProps> = ({ beatmap }) => {
     return (
-        <div style={propertyTableStyles.frame}>
+        <StatGroup>
             <BasicStat label='Beat Divisor' value={beatmap.beatDivisor} />
             <BasicStat label='Slider Multiplier' value={beatmap.sliderMultiplier} />
             <BasicStat label='Slider Tick Rate' value={beatmap.sliderTickRate} />
@@ -21,6 +21,6 @@ export const MiscStats: React.FC<MiscStatsProps> = ({ beatmap }) => {
                     : 'none'
                 }
             />
-        </div>
+        </StatGroup>
     );
 };

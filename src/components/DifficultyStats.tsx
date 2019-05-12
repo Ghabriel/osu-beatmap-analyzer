@@ -1,9 +1,9 @@
 import React from 'react';
 import { round } from '../helpers/utilities';
-import { propertyTableStyles as styles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { FractionalStat } from './FractionalStat';
 import { StatDivider } from './StatDivider';
+import { StatGroup } from './StatGroup';
 
 export interface DifficultyStatsProps {
     beatmap: Beatmap;
@@ -24,7 +24,7 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
     );
 
     return (
-        <div style={styles.frame}>
+        <StatGroup>
             <IntStat label='HP Drain' value={beatmap.hpDrainRate} />
             <IntStat label='Circle Size' value={beatmap.circleSize} />
             <IntStat label='Overall Difficulty' value={beatmap.overallDifficulty} />
@@ -35,6 +35,6 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
             <FloatStat label='Aim Strain' value={beatmap.aimStrain} />
             <FloatStat label='Speed Strain' value={beatmap.speedStrain} />
             <FloatStat label='Star Rating' value={beatmap.starRating} />
-        </div>
+        </StatGroup>
     );
 };

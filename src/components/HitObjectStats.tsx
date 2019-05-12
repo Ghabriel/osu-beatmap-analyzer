@@ -1,10 +1,10 @@
 import React from 'react';
 import { isCircle, isSlider, isSpinner } from '../helpers/type-inference';
 import { getListMode, round } from '../helpers/utilities';
-import { propertyTableStyles } from '../styles/property-table';
 import { Beatmap } from '../types/Beatmap';
 import { BasicStat } from './BasicStat';
 import { StatDivider } from './StatDivider';
+import { StatGroup } from './StatGroup';
 
 export interface HitObjectStatsProps {
     beatmap: Beatmap;
@@ -31,7 +31,7 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
     const modeVelocity = getListMode(sliderVelocities);
 
     return (
-        <div style={propertyTableStyles.frame}>
+        <StatGroup>
             {/* {trait('Duration', beatmap.beatDivisor)} */}
             <BasicStat label='Max Combo' value={getMaxCombo(beatmap)} />
             <BasicStat label='Number of Objects' value={hitObjects.length} />
@@ -47,6 +47,6 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
                     ? `${round(minVelocity, 3)}`
                     : `${round(minVelocity, 3)} - ${round(maxVelocity, 3)} (${round(modeVelocity, 3)})`}
             />
-        </div>
+        </StatGroup>
     );
 };
