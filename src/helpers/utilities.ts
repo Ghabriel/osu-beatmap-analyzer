@@ -12,6 +12,10 @@ export function merge(...styles: (CSSProperties | boolean)[]): CSSProperties {
     return result;
 }
 
+export function clamp(value: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, value));
+}
+
 export function round(value: number, decimalPlaces: number): string {
     const exponent = Math.pow(10, decimalPlaces);
 

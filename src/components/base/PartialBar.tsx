@@ -1,6 +1,6 @@
 import React from 'react';
 import { colors } from '../../helpers/style-variables';
-import { merge } from '../../helpers/utilities';
+import { clamp, merge } from '../../helpers/utilities';
 import { StyleMap } from '../../types/StyleMap';
 
 export interface PartialBarProps {
@@ -28,22 +28,16 @@ const styles: StyleMap = {
     }
 };
 
-function clamp(value: number, min: number, max: number) {
-    return Math.max(min, Math.min(max, value));
-}
-
 export const PartialBar: React.FC<PartialBarProps> = props => {
+    const filledPercentage = 100 * clamp(props.fraction, 0, 1);
+
+    const filledStyle = merge(styles.filled, { flexBasis: filledPercentage + '%' });
+    const emptyStyle = merge(styles.empty, { flexBasis: (100 - filledPercentage) + '%' });
+
     return (
         <div style={styles.container}>
-            <div style={merge(
-                styles.filled,
-                { flexBasis: clamp(100 * props.fraction, 0, 100) + '%' }
-            )}></div>
-
-            <div style={merge(
-                styles.empty,
-                { flexBasis: clamp(100 * (1 - props.fraction), 0, 100) + '%' }
-            )}></div>
+            <div style={filledStyle}></div>
+            <div style={emptyStyle}></div>
         </div>
     );
 };
