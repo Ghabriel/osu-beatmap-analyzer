@@ -1,13 +1,14 @@
-import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
-import { EffectFlags } from '../types/EffectFlags';
-import { BaseHitObject, CircleMetadata, HitObject, HitObjectType, SliderMetadata, SpinnerMetadata } from '../types/HitObject';
-import { HitObjectParsingFlags } from '../types/HitObjectParsingFlags';
-import { PathType } from '../types/PathType';
-import { Point } from '../types/Point';
-import { assertNever } from './assertNever';
-import { fillBeatmapComputedAttributes } from './beatmap-difficulty';
-import { pointSubtract } from './point-arithmetic';
-import { SliderPath } from './SliderPath';
+import { Beatmap, ParsedBeatmap } from '../../types/Beatmap';
+import { EffectFlags } from '../../types/EffectFlags';
+import { BaseHitObject, CircleMetadata, HitObject, HitObjectType, SliderMetadata, SpinnerMetadata } from '../../types/HitObject';
+import { HitObjectParsingFlags } from '../../types/HitObjectParsingFlags';
+import { PathType } from '../../types/PathType';
+import { Point } from '../../types/Point';
+import { assertNever } from '../assertNever';
+import { fillBeatmapComputedAttributes } from '../beatmap-difficulty';
+import { pointSubtract } from '../point-arithmetic';
+import { SliderPath } from '../SliderPath';
+import { PartialBeatmap } from './PartialBeatmap';
 
 enum BeatmapSection {
     General = 'General',
@@ -23,7 +24,7 @@ enum BeatmapSection {
 const COMMENT_START = '//';
 
 export function parseBeatmap(content: string): Beatmap {
-    const beatmap: Partial<Beatmap> = {
+    const beatmap: PartialBeatmap = {
         timingPoints: [],
         timingControlPoints: [],
         difficultyControlPoints: [],
@@ -40,8 +41,8 @@ export function parseBeatmap(content: string): Beatmap {
 
     parseLinesInto(beatmap, lines);
 
-    beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
-    beatmap.timingPoints!.sort((a, b) => a.time - b.time);
+    beatmap.hitObjects.sort((a, b) => a.startTime - b.startTime);
+    beatmap.timingPoints.sort((a, b) => a.time - b.time);
 
     return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
 }
@@ -52,7 +53,7 @@ function isLineValid(line: string): boolean {
     return line.length > 0 && !line.startsWith(COMMENT_START);
 }
 
-function parseLinesInto(beatmap: Partial<Beatmap>, lines: string[]) {
+function parseLinesInto(beatmap: PartialBeatmap, lines: string[]) {
     let currentSection: BeatmapSection | null = null;
 
     for (const line of lines) {
@@ -72,7 +73,7 @@ function parseLinesInto(beatmap: Partial<Beatmap>, lines: string[]) {
     }
 }
 
-function parseLine(beatmap: Partial<Beatmap>, section: BeatmapSection, line: string) {
+function parseLine(beatmap: PartialBeatmap, section: BeatmapSection, line: string) {
     line = stripComments(line);
 
     switch (section) {
@@ -114,7 +115,7 @@ function stripComments(line: string): string {
     return line;
 }
 
-function parseGeneralLine(beatmap: Partial<Beatmap>, line: string) {
+function parseGeneralLine(beatmap: PartialBeatmap, line: string) {
     const [key, value] = line.split(':').map(p => p.trim());
 
     switch (key) {
@@ -140,7 +141,7 @@ function parseGeneralLine(beatmap: Partial<Beatmap>, line: string) {
     }
 }
 
-function parseEditorLine(beatmap: Partial<Beatmap>, line: string) {
+function parseEditorLine(beatmap: PartialBeatmap, line: string) {
     const [key, value] = line.split(':').map(p => p.trim());
 
     switch (key) {
@@ -157,7 +158,7 @@ function parseEditorLine(beatmap: Partial<Beatmap>, line: string) {
     }
 }
 
-function parseMetadataLine(beatmap: Partial<Beatmap>, line: string) {
+function parseMetadataLine(beatmap: PartialBeatmap, line: string) {
     const [key, value] = line.split(':').map(p => p.trim());
 
     switch (key) {
@@ -195,7 +196,7 @@ function parseMetadataLine(beatmap: Partial<Beatmap>, line: string) {
     }
 }
 
-function parseDifficultyLine(beatmap: Partial<Beatmap>, line: string) {
+function parseDifficultyLine(beatmap: PartialBeatmap, line: string) {
     const [key, value] = line.split(':').map(p => p.trim());
 
     switch (key) {
@@ -221,7 +222,7 @@ function parseDifficultyLine(beatmap: Partial<Beatmap>, line: string) {
     }
 }
 
-function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
+function parseTimingPointLine(beatmap: PartialBeatmap, line: string) {
     const parts = line.split(',');
 
     const beatLength = parseFloat(parts[1]);
@@ -235,7 +236,7 @@ function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
         omitFirstBarSignature = (effectFlags & EffectFlags.OmitFirstBarLine) > 0;
     }
 
-    beatmap.timingPoints!.push({
+    beatmap.timingPoints.push({
         time: parseInt(parts[0]),
         beatLength: beatLength,
         timeSignature: timeSignature !== 0 ? timeSignature : 4,
@@ -249,12 +250,12 @@ function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
     });
 }
 
-function parseColorLine(beatmap: Partial<Beatmap>, line: string) {
+function parseColorLine(beatmap: PartialBeatmap, line: string) {
     // eslint-disable-next-line
     const [_, value] = line.split(':').map(p => p.trim());
     const colorComponents = value.split(',').map(p => parseInt(p));
 
-    beatmap.colors!.push({
+    beatmap.colors.push({
         red: colorComponents[0],
         green: colorComponents[1],
         blue: colorComponents[2],
@@ -262,7 +263,7 @@ function parseColorLine(beatmap: Partial<Beatmap>, line: string) {
     });
 }
 
-function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
+function parseHitObjectLine(beatmap: PartialBeatmap, line: string) {
     const parts = line.split(',');
 
     const flags = parseInt(parts[3]) as HitObjectParsingFlags;
@@ -287,7 +288,7 @@ function parseHitObjectLine(beatmap: Partial<Beatmap>, line: string) {
     };
 
     const hitObject = createHitObject(baseHitObject, type, parts.slice(5));
-    beatmap.hitObjects!.push(hitObject);
+    beatmap.hitObjects.push(hitObject);
 }
 
 function getHitObjectType(flags: HitObjectParsingFlags): HitObjectType | null {

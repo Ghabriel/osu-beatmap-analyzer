@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { quaver } from './beatmap-input.example';
 import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
-import { parseBeatmap } from './helpers/beatmap-parser';
+import { parseBeatmap } from './helpers/parsing/beatmap-parser';
 import { colors } from './helpers/style-variables';
 import { Beatmap } from './types/Beatmap';
 import { StyleMap } from './types/StyleMap';
