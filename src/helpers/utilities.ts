@@ -12,6 +12,16 @@ export function merge(...styles: (CSSProperties | boolean)[]): CSSProperties {
     return result;
 }
 
+// type KeysToNumber<T> = ({ [K in keyof T]: T[K] extends number ? K : never })[keyof T];
+
+// export function sortBy<T, K extends KeysToNumber<T>>(list: T[], field: K) {
+//     (list as any[]).sort((a, b) => a[field] - b[field]);
+// }
+
+export function sortBy<T extends string>(list: Record<T, number>[], field: T) {
+    return list.sort((a, b) => a[field] - b[field]);
+}
+
 export function clamp(value: number, min: number, max: number) {
     return Math.max(min, Math.min(max, value));
 }

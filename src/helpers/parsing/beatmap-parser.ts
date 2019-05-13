@@ -8,6 +8,7 @@ import { assertNever } from '../assertNever';
 import { fillBeatmapComputedAttributes } from '../beatmap-difficulty';
 import { pointSubtract } from '../point-arithmetic';
 import { SliderPath } from '../SliderPath';
+import { sortBy } from '../utilities';
 import { PartialBeatmap } from './PartialBeatmap';
 
 enum BeatmapSection {
@@ -24,15 +25,7 @@ enum BeatmapSection {
 const COMMENT_START = '//';
 
 export function parseBeatmap(content: string): Beatmap {
-    const beatmap: PartialBeatmap = {
-        timingPoints: [],
-        timingControlPoints: [],
-        difficultyControlPoints: [],
-        effectControlPoints: [],
-        legacySampleControlPoints: [],
-        colors: [],
-        hitObjects: [],
-    };
+    const beatmap = createPartialBeatmap();
 
     const lines = content
         .replace(/\r\n/g, '\n')
@@ -41,10 +34,22 @@ export function parseBeatmap(content: string): Beatmap {
 
     parseLinesInto(beatmap, lines);
 
-    beatmap.hitObjects.sort((a, b) => a.startTime - b.startTime);
-    beatmap.timingPoints.sort((a, b) => a.time - b.time);
+    sortBy(beatmap.hitObjects, 'startTime');
+    sortBy(beatmap.timingPoints, 'time');
 
     return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
+}
+
+function createPartialBeatmap(): PartialBeatmap {
+    return {
+        timingPoints: [],
+        timingControlPoints: [],
+        difficultyControlPoints: [],
+        effectControlPoints: [],
+        legacySampleControlPoints: [],
+        colors: [],
+        hitObjects: [],
+    };
 }
 
 function isLineValid(line: string): boolean {
