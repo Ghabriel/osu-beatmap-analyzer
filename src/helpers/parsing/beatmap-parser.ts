@@ -121,7 +121,7 @@ function stripComments(line: string): string {
 }
 
 function parseGeneralLine(beatmap: PartialBeatmap, line: string) {
-    const [key, value] = line.split(':').map(p => p.trim());
+    const [key, value] = parseKeyValuePair(line);
 
     switch (key) {
         case 'AudioFilename':
@@ -147,7 +147,7 @@ function parseGeneralLine(beatmap: PartialBeatmap, line: string) {
 }
 
 function parseEditorLine(beatmap: PartialBeatmap, line: string) {
-    const [key, value] = line.split(':').map(p => p.trim());
+    const [key, value] = parseKeyValuePair(line);
 
     switch (key) {
         case 'DistanceSpacing':
@@ -164,7 +164,7 @@ function parseEditorLine(beatmap: PartialBeatmap, line: string) {
 }
 
 function parseMetadataLine(beatmap: PartialBeatmap, line: string) {
-    const [key, value] = line.split(':').map(p => p.trim());
+    const [key, value] = parseKeyValuePair(line);
 
     switch (key) {
         case 'Title':
@@ -202,7 +202,7 @@ function parseMetadataLine(beatmap: PartialBeatmap, line: string) {
 }
 
 function parseDifficultyLine(beatmap: PartialBeatmap, line: string) {
-    const [key, value] = line.split(':').map(p => p.trim());
+    const [key, value] = parseKeyValuePair(line);
 
     switch (key) {
         case 'HPDrainRate':
@@ -225,6 +225,10 @@ function parseDifficultyLine(beatmap: PartialBeatmap, line: string) {
             break;
         default:
     }
+}
+
+function parseKeyValuePair(line: string): [string, string] {
+    return line.split(':').map(p => p.trim()) as [string, string];
 }
 
 function parseTimingPointLine(beatmap: PartialBeatmap, line: string) {
@@ -257,7 +261,7 @@ function parseTimingPointLine(beatmap: PartialBeatmap, line: string) {
 
 function parseColorLine(beatmap: PartialBeatmap, line: string) {
     // eslint-disable-next-line
-    const [_, value] = line.split(':').map(p => p.trim());
+    const [_, value] = parseKeyValuePair(line);
     const colorComponents = value.split(',').map(p => parseInt(p));
 
     beatmap.colors.push({
