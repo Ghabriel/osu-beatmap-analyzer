@@ -231,7 +231,7 @@ function parseTimingPointLine(beatmap: PartialBeatmap, line: string) {
     const parts = line.split(',');
 
     const beatLength = parseFloat(parts[1]);
-    const timeSignature = parts.length > 2 ? parseInt(parts[2]) : 4;
+    const timeSignature = (parts.length > 2) ? parseInt(parts[2]) : 4;
 
     let kiaiMode = false;
     let omitFirstBarSignature = false;
@@ -244,14 +244,14 @@ function parseTimingPointLine(beatmap: PartialBeatmap, line: string) {
     beatmap.timingPoints.push({
         time: parseInt(parts[0]),
         beatLength: beatLength,
-        timeSignature: timeSignature !== 0 ? timeSignature : 4,
-        sampleSet: parts.length > 3 ? parseInt(parts[3]) : 0, // TODO: fix fallback
-        customSampleBank: parts.length > 4 ? parseInt(parts[4]) : 0,
-        sampleVolume: parts.length > 5 ? parseInt(parts[5]) : 100,  // TODO: fix fallback
-        timingChange: parts.length > 6 ? parts[6] === '1' : true,
+        timeSignature: (timeSignature !== 0) ? timeSignature : 4,
+        sampleSet: (parts.length > 3) ? parseInt(parts[3]) : 0, // TODO: fix fallback
+        customSampleBank: (parts.length > 4) ? parseInt(parts[4]) : 0,
+        sampleVolume: (parts.length > 5) ? parseInt(parts[5]) : 100,  // TODO: fix fallback
+        timingChange: (parts.length > 6) ? parts[6] === '1' : true,
         kiaiMode: kiaiMode,
         omitFirstBarSignature: omitFirstBarSignature,
-        speedMultiplier: beatLength < 0 ? 100 / -beatLength : 1,
+        speedMultiplier: (beatLength < 0) ? 100 / -beatLength : 1,
     });
 }
 
@@ -264,7 +264,7 @@ function parseColorLine(beatmap: PartialBeatmap, line: string) {
         red: colorComponents[0],
         green: colorComponents[1],
         blue: colorComponents[2],
-        alpha: colorComponents.length > 3 ? colorComponents[3] : 255,
+        alpha: (colorComponents.length > 3) ? colorComponents[3] : 255,
     });
 }
 
@@ -353,7 +353,7 @@ function parseCircleMetadata(metadata: string[]): CircleMetadata {
 
 function parseSliderMetadata(metadata: string[], baseHitObject: BaseHitObject): SliderMetadata {
     const [pathType, ...points] = metadata[0].split('|');
-    const pathLength = metadata.length <= 2 ? 0 : parseInt(metadata[2]);
+    const pathLength = (metadata.length <= 2) ? 0 : parseInt(metadata[2]);
 
     const controlPoints = points.map(pair => {
         const [x, y] = pair.split(':').map(v => parseInt(v));
