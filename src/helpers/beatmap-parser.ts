@@ -21,16 +21,36 @@ enum BeatmapSection {
 }
 
 export function parseBeatmap(content: string): Beatmap {
-    const lines = content
-        .split('\n')
-        .filter(line => line.trim().length > 0);
-
     const beatmap: Partial<Beatmap> = {
         timingPoints: [],
+        timingControlPoints: [],
+        difficultyControlPoints: [],
+        effectControlPoints: [],
+        legacySampleControlPoints: [],
         colors: [],
         hitObjects: [],
     };
 
+    const lines = content
+        .replace(/\r\n/g, '\n')
+        .split('\n')
+        .filter(isLineValid);
+
+    parseLinesInto(beatmap, lines);
+
+    beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
+    beatmap.timingPoints!.sort((a, b) => a.time - b.time);
+
+    return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
+}
+
+function isLineValid(line: string): boolean {
+    line = line.trim();
+
+    return line.length > 0 && !line.startsWith('//');
+}
+
+function parseLinesInto(beatmap: Partial<Beatmap>, lines: string[]) {
     let currentSection: BeatmapSection | null = null;
 
     for (const line of lines) {
@@ -48,16 +68,6 @@ export function parseBeatmap(content: string): Beatmap {
 
         parseBeatmapLine(beatmap, currentSection, line);
     }
-
-    beatmap.hitObjects!.sort((a, b) => a.startTime - b.startTime);
-    beatmap.timingPoints!.sort((a, b) => a.time - b.time);
-
-    beatmap.timingControlPoints = [];
-    beatmap.difficultyControlPoints = [];
-    beatmap.effectControlPoints = [];
-    beatmap.legacySampleControlPoints = [];
-
-    return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
 }
 
 function parseBeatmapLine(beatmap: Partial<Beatmap>, section: BeatmapSection, line: string) {
