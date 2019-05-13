@@ -20,6 +20,8 @@ enum BeatmapSection {
     HitObjects = 'HitObjects',
 }
 
+const COMMENT_START = '//';
+
 export function parseBeatmap(content: string): Beatmap {
     const beatmap: Partial<Beatmap> = {
         timingPoints: [],
@@ -47,7 +49,7 @@ export function parseBeatmap(content: string): Beatmap {
 function isLineValid(line: string): boolean {
     line = line.trim();
 
-    return line.length > 0 && !line.startsWith('//');
+    return line.length > 0 && !line.startsWith(COMMENT_START);
 }
 
 function parseLinesInto(beatmap: Partial<Beatmap>, lines: string[]) {
@@ -66,11 +68,13 @@ function parseLinesInto(beatmap: Partial<Beatmap>, lines: string[]) {
             continue;
         }
 
-        parseBeatmapLine(beatmap, currentSection, line);
+        parseLine(beatmap, currentSection, line);
     }
 }
 
-function parseBeatmapLine(beatmap: Partial<Beatmap>, section: BeatmapSection, line: string) {
+function parseLine(beatmap: Partial<Beatmap>, section: BeatmapSection, line: string) {
+    line = stripComments(line);
+
     switch (section) {
         case BeatmapSection.General:
             parseGeneralLine(beatmap, line);
@@ -98,6 +102,16 @@ function parseBeatmapLine(beatmap: Partial<Beatmap>, section: BeatmapSection, li
             break;
         default:
     }
+}
+
+function stripComments(line: string): string {
+    const commentIndex = line.indexOf(COMMENT_START);
+
+    if (commentIndex >= 0) {
+        return line.substr(0, commentIndex);
+    }
+
+    return line;
 }
 
 function parseGeneralLine(beatmap: Partial<Beatmap>, line: string) {
