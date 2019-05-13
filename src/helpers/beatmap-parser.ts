@@ -89,7 +89,7 @@ function parseLine(beatmap: Partial<Beatmap>, section: BeatmapSection, line: str
             parseDifficultyLine(beatmap, line);
             break;
         case BeatmapSection.Events:
-            parseEventLine(beatmap, line);
+            // events are currently unused
             break;
         case BeatmapSection.TimingPoints:
             parseTimingPointLine(beatmap, line);
@@ -219,10 +219,6 @@ function parseDifficultyLine(beatmap: Partial<Beatmap>, line: string) {
             break;
         default:
     }
-}
-
-function parseEventLine(beatmap: Partial<Beatmap>, line: string) {
-    // TODO
 }
 
 function parseTimingPointLine(beatmap: Partial<Beatmap>, line: string) {
