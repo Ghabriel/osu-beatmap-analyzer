@@ -7,7 +7,7 @@ import { fillBeatmapDefaults } from "./beatmap-fill-defaults";
 import { PartialBeatmap } from "./parsing/PartialBeatmap";
 import { pointSum } from "./point-arithmetic";
 import { isCircle, isSlider, isSliderTip } from "./type-inference";
-import { sortBy } from "./utilities";
+import { isNotNull, sortBy } from "./utilities";
 
 export interface SliderComputedProperties {
     startTime: number;
@@ -212,15 +212,11 @@ function getControlPoint<T extends ControlPoint>(list: T[], startTime: number): 
 
 function fillNestedHitObjects(slider: Slider, beatmap: ParsedBeatmap) {
     const computedProperties = getSliderComputedProperties(slider);
-    const events = getSliderEvents(computedProperties);
 
-    for (const event of events) {
-        const nestedHitObject = createNestedHitObject(slider, event, computedProperties, beatmap);
-
-        if (nestedHitObject !== null) {
-            slider.metadata.nestedHitObjects.push(nestedHitObject);
-        }
-    }
+    getSliderEvents(computedProperties)
+        .map(event => createNestedHitObject(slider, event, computedProperties, beatmap))
+        .filter(isNotNull)
+        .forEach(h => slider.metadata.nestedHitObjects.push(h));
 
     sortBy(slider.metadata.nestedHitObjects, 'startTime');
 }

@@ -59,3 +59,7 @@ export function getListMode(list: number[]): number {
 export function hasFlag<T extends number>(enumValue: T, flag: T): boolean {
     return (enumValue & flag) > 0;
 }
+
+export function isNotNull<T>(value: T | null): value is T {
+    return value !== null;
+}
