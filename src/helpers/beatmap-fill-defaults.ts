@@ -47,42 +47,42 @@ export function fillBeatmapDefaults(partialBeatmap: PartialBeatmap): ParsedBeatm
         effectControlPoints: partialBeatmap.effectControlPoints,
         legacySampleControlPoints: partialBeatmap.legacySampleControlPoints,
         colors: partialBeatmap.colors,
-        hitObjects: fillHitObjects(partialBeatmap.hitObjects),
+        hitObjects: createHitObjects(partialBeatmap.hitObjects),
     };
 }
 
-function fillHitObjects(partialHitObjects: PartialHitObject[]): HitObject[] {
-    return partialHitObjects.map(h => fillHitObject(h));
+function createHitObjects(partialHitObjects: PartialHitObject[]): HitObject[] {
+    return partialHitObjects.map(h => createHitObject(h));
 }
 
-function fillHitObject(partialHitObject: PartialHitObject): HitObject {
-    const baseHitObject = fillBaseHitObject(partialHitObject);
+function createHitObject(partialHitObject: PartialHitObject): HitObject {
+    const baseHitObject = createBaseHitObject(partialHitObject);
 
     switch (partialHitObject.type) {
         case HitObjectType.Circle:
             return {
                 ...baseHitObject,
                 type: partialHitObject.type,
-                metadata: fillCircleMetadata(partialHitObject.metadata),
+                metadata: createCircleMetadata(partialHitObject.metadata),
             };
         case HitObjectType.Slider:
             return {
                 ...baseHitObject,
                 type: partialHitObject.type,
-                metadata: fillSliderMetadata(partialHitObject.metadata, baseHitObject),
+                metadata: createSliderMetadata(partialHitObject.metadata, baseHitObject),
             };
         case HitObjectType.Spinner:
             return {
                 ...baseHitObject,
                 type: partialHitObject.type,
-                metadata: fillSpinnerMetadata(partialHitObject.metadata, baseHitObject),
+                metadata: createSpinnerMetadata(partialHitObject.metadata, baseHitObject),
             };
         default:
             return assertNever(partialHitObject);
     }
 }
 
-function fillBaseHitObject(partialHitObject: PartialHitObject): BaseHitObject {
+function createBaseHitObject(partialHitObject: PartialHitObject): BaseHitObject {
     return {
         x: partialHitObject.x,
         y: partialHitObject.y,
@@ -96,7 +96,7 @@ function fillBaseHitObject(partialHitObject: PartialHitObject): BaseHitObject {
     };
 }
 
-function fillCircleMetadata(metadata: PartialCircleMetadata): CircleMetadata {
+function createCircleMetadata(metadata: PartialCircleMetadata): CircleMetadata {
     return {
         soundSamples: metadata.soundSamples,
         stackHeight: 0,
@@ -104,7 +104,7 @@ function fillCircleMetadata(metadata: PartialCircleMetadata): CircleMetadata {
     };
 }
 
-function fillSliderMetadata(
+function createSliderMetadata(
     metadata: PartialSliderMetadata,
     baseHitObject: BaseHitObject
 ): SliderMetadata {
@@ -122,7 +122,7 @@ function fillSliderMetadata(
     };
 }
 
-function fillSpinnerMetadata(
+function createSpinnerMetadata(
     metadata: PartialSpinnerMetadata,
     baseHitObject: BaseHitObject
 ): SpinnerMetadata {
