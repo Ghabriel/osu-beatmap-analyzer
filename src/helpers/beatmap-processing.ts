@@ -7,7 +7,7 @@ import { fillBeatmapDefaults } from "./beatmap-fill-defaults";
 import { PartialBeatmap } from "./parsing/PartialBeatmap";
 import { pointSum } from "./point-arithmetic";
 import { isCircle, isSlider, isSliderTip } from "./type-inference";
-import { isNotNull, sortBy } from "./utilities";
+import { clamp, isNotNull, sortBy } from "./utilities";
 
 export interface SliderComputedProperties {
     startTime: number;
@@ -314,14 +314,17 @@ export function getHitObjectScale(beatmap: ParsedBeatmap): number {
 }
 
 export function getSliderComputedProperties(slider: Slider): SliderComputedProperties {
+    // SliderEventGenerator.cs (23)
+    const MAX_SLIDER_LENGTH = 100000;
+
     const startTime = slider.startTime;
     const spanCount = slider.metadata.repeatCount + 1;
-    const pathDistance = slider.metadata.path.length;
+    const pathDistance = Math.min(slider.metadata.path.length, MAX_SLIDER_LENGTH);
     const velocity = slider.metadata.velocity;
     const endTime = startTime + spanCount * pathDistance / velocity;
     const duration = endTime - startTime;
     const spanDuration = duration / spanCount;
-    const tickDistance = slider.metadata.tickDistance;
+    const tickDistance = clamp(slider.metadata.tickDistance, 0, pathDistance);
 
     return {
         startTime,
@@ -333,70 +336,85 @@ export function getSliderComputedProperties(slider: Slider): SliderComputedPrope
     };
 }
 
-// TODO: break this function into smaller ones
 function getSliderEvents(sliderProperties: SliderComputedProperties): SliderEvent[] {
-    const {
-        startTime,
-        spanCount,
-        velocity,
-        spanDuration,
-    } = sliderProperties;
-
-    const LEGACY_LAST_TICK_OFFSET = 36;
-
-    // SliderEventGenerator.cs (23)
-    const MAX_SLIDER_LENGTH = 100000;
-
-    const length = Math.min(sliderProperties.pathDistance, MAX_SLIDER_LENGTH);
-    const tickDistance = Math.max(0, Math.min(length, sliderProperties.tickDistance));
-    const minDistanceFromEnd = velocity * 10;
-
     const result: SliderEvent[] = [];
 
-    result.push({
-        type: SliderEventType.Head,
-        spanIndex: 0,
-        spanStartTime: startTime,
-        time: startTime,
-        pathProgress: 0,
-    });
+    result.push(createSliderEventHead(sliderProperties));
 
-    if (tickDistance !== 0) {
-        for (let span = 0; span < spanCount; span++) {
-            const spanStartTime = startTime + span * spanDuration;
-            const reversed = span % 2 === 1;
+    if (sliderProperties.tickDistance !== 0) {
+        const spanCount = sliderProperties.spanCount;
 
-            for (let d = tickDistance; d <= length; d += tickDistance) {
-                if (d >= length - minDistanceFromEnd) {
-                    break;
-                }
-
-                const pathProgress = d / length;
-                const timeProgress = reversed ? 1 - pathProgress : pathProgress;
-
-                result.push({
-                    type: SliderEventType.Tick,
-                    spanIndex: span,
-                    spanStartTime: spanStartTime,
-                    time: spanStartTime + timeProgress * spanDuration,
-                    pathProgress: pathProgress,
-                })
-            }
-
-            if (span < spanCount - 1) {
-                result.push({
-                    type: SliderEventType.Repeat,
-                    spanIndex: span,
-                    spanStartTime: startTime + span * spanDuration,
-                    time: spanStartTime + spanDuration,
-                    pathProgress: (span + 1) % 2,
-                });
-            }
+        for (let span = 0; span < spanCount - 1; span++) {
+            result.push(...createSliderEventTicks(sliderProperties, span));
+            result.push(createSliderEventRepeat(sliderProperties, span));
         }
+
+        result.push(...createSliderEventTicks(sliderProperties, spanCount - 1));
     }
 
-    const totalDuration = spanCount * spanDuration;
+    result.push(createSliderEventLegacyLastTick(sliderProperties));
+    result.push(createSliderEventTail(sliderProperties));
 
+    return result;
+}
+
+function createSliderEventHead(sliderProperties: SliderComputedProperties): SliderEvent {
+    return {
+        type: SliderEventType.Head,
+        spanIndex: 0,
+        spanStartTime: sliderProperties.startTime,
+        time: sliderProperties.startTime,
+        pathProgress: 0,
+    };
+}
+
+function createSliderEventTicks(
+    sliderProperties: SliderComputedProperties,
+    span: number,
+): SliderEvent[] {
+    const { startTime, velocity, tickDistance, spanDuration, pathDistance } = sliderProperties;
+    const minDistanceFromEnd = velocity * 10;
+    const spanStartTime = startTime + span * spanDuration;
+    const reversed = span % 2 === 1;
+    const result: SliderEvent[] = [];
+
+    for (let d = tickDistance; d < pathDistance - minDistanceFromEnd; d += tickDistance) {
+        const pathProgress = d / pathDistance;
+        const timeProgress = reversed ? 1 - pathProgress : pathProgress;
+
+        result.push({
+            type: SliderEventType.Tick,
+            spanIndex: span,
+            spanStartTime: spanStartTime,
+            time: spanStartTime + timeProgress * spanDuration,
+            pathProgress: pathProgress,
+        });
+    }
+
+    return result;
+}
+
+function createSliderEventRepeat(
+    sliderProperties: SliderComputedProperties,
+    span: number,
+): SliderEvent {
+    const { startTime, spanDuration } = sliderProperties;
+    const spanStartTime = startTime + span * spanDuration;
+
+    return {
+        type: SliderEventType.Repeat,
+        spanIndex: span,
+        spanStartTime: spanStartTime,
+        time: spanStartTime + spanDuration,
+        pathProgress: (span + 1) % 2,
+    };
+}
+
+function createSliderEventLegacyLastTick(sliderProperties: SliderComputedProperties): SliderEvent {
+    const LEGACY_LAST_TICK_OFFSET = 36;
+
+    const { startTime, spanCount, spanDuration } = sliderProperties;
+    const totalDuration = spanCount * spanDuration;
     const finalSpanIndex = spanCount - 1;
     const finalSpanStartTime = startTime + finalSpanIndex * spanDuration;
     const finalSpanEndTime = Math.max(
@@ -409,23 +427,27 @@ function getSliderEvents(sliderProperties: SliderComputedProperties): SliderEven
         finalProgress = 1 - finalProgress;
     }
 
-    result.push({
+    return {
         type: SliderEventType.LegacyLastTick,
         spanIndex: finalSpanIndex,
         spanStartTime: finalSpanStartTime,
         time: finalSpanEndTime,
         pathProgress: finalProgress,
-    });
+    };
+}
 
-    result.push({
+function createSliderEventTail(sliderProperties: SliderComputedProperties): SliderEvent {
+    const { startTime, spanCount, spanDuration } = sliderProperties;
+    const finalSpanIndex = spanCount - 1;
+    const totalDuration = spanCount * spanDuration;
+
+    return {
         type: SliderEventType.Tail,
         spanIndex: finalSpanIndex,
-        spanStartTime: startTime + (spanCount - 1) * spanDuration,
+        spanStartTime: startTime + finalSpanIndex * spanDuration,
         time: startTime + totalDuration,
         pathProgress: spanCount % 2,
-    });
-
-    return result;
+    };
 }
 
 function preProcessBeatmap(beatmap: ParsedBeatmap) {
