@@ -1,6 +1,6 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
-import { getSliderComputedProperties } from '../../helpers/beatmap-difficulty';
+import { getSliderComputedProperties } from '../../helpers/beatmap-processing';
 import { isCircle, isSlider, isSpinner } from '../../helpers/type-inference';
 import { round } from '../../helpers/utilities';
 import { Beatmap } from '../../types/Beatmap';

@@ -1,7 +1,7 @@
 import { Color } from '../../types/Color';
 import { DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from '../../types/ControlPoint';
-import { HitObject } from '../../types/HitObject';
 import { TimingPoint } from '../../types/TimingPoint';
+import { PartialHitObject } from './PartialHitObject';
 
 export interface PartialBeatmap {
     // General
@@ -44,5 +44,5 @@ export interface PartialBeatmap {
     effectControlPoints: EffectControlPoint[];
     legacySampleControlPoints: LegacySampleControlPoint[];
     colors: Color[];
-    hitObjects: HitObject[];
+    hitObjects: PartialHitObject[];
 }

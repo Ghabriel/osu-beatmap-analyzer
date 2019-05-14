@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { quaver } from './beatmap-input.example';
 import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
-import { parseBeatmap } from './helpers/parsing/beatmap-parser';
+import { readBeatmapFromString } from './helpers/beatmap';
 import { colors } from './helpers/style-variables';
 import { Beatmap } from './types/Beatmap';
 import { StyleMap } from './types/StyleMap';
@@ -47,7 +47,7 @@ export const App: React.FC = () => {
     const [selectedBeatmap, setSelectedBeatmap] = useState<number | null>(0);
 
     function handleImportBeatmap(beatmapString: string) {
-        const beatmap = parseBeatmap(beatmapString);
+        const beatmap = readBeatmapFromString(beatmapString);
         setBeatmapList(beatmapList.concat([beatmap]));
     }
 

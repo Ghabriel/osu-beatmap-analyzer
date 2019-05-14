@@ -14,11 +14,9 @@ export interface BaseHitObject {
     x: number;
     y: number;
     startTime: number;
-    // type: HitObjectType;
     newCombo: boolean;
     comboOffset: number;
     soundType: number;
-    // metadata: HitObjectMetadata;
 
     // Computed
     indexInCurrentCombo: number;

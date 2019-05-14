@@ -1,15 +1,13 @@
-import { Beatmap, ParsedBeatmap } from '../../types/Beatmap';
 import { EffectFlags } from '../../types/EffectFlags';
-import { BaseHitObject, CircleMetadata, HitObject, HitObjectType, SliderMetadata, SpinnerMetadata } from '../../types/HitObject';
+import { HitObjectType } from '../../types/HitObject';
 import { HitObjectParsingFlags } from '../../types/HitObjectParsingFlags';
 import { PathType } from '../../types/PathType';
-import { Point } from '../../types/Point';
 import { assertNever } from '../assertNever';
-import { fillBeatmapComputedAttributes } from '../beatmap-difficulty';
 import { pointSubtract } from '../point-arithmetic';
 import { SliderPath } from '../SliderPath';
 import { hasFlag, sortBy } from '../utilities';
 import { PartialBeatmap } from './PartialBeatmap';
+import { PartialBaseHitObject, PartialCircleMetadata, PartialHitObject, PartialSliderMetadata, PartialSpinnerMetadata } from './PartialHitObject';
 
 enum BeatmapSection {
     General = 'General',
@@ -24,7 +22,7 @@ enum BeatmapSection {
 
 const COMMENT_START = '//';
 
-export function parseBeatmap(content: string): Beatmap {
+export function parseBeatmap(content: string): PartialBeatmap {
     const beatmap = createPartialBeatmap();
 
     const lines = content
@@ -37,7 +35,7 @@ export function parseBeatmap(content: string): Beatmap {
     sortBy(beatmap.hitObjects, 'startTime');
     sortBy(beatmap.timingPoints, 'time');
 
-    return fillBeatmapComputedAttributes(beatmap as ParsedBeatmap);
+    return beatmap;
 }
 
 function createPartialBeatmap(): PartialBeatmap {
@@ -321,17 +319,13 @@ function parseHitObjectLine(beatmap: PartialBeatmap, line: string) {
         return;
     }
 
-    const baseHitObject: BaseHitObject = {
+    const baseHitObject: PartialBaseHitObject = {
         x: parseInt(parts[0]),
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
-        newCombo: (flags & HitObjectParsingFlags.NewCombo) > 0,
+        newCombo: hasFlag(flags, HitObjectParsingFlags.NewCombo),
         comboOffset: (flags & HitObjectParsingFlags.ComboOffset) / 16,
         soundType: parseInt(parts[4]),
-
-        indexInCurrentCombo: 0,
-        comboIndex: 0,
-        lastInCombo: false,
     };
 
     const hitObject = createHitObject(baseHitObject, type, parts.slice(5));
@@ -355,10 +349,10 @@ function getHitObjectType(flags: HitObjectParsingFlags): HitObjectType | null {
 }
 
 function createHitObject(
-    baseHitObject: BaseHitObject,
+    baseHitObject: PartialBaseHitObject,
     type: HitObjectType,
     metadata: string[],
-): HitObject {
+): PartialHitObject {
     switch (type) {
         case HitObjectType.Circle:
             return {
@@ -383,17 +377,16 @@ function createHitObject(
     }
 }
 
-function parseCircleMetadata(metadata: string[]): CircleMetadata {
+function parseCircleMetadata(metadata: string[]): PartialCircleMetadata {
     return {
         soundSamples: metadata,
-
-        // Computed
-        stackHeight: 0,
-        stackedPosition: {} as Point, // TODO
     };
 }
 
-function parseSliderMetadata(metadata: string[], baseHitObject: BaseHitObject): SliderMetadata {
+function parseSliderMetadata(
+    metadata: string[],
+    baseHitObject: PartialBaseHitObject
+): PartialSliderMetadata {
     const [pathType, ...points] = metadata[0].split('|');
     const pathLength = (metadata.length <= 2) ? 0 : parseInt(metadata[2]);
 
@@ -410,22 +403,15 @@ function parseSliderMetadata(metadata: string[], baseHitObject: BaseHitObject): 
         ),
         repeatCount: Math.max(0, parseInt(metadata[1]) - 1),
         soundSamples: metadata.slice(3),
-
-        // Computed
-        timingPoint: null,
-        difficultyPoint: null,
-        velocity: 0,
-        tickDistance: 0,
-        nestedHitObjects: [],
-        stackHeight: 0,
-        stackedPosition: {} as Point, // TODO
     };
 }
 
-function parseSpinnerMetadata(metadata: string[], baseHitObject: BaseHitObject): SpinnerMetadata {
+function parseSpinnerMetadata(
+    metadata: string[],
+    baseHitObject: PartialBaseHitObject
+): PartialSpinnerMetadata {
     return {
         endTime: Math.max(parseInt(metadata[0]), baseHitObject.startTime),
         soundSamples: metadata.slice(1),
-        stackedPosition: {} as Point, // TODO
     };
 }
