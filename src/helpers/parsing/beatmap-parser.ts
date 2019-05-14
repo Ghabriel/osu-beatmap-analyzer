@@ -8,7 +8,7 @@ import { assertNever } from '../assertNever';
 import { fillBeatmapComputedAttributes } from '../beatmap-difficulty';
 import { pointSubtract } from '../point-arithmetic';
 import { SliderPath } from '../SliderPath';
-import { sortBy } from '../utilities';
+import { hasFlag, sortBy } from '../utilities';
 import { PartialBeatmap } from './PartialBeatmap';
 
 enum BeatmapSection {
@@ -235,28 +235,71 @@ function parseTimingPointLine(beatmap: PartialBeatmap, line: string) {
     const parts = line.split(',');
 
     const beatLength = parseFloat(parts[1]);
-    const timeSignature = (parts.length > 2) ? parseInt(parts[2]) : 4;
-
-    let kiaiMode = false;
-    let omitFirstBarSignature = false;
-    if (parts.length > 7) {
-        const effectFlags: EffectFlags = parseInt(parts[7]);
-        kiaiMode = (effectFlags & EffectFlags.Kiai) > 0;
-        omitFirstBarSignature = (effectFlags & EffectFlags.OmitFirstBarLine) > 0;
-    }
+    const { kiaiMode, omitFirstBarSignature } = extractEffectFlags(parts);
 
     beatmap.timingPoints.push({
         time: parseInt(parts[0]),
         beatLength: beatLength,
-        timeSignature: (timeSignature !== 0) ? timeSignature : 4,
-        sampleSet: (parts.length > 3) ? parseInt(parts[3]) : 0, // TODO: fix fallback
-        customSampleBank: (parts.length > 4) ? parseInt(parts[4]) : 0,
-        sampleVolume: (parts.length > 5) ? parseInt(parts[5]) : 100,  // TODO: fix fallback
-        timingChange: (parts.length > 6) ? parts[6] === '1' : true,
+        timeSignature: extractTimeSignature(parts),
+        sampleSet: extractSampleSet(parts),
+        customSampleBank: extractCustomSampleBank(parts),
+        sampleVolume: extractSampleVolume(parts),
+        timingChange: extractTimingChange(parts),
         kiaiMode: kiaiMode,
         omitFirstBarSignature: omitFirstBarSignature,
-        speedMultiplier: (beatLength < 0) ? 100 / -beatLength : 1,
+        speedMultiplier: extractSpeedMultiplier(beatLength),
     });
+}
+
+interface ParsedEffectFlags {
+    kiaiMode: boolean;
+    omitFirstBarSignature: boolean;
+}
+
+function extractEffectFlags(parts: string[]): ParsedEffectFlags {
+    let kiaiMode = false;
+    let omitFirstBarSignature = false;
+
+    if (parts.length > 7) {
+        const effectFlags: EffectFlags = parseInt(parts[7]);
+        kiaiMode = hasFlag(effectFlags, EffectFlags.Kiai);
+        omitFirstBarSignature = hasFlag(effectFlags, EffectFlags.OmitFirstBarLine);
+
+    }
+
+    return { kiaiMode, omitFirstBarSignature };
+}
+
+function extractTimeSignature(parts: string[]): number {
+    if (parts.length <= 2) {
+        return 4;
+    }
+
+    return parseInt(parts[2]) || 4;
+}
+
+function extractSampleSet(parts: string[]): number {
+    return (parts.length > 3) ? parseInt(parts[3]) : 0; // TODO: fix fallback
+}
+
+function extractCustomSampleBank(parts: string[]): number {
+    return (parts.length > 4) ? parseInt(parts[4]) : 0;
+}
+
+function extractSampleVolume(parts: string[]): number {
+    return (parts.length > 5) ? parseInt(parts[5]) : 100;  // TODO: fix fallback
+}
+
+function extractTimingChange(parts: string[]): boolean {
+    return (parts.length > 6) ? parts[6] === '1' : true;
+}
+
+function extractSpeedMultiplier(beatLength: number): number {
+    if (beatLength >= 0) {
+        return 1;
+    }
+
+    return 100 / -beatLength;
 }
 
 function parseColorLine(beatmap: PartialBeatmap, line: string) {

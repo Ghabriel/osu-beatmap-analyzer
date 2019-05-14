@@ -55,3 +55,7 @@ export function getListMode(list: number[]): number {
             .map(([v, _]) => v)[0]
     );
 }
+
+export function hasFlag<T extends number>(enumValue: T, flag: T): boolean {
+    return (enumValue & flag) > 0;
+}
