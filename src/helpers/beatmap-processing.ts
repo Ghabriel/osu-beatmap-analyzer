@@ -41,7 +41,7 @@ export function processBeatmap(partialBeatmap: PartialBeatmap): ParsedBeatmap {
 
     fillHitObjectsComboData(beatmap);
 
-    applyDefaults(beatmap);
+    fillSliderData(beatmap);
 
     // TODO: apply mods, if any
     // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L90
@@ -141,22 +141,21 @@ function fillHitObjectsComboData(beatmap: ParsedBeatmap) {
     }
 }
 
-function applyDefaults(beatmap: ParsedBeatmap) {
-    for (const hitObject of beatmap.hitObjects) {
-        if (hitObject.type === HitObjectType.Slider) {
-            fillSliderComputedAttributes(hitObject, beatmap);
-            createNestedHitObjects(hitObject, beatmap);
-        }
-    }
+function fillSliderData(beatmap: ParsedBeatmap) {
+    beatmap.hitObjects.filter(isSlider).map(slider => {
+        fillSliderMetadata(slider, beatmap);
+        fillNestedHitObjects(slider, beatmap);
+    });
 }
 
-function fillSliderComputedAttributes(slider: Slider, beatmap: ParsedBeatmap) {
+function fillSliderMetadata(slider: Slider, beatmap: ParsedBeatmap) {
     const BASE_SCORING_DISTANCE = 100;
     const TICK_DISTANCE_MULTIPLIER = 1;
 
-    const timingPoint = getTimingControlPoint(beatmap.timingControlPoints, slider.startTime);
-    const difficultyPoint = getDifficultyControlPoint(beatmap.difficultyControlPoints, slider.startTime);
-    const scoringDistance = BASE_SCORING_DISTANCE * beatmap.sliderMultiplier * difficultyPoint.speedMultiplier;
+    const { timingControlPoints, difficultyControlPoints, sliderMultiplier } = beatmap;
+    const timingPoint = getTimingControlPoint(timingControlPoints, slider.startTime);
+    const difficultyPoint = getDifficultyControlPoint(difficultyControlPoints, slider.startTime);
+    const scoringDistance = BASE_SCORING_DISTANCE * sliderMultiplier * difficultyPoint.speedMultiplier;
 
     slider.metadata.timingPoint = timingPoint;
     slider.metadata.difficultyPoint = difficultyPoint;
@@ -211,7 +210,7 @@ function getControlPoint<T extends ControlPoint>(list: T[], startTime: number): 
         : null;
 }
 
-function createNestedHitObjects(slider: Slider, beatmap: ParsedBeatmap) {
+function fillNestedHitObjects(slider: Slider, beatmap: ParsedBeatmap) {
     const computedProperties = getSliderComputedProperties(slider);
     const events = getSliderEvents(computedProperties);
 
