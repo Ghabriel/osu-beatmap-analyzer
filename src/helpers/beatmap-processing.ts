@@ -142,7 +142,7 @@ function fillHitObjectsComboData(beatmap: ParsedBeatmap) {
 }
 
 function fillSliderData(beatmap: ParsedBeatmap) {
-    beatmap.hitObjects.filter(isSlider).map(slider => {
+    beatmap.hitObjects.filter(isSlider).forEach(slider => {
         fillSliderMetadata(slider, beatmap);
         fillNestedHitObjects(slider, beatmap);
     });
@@ -451,19 +451,8 @@ function preProcessBeatmap(beatmap: ParsedBeatmap) {
 }
 
 function postProcessBeatmap(beatmap: ParsedBeatmap) {
-    // for (const hitObject of beatmap.hitObjects) {
-    //     if (isSlider(hitObject)) {
-    //         for (const nested of hitObject.metadata.nestedHitObjects) {
-    //             if (isSliderTip(nested)) {
-    //                 nested.comboIndex = hitObject.comboIndex;
-    //                 nested.indexInCurrentCombo = hitObject.indexInCurrentCombo;
-    //             }
-    //         }
-    //     }
-    // }
-
-    beatmap.hitObjects.filter(isSlider).map(slider => {
-        slider.metadata.nestedHitObjects.filter(isSliderTip).map(nested => {
+    beatmap.hitObjects.filter(isSlider).forEach(slider => {
+        slider.metadata.nestedHitObjects.filter(isSliderTip).forEach(nested => {
             nested.comboIndex = slider.comboIndex;
             nested.indexInCurrentCombo = slider.indexInCurrentCombo;
         });
