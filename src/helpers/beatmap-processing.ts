@@ -1,13 +1,13 @@
 import { ParsedBeatmap } from "../types/Beatmap";
 import { ControlPoint, ControlPointType, DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from "../types/ControlPoint";
-import { HitObject, HitObjectType, NestedHitObjectType, Slider } from "../types/HitObject";
-import { Point } from "../types/Point";
+import { HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, RepeatPoint, Slider, SliderCircle, SliderTailCircle, SliderTick } from "../types/HitObject";
 import { TimingPoint } from "../types/TimingPoint";
 import { assertNever } from "./assertNever";
 import { fillBeatmapDefaults } from "./beatmap-fill-defaults";
 import { PartialBeatmap } from "./parsing/PartialBeatmap";
 import { pointSum } from "./point-arithmetic";
 import { isCircle, isSlider, isSliderTip } from "./type-inference";
+import { sortBy } from "./utilities";
 
 export interface SliderComputedProperties {
     startTime: number;
@@ -214,65 +214,103 @@ function fillNestedHitObjects(slider: Slider, beatmap: ParsedBeatmap) {
     const computedProperties = getSliderComputedProperties(slider);
     const events = getSliderEvents(computedProperties);
 
-    const { spanDuration } = computedProperties;
-    const position: Point = {
-        x: slider.x,
-        y: slider.y,
-    };
-    const path = slider.metadata.path;
-
     for (const event of events) {
-        switch (event.type) {
-            case SliderEventType.Head:
-                slider.metadata.nestedHitObjects.push({
-                    type: NestedHitObjectType.SliderCircle,
-                    startTime: event.time,
-                    position: position,
-                    indexInCurrentCombo: slider.indexInCurrentCombo,
-                    comboIndex: slider.comboIndex,
-                });
-                break;
+        const nestedHitObject = createNestedHitObject(slider, event, computedProperties, beatmap);
 
-            case SliderEventType.Tick:
-                slider.metadata.nestedHitObjects.push({
-                    type: NestedHitObjectType.SliderTick,
-                    spanIndex: event.spanIndex,
-                    spanStartTime: event.spanStartTime,
-                    startTime: event.time,
-                    position: pointSum(position, path.positionAt(event.pathProgress)),
-                    stackHeight: slider.metadata.stackHeight,
-                    scale: getHitObjectScale(beatmap),
-                });
-                break;
-
-            case SliderEventType.Repeat:
-                slider.metadata.nestedHitObjects.push({
-                    type: NestedHitObjectType.RepeatPoint,
-                    repeatIndex: event.spanIndex,
-                    spanDuration: spanDuration,
-                    startTime: slider.startTime + (event.spanIndex + 1) * spanDuration,
-                    position: pointSum(position, path.positionAt(event.pathProgress)),
-                    stackHeight: slider.metadata.stackHeight,
-                    scale: getHitObjectScale(beatmap),
-                });
-                break;
-
-            case SliderEventType.LegacyLastTick:
-                slider.metadata.nestedHitObjects.push({
-                    type: NestedHitObjectType.SliderTailCircle,
-                    startTime: event.time,
-                    position: pointSum(position, path.positionAt(1)),
-                    indexInCurrentCombo: slider.indexInCurrentCombo,
-                    comboIndex: slider.comboIndex,
-                });
-                break;
-
-            case SliderEventType.Tail:
-                break;
+        if (nestedHitObject !== null) {
+            slider.metadata.nestedHitObjects.push(nestedHitObject);
         }
     }
 
-    slider.metadata.nestedHitObjects.sort((a, b) => a.startTime - b.startTime);
+    sortBy(slider.metadata.nestedHitObjects, 'startTime');
+}
+
+function createNestedHitObject(
+    slider: Slider,
+    event: SliderEvent,
+    computedProperties: SliderComputedProperties,
+    beatmap: ParsedBeatmap,
+): NestedHitObject | null {
+    switch (event.type) {
+        case SliderEventType.Head:
+            return createSliderCircle(slider, event);
+
+        case SliderEventType.Tick:
+            return createSliderTick(slider, event, beatmap);
+
+        case SliderEventType.Repeat:
+            return createRepeatPoint(slider, event, computedProperties, beatmap);
+
+        case SliderEventType.LegacyLastTick:
+            return createSliderTailCircle(slider, event);
+
+        case SliderEventType.Tail:
+            return null;
+
+        default:
+            return assertNever(event.type);
+    }
+}
+
+function createSliderCircle(slider: Slider, event: SliderEvent): SliderCircle {
+    const position = { x: slider.x, y: slider.y };
+
+    return {
+        type: NestedHitObjectType.SliderCircle,
+        startTime: event.time,
+        position: position,
+        indexInCurrentCombo: slider.indexInCurrentCombo,
+        comboIndex: slider.comboIndex,
+    };
+}
+
+function createSliderTick(slider: Slider, event: SliderEvent, beatmap: ParsedBeatmap): SliderTick {
+    const position = { x: slider.x, y: slider.y };
+    const path = slider.metadata.path;
+
+    return {
+        type: NestedHitObjectType.SliderTick,
+        spanIndex: event.spanIndex,
+        spanStartTime: event.spanStartTime,
+        startTime: event.time,
+        position: pointSum(position, path.positionAt(event.pathProgress)),
+        stackHeight: slider.metadata.stackHeight,
+        scale: getHitObjectScale(beatmap),
+    };
+}
+
+function createRepeatPoint(
+    slider: Slider,
+    event: SliderEvent,
+    computedProperties: SliderComputedProperties,
+    beatmap: ParsedBeatmap,
+): RepeatPoint {
+    const spanDuration = computedProperties.spanDuration;
+    const position = { x: slider.x, y: slider.y };
+    const path = slider.metadata.path;
+
+    return {
+        type: NestedHitObjectType.RepeatPoint,
+        repeatIndex: event.spanIndex,
+        spanDuration: spanDuration,
+        startTime: slider.startTime + (event.spanIndex + 1) * spanDuration,
+        position: pointSum(position, path.positionAt(event.pathProgress)),
+        stackHeight: slider.metadata.stackHeight,
+        scale: getHitObjectScale(beatmap),
+    };
+}
+
+function createSliderTailCircle(slider: Slider, event: SliderEvent): SliderTailCircle {
+    const position = { x: slider.x, y: slider.y };
+    const path = slider.metadata.path;
+
+    return {
+        type: NestedHitObjectType.SliderTailCircle,
+        startTime: event.time,
+        position: pointSum(position, path.positionAt(1)),
+        indexInCurrentCombo: slider.indexInCurrentCombo,
+        comboIndex: slider.comboIndex,
+    };
 }
 
 export function getHitObjectScale(beatmap: ParsedBeatmap): number {
