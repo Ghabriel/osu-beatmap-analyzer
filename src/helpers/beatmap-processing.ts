@@ -1,7 +1,8 @@
 import { ParsedBeatmap } from "../types/Beatmap";
-import { ControlPoint, ControlPointType, DifficultyControlPoint, TimingControlPoint } from "../types/ControlPoint";
+import { ControlPoint, ControlPointType, DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from "../types/ControlPoint";
 import { HitObject, HitObjectType, NestedHitObjectType, Slider } from "../types/HitObject";
 import { Point } from "../types/Point";
+import { TimingPoint } from "../types/TimingPoint";
 import { assertNever } from "./assertNever";
 import { fillBeatmapDefaults } from "./beatmap-fill-defaults";
 import { PartialBeatmap } from "./parsing/PartialBeatmap";
@@ -36,7 +37,7 @@ export enum SliderEventType {
 export function processBeatmap(partialBeatmap: PartialBeatmap): ParsedBeatmap {
     const beatmap = fillBeatmapDefaults(partialBeatmap);
 
-    createControlPoints(beatmap);
+    fillControlPoints(beatmap);
 
     fillHitObjectsComboInformation(beatmap);
 
@@ -63,38 +64,52 @@ export function processBeatmap(partialBeatmap: PartialBeatmap): ParsedBeatmap {
     return beatmap;
 }
 
-function createControlPoints(beatmap: ParsedBeatmap) {
+function fillControlPoints(beatmap: ParsedBeatmap) {
     for (const timingPoint of beatmap.timingPoints) {
         if (timingPoint.timingChange) {
-            beatmap.timingControlPoints.push({
-                type: ControlPointType.Timing,
-                time: timingPoint.time,
-                beatLength: timingPoint.beatLength,
-                timeSignature: timingPoint.timeSignature,
-            });
+            beatmap.timingControlPoints.push(createTimingControlPoint(timingPoint));
         }
 
-        beatmap.difficultyControlPoints.push({
-            type: ControlPointType.Difficulty,
-            time: timingPoint.time,
-            speedMultiplier: timingPoint.speedMultiplier,
-        });
-
-        beatmap.effectControlPoints.push({
-            type: ControlPointType.Effect,
-            time: timingPoint.time,
-            kiaiMode: timingPoint.kiaiMode,
-            omitFirstBarSignature: timingPoint.omitFirstBarSignature,
-        });
-
-        beatmap.legacySampleControlPoints.push({
-            type: ControlPointType.LegacySample,
-            time: timingPoint.time,
-            customSampleBank: timingPoint.customSampleBank,
-            sampleSet: timingPoint.sampleSet,
-            sampleVolume: timingPoint.sampleVolume,
-        });
+        beatmap.difficultyControlPoints.push(createDifficultyControlPoint(timingPoint));
+        beatmap.effectControlPoints.push(createEffectControlPoint(timingPoint));
+        beatmap.legacySampleControlPoints.push(createLegacySampleControlPoint(timingPoint));
     }
+}
+
+function createTimingControlPoint(timingPoint: TimingPoint): TimingControlPoint {
+    return {
+        type: ControlPointType.Timing,
+        time: timingPoint.time,
+        beatLength: timingPoint.beatLength,
+        timeSignature: timingPoint.timeSignature,
+    };
+}
+
+function createDifficultyControlPoint(timingPoint: TimingPoint): DifficultyControlPoint {
+    return {
+        type: ControlPointType.Difficulty,
+        time: timingPoint.time,
+        speedMultiplier: timingPoint.speedMultiplier,
+    };
+}
+
+function createEffectControlPoint(timingPoint: TimingPoint): EffectControlPoint {
+    return {
+        type: ControlPointType.Effect,
+        time: timingPoint.time,
+        kiaiMode: timingPoint.kiaiMode,
+        omitFirstBarSignature: timingPoint.omitFirstBarSignature,
+    };
+}
+
+function createLegacySampleControlPoint(timingPoint: TimingPoint): LegacySampleControlPoint {
+    return {
+        type: ControlPointType.LegacySample,
+        time: timingPoint.time,
+        customSampleBank: timingPoint.customSampleBank,
+        sampleSet: timingPoint.sampleSet,
+        sampleVolume: timingPoint.sampleVolume,
+    };
 }
 
 // TODO: find a better name
