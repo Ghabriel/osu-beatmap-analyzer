@@ -110,13 +110,7 @@ function fillDefaults(partialBeatmap: PartialBeatmap): ParsedBeatmap {
 }
 
 function fillHitObjects(partialHitObjects: PartialHitObject[]): HitObject[] {
-    const hitObjects: HitObject[] = [];
-
-    for (const partialHitObject of partialHitObjects) {
-        hitObjects.push(fillHitObject(partialHitObject));
-    }
-
-    return hitObjects;
+    return partialHitObjects.map(h => fillHitObject(h));
 }
 
 function fillHitObject(partialHitObject: PartialHitObject): HitObject {
