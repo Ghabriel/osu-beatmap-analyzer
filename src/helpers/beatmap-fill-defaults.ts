@@ -1,9 +1,9 @@
 import { ParsedBeatmap } from '../types/Beatmap';
-import { BaseHitObject, CircleMetadata, HitObject, HitObjectType, SliderMetadata, SpinnerMetadata } from '../types/HitObject';
+import { BaseHitObject, Circle, CircleMetadata, HitObject, HitObjectType, Slider, SliderMetadata, Spinner, SpinnerMetadata } from '../types/HitObject';
 import { Point } from '../types/Point';
 import { assertNever } from './assertNever';
 import { PartialBeatmap } from './parsing/PartialBeatmap';
-import { PartialCircleMetadata, PartialHitObject, PartialSliderMetadata, PartialSpinnerMetadata } from './parsing/PartialHitObject';
+import { PartialCircle, PartialCircleMetadata, PartialHitObject, PartialSlider, PartialSliderMetadata, PartialSpinner, PartialSpinnerMetadata } from './parsing/PartialHitObject';
 import { coalesce } from './utilities';
 
 export function fillBeatmapDefaults(partialBeatmap: PartialBeatmap): ParsedBeatmap {
@@ -60,23 +60,14 @@ function createHitObject(partialHitObject: PartialHitObject): HitObject {
 
     switch (partialHitObject.type) {
         case HitObjectType.Circle:
-            return {
-                ...baseHitObject,
-                type: partialHitObject.type,
-                metadata: createCircleMetadata(partialHitObject.metadata),
-            };
+            return createCircle(partialHitObject, baseHitObject);
+
         case HitObjectType.Slider:
-            return {
-                ...baseHitObject,
-                type: partialHitObject.type,
-                metadata: createSliderMetadata(partialHitObject.metadata, baseHitObject),
-            };
+            return createSlider(partialHitObject, baseHitObject);
+
         case HitObjectType.Spinner:
-            return {
-                ...baseHitObject,
-                type: partialHitObject.type,
-                metadata: createSpinnerMetadata(partialHitObject.metadata, baseHitObject),
-            };
+            return createSpinner(partialHitObject, baseHitObject);
+
         default:
             return assertNever(partialHitObject);
     }
@@ -96,11 +87,27 @@ function createBaseHitObject(partialHitObject: PartialHitObject): BaseHitObject 
     };
 }
 
+function createCircle(partialHitObject: PartialCircle, base: BaseHitObject): Circle {
+    return {
+        ...base,
+        type: partialHitObject.type,
+        metadata: createCircleMetadata(partialHitObject.metadata),
+    };
+}
+
 function createCircleMetadata(metadata: PartialCircleMetadata): CircleMetadata {
     return {
         soundSamples: metadata.soundSamples,
         stackHeight: 0,
         stackedPosition: {} as Point, // TODO
+    };
+}
+
+function createSlider(partialHitObject: PartialSlider, base: BaseHitObject): Slider {
+    return {
+        ...base,
+        type: partialHitObject.type,
+        metadata: createSliderMetadata(partialHitObject.metadata, base),
     };
 }
 
@@ -119,6 +126,14 @@ function createSliderMetadata(
         nestedHitObjects: [],
         stackHeight: 0,
         stackedPosition: {} as Point, // TODO
+    };
+}
+
+function createSpinner(partialHitObject: PartialSpinner, base: BaseHitObject): Spinner {
+    return {
+        ...base,
+        type: partialHitObject.type,
+        metadata: createSpinnerMetadata(partialHitObject.metadata, base),
     };
 }
 
