@@ -326,7 +326,7 @@ function parseHitObjectLine(beatmap: PartialBeatmap, line: string) {
         y: parseInt(parts[1]),
         startTime: parseInt(parts[2]),
         newCombo: (flags & HitObjectParsingFlags.NewCombo) > 0,
-        comboOffset: (type & HitObjectParsingFlags.ComboOffset) / 16,
+        comboOffset: (flags & HitObjectParsingFlags.ComboOffset) / 16,
         soundType: parseInt(parts[4]),
 
         indexInCurrentCombo: 0,
