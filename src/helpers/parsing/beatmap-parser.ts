@@ -301,18 +301,13 @@ function extractSpeedMultiplier(beatLength: number): number {
 
     return 100 / -beatLength;
 }
-
 function parseColorLine(beatmap: PartialBeatmap, line: string) {
     // eslint-disable-next-line
     const [_, value] = parseKeyValuePair(line);
-    const colorComponents = value.split(',').map(p => parseInt(p));
+    const [red, green, blue, ...rest] = value.split(',').map(p => parseInt(p));
+    const alpha = rest.length > 0 ? rest[0] : 255;
 
-    beatmap.colors.push({
-        red: colorComponents[0],
-        green: colorComponents[1],
-        blue: colorComponents[2],
-        alpha: (colorComponents.length > 3) ? colorComponents[3] : 255,
-    });
+    beatmap.colors.push({ red, green, blue, alpha });
 }
 
 function parseHitObjectLine(beatmap: PartialBeatmap, line: string) {
