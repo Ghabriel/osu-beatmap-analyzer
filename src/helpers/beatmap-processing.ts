@@ -39,7 +39,7 @@ export function processBeatmap(partialBeatmap: PartialBeatmap): ParsedBeatmap {
 
     fillControlPoints(beatmap);
 
-    fillHitObjectsComboInformation(beatmap);
+    fillHitObjectsComboData(beatmap);
 
     applyDefaults(beatmap);
 
@@ -112,8 +112,7 @@ function createLegacySampleControlPoint(timingPoint: TimingPoint): LegacySampleC
     };
 }
 
-// TODO: find a better name
-function fillHitObjectsComboInformation(beatmap: ParsedBeatmap) {
+function fillHitObjectsComboData(beatmap: ParsedBeatmap) {
     let firstObject = true;
     let forceNewCombo = false;
     let extraComboOffset = 0;
@@ -128,10 +127,12 @@ function fillHitObjectsComboInformation(beatmap: ParsedBeatmap) {
                 forceNewCombo = false;
                 extraComboOffset = 0;
                 break;
+
             case HitObjectType.Spinner:
                 forceNewCombo = forceNewCombo || hitObject.newCombo;
                 extraComboOffset += hitObject.comboOffset;
                 break;
+
             default:
                 return assertNever(hitObject);
         }
