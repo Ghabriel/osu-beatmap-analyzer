@@ -20,8 +20,6 @@ const CONTROL_POINT_LENIENCY = 1;
 
 // const CLOCK_RATE = 1000 / 30;
 const CLOCK_RATE = 1;
-const NORMALIZED_RADIUS = 52;
-const OBJECT_RADIUS = 64;
 
 export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
     const difficultyHitObjects = createDifficultyHitObjects(beatmap);
@@ -42,8 +40,7 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 }
 
 function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject[] {
-    const hitObjectScale = getHitObjectScale(beatmap);
-    const hitObjectRadius = getHitObjectRadius(hitObjectScale);
+    const hitObjectRadius = getHitObjectRadius(beatmap);
     const scalingFactor = getScalingFactor(hitObjectRadius);
     const result: DifficultyHitObject[] = [];
 
@@ -139,11 +136,13 @@ function getHitObjectTraversalData(hitObject: HitObject, beatmap: ParsedBeatmap)
     }
 }
 
-function getHitObjectRadius(hitObjectScale: number): number {
-    return OBJECT_RADIUS * hitObjectScale;
+function getHitObjectRadius(beatmap: ParsedBeatmap): number {
+    const OBJECT_RADIUS = 64;
+    return OBJECT_RADIUS * getHitObjectScale(beatmap);
 }
 
 function getScalingFactor(hitObjectRadius: number): number {
+    const NORMALIZED_RADIUS = 52;
     const scalingFactor = NORMALIZED_RADIUS / hitObjectRadius;
 
     if (hitObjectRadius < 30) {
@@ -160,11 +159,10 @@ interface SliderTraversalData {
 }
 
 function getSliderTraversalData(slider: Slider, beatmap: ParsedBeatmap): SliderTraversalData {
-    const scale = getHitObjectScale(beatmap);
     let lazyEndPosition = slider.metadata.stackedPosition;
     let lazyTravelDistance = 0;
 
-    const approxFollowCircleRadius = getHitObjectRadius(scale) * 3;
+    const approxFollowCircleRadius = getHitObjectRadius(beatmap) * 3;
     const computedProperties = getSliderComputedProperties(slider);
 
     slider.metadata.nestedHitObjects.slice(1).map(nested => {
