@@ -10,18 +10,6 @@ export interface HitObjectStatsProps {
     beatmap: Beatmap;
 }
 
-function getMaxCombo(beatmap: Beatmap): number {
-    let result = beatmap.hitObjects.length;
-
-    for (const hitObject of beatmap.hitObjects) {
-        if (isSlider(hitObject)) {
-            result += hitObject.metadata.nestedHitObjects.length - 1;
-        }
-    }
-
-    return result;
-}
-
 export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
     const hitObjects = beatmap.hitObjects;
     const sliders = hitObjects.filter(isSlider);
@@ -33,7 +21,7 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
     return (
         <StatGroup>
             <Stat label='Max Combo'>
-                {getMaxCombo(beatmap)}
+                {beatmap.maxCombo}
             </Stat>
 
             <Stat label='Number of Objects'>

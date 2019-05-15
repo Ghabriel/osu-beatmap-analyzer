@@ -53,5 +53,6 @@ export type Beatmap = ParsedBeatmap & {
     aimStrain: number;
     speedStrain: number;
     starRating: number;
+    maxCombo: number;
     difficultyHitObjects: DifficultyHitObject[];
 };

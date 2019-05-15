@@ -8,6 +8,7 @@ import { dotProduct, getNorm, operate, pointMultiply, pointNormalize, pointSubtr
 import { Aim } from './skills/Aim';
 import { Skill } from './skills/Skill';
 import { Speed } from './skills/Speed';
+import { isSlider } from './type-inference';
 
 // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
 const SECTION_LENGTH = 400;
@@ -32,9 +33,7 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 
     return {
         ...beatmap,
-        aimStrain: difficultyAttributes.aimStrain,
-        speedStrain: difficultyAttributes.speedStrain,
-        starRating: difficultyAttributes.starRating,
+        ...difficultyAttributes,
         difficultyHitObjects,
     };
 }
@@ -165,7 +164,7 @@ function getSliderTraversalData(slider: Slider, beatmap: ParsedBeatmap): SliderT
     const approxFollowCircleRadius = getHitObjectRadius(beatmap) * 3;
     const computedProperties = getSliderComputedProperties(slider);
 
-    slider.metadata.nestedHitObjects.slice(1).map(nested => {
+    slider.metadata.nestedHitObjects.slice(1).forEach(nested => {
         const progress = getNestedHitObjectProgress(nested, computedProperties);
         const pathPosition = slider.metadata.path.positionAt(progress);
 
@@ -241,7 +240,7 @@ interface DifficultyAttributes {
     speedStrain: number;
     // approachRate: number;
     // overallDifficulty: number;
-    // maxCombo: number;
+    maxCombo: number;
 }
 
 function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): DifficultyAttributes | null {
@@ -255,8 +254,11 @@ function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): Di
     const aimStrain = Math.sqrt(aim.difficultyValue()) * DIFFICULTY_MULTIPLIER;
     const speedStrain = Math.sqrt(speed.difficultyValue()) * DIFFICULTY_MULTIPLIER;
     const starRating = aimStrain + speedStrain + Math.abs(aimStrain - speedStrain) / 2;
+    // const starRating = Math.max(aimStrain, speedStrain) + (aimStrain + speedStrain) / 2;
 
-    return { aimStrain, speedStrain, starRating };
+    const maxCombo = getMaxCombo(beatmap);
+
+    return { aimStrain, speedStrain, starRating, maxCombo };
 
     // Todo: These int casts are temporary to achieve 1:1 results with osu!stable, and should be removed in the future
     // double hitWindowGreat = (int)(beatmap.HitObjects.First().HitWindows.Great / 2) / clockRate;
@@ -276,4 +278,16 @@ function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): Di
     //     OverallDifficulty = (80 - hitWindowGreat) / 6,
     //     MaxCombo = maxCombo
     // };
+}
+
+function getMaxCombo(beatmap: ParsedBeatmap): number {
+    let result = beatmap.hitObjects.length;
+
+    for (const hitObject of beatmap.hitObjects) {
+        if (isSlider(hitObject)) {
+            result += hitObject.metadata.nestedHitObjects.length - 1;
+        }
+    }
+
+    return result;
 }
