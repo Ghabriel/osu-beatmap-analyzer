@@ -1,6 +1,6 @@
 import { ParsedBeatmap } from "../types/Beatmap";
 import { ControlPoint, ControlPointType, DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from "../types/ControlPoint";
-import { HitObject, HitObjectType, NestedHitObject, NestedHitObjectType, RepeatPoint, Slider, SliderCircle, SliderTailCircle, SliderTick } from "../types/HitObject";
+import { HitObjectType, NestedHitObject, NestedHitObjectType, RepeatPoint, Slider, SliderCircle, SliderTailCircle, SliderTick } from "../types/HitObject";
 import { TimingPoint } from "../types/TimingPoint";
 import { assertNever } from "./assertNever";
 import { fillBeatmapDefaults } from "./beatmap-fill-defaults";
@@ -451,19 +451,21 @@ function createSliderEventTail(sliderProperties: SliderComputedProperties): Slid
 }
 
 function preProcessBeatmap(beatmap: ParsedBeatmap) {
-    let lastObject: HitObject | null = null;
+    const [first, ...rest] = beatmap.hitObjects;
 
-    for (const hitObject of beatmap.hitObjects) {
+    if (first.newCombo) {
+        first.indexInCurrentCombo = 0;
+        first.comboIndex = first.comboOffset + 1;
+    }
+
+    let lastObject = first;
+
+    for (const hitObject of rest) {
         if (hitObject.newCombo) {
             hitObject.indexInCurrentCombo = 0;
-
-            const lastComboIndex = (lastObject !== null) ? lastObject.comboIndex : 0;
-            hitObject.comboIndex = lastComboIndex + hitObject.comboOffset + 1;
-
-            if (lastObject !== null) {
-                lastObject.lastInCombo = true;
-            }
-        } else if (lastObject !== null) {
+            hitObject.comboIndex = lastObject.comboIndex + hitObject.comboOffset + 1;
+            lastObject.lastInCombo = true;
+        } else {
             hitObject.indexInCurrentCombo = lastObject.indexInCurrentCombo + 1;
             hitObject.comboIndex = lastObject.comboIndex;
         }
