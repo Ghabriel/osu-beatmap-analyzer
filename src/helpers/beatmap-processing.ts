@@ -479,6 +479,9 @@ function postProcessBeatmap(beatmap: ParsedBeatmap) {
             nested.indexInCurrentCombo = slider.indexInCurrentCombo;
         });
     });
+
+    // TODO: apply stacking
+    // https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L14
 }
 
 function fillStackedPositions(beatmap: ParsedBeatmap) {
