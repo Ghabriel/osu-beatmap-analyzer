@@ -27,6 +27,8 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
         </FractionalStat>
     );
 
+    const difficultyAttributes = beatmap.difficultyAttributes;
+
     return (
         <StatGroup>
             <IntStat label='HP Drain' value={beatmap.hpDrainRate} />
@@ -36,9 +38,9 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
 
             <StatDivider />
 
-            <FloatStat label='Aim Strain' value={beatmap.aimStrain} />
-            <FloatStat label='Speed Strain' value={beatmap.speedStrain} />
-            <FloatStat label='Star Rating' value={beatmap.starRating} />
+            <FloatStat label='Aim Strain' value={difficultyAttributes.aimStrain} />
+            <FloatStat label='Speed Strain' value={difficultyAttributes.speedStrain} />
+            <FloatStat label='Star Rating' value={difficultyAttributes.starRating} />
         </StatGroup>
     );
 };

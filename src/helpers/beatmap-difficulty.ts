@@ -1,4 +1,4 @@
-import { Beatmap, ParsedBeatmap } from '../types/Beatmap';
+import { Beatmap, DifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, Slider } from '../types/HitObject';
 import { Point } from '../types/Point';
@@ -9,9 +9,6 @@ import { Aim } from './skills/Aim';
 import { Skill } from './skills/Skill';
 import { Speed } from './skills/Speed';
 import { isSlider } from './type-inference';
-
-// https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs
-const SECTION_LENGTH = 400;
 
 // https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L14
 const STACK_DISTANCE = 3;
@@ -33,7 +30,7 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
 
     return {
         ...beatmap,
-        ...difficultyAttributes,
+        difficultyAttributes,
         difficultyHitObjects,
     };
 }
@@ -233,16 +230,6 @@ function calculate(
     return createDifficultyAttributes(skills, beatmap);
 }
 
-interface DifficultyAttributes {
-    starRating: number;
-    // mods: number;
-    aimStrain: number;
-    speedStrain: number;
-    // approachRate: number;
-    // overallDifficulty: number;
-    maxCombo: number;
-}
-
 function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): DifficultyAttributes | null {
     if (beatmap.hitObjects.length === 0) {
         return null;
@@ -258,26 +245,13 @@ function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): Di
 
     const maxCombo = getMaxCombo(beatmap);
 
-    return { aimStrain, speedStrain, starRating, maxCombo };
+    const preempt = getDifficultyValue(beatmap.approachRate, 1800, 1200, 450) / CLOCK_RATE;
 
-    // Todo: These int casts are temporary to achieve 1:1 results with osu!stable, and should be removed in the future
-    // double hitWindowGreat = (int)(beatmap.HitObjects.First().HitWindows.Great / 2) / clockRate;
-    // double preempt = (int)BeatmapDifficulty.DifficultyRange(beatmap.BeatmapInfo.BaseDifficulty.ApproachRate, 1800, 1200, 450) / clockRate;
+    const approachRate = (preempt > 1200)
+        ? (1800 - preempt) / 120
+        : (1200 - preempt) / 150 + 5;
 
-    // int maxCombo = beatmap.HitObjects.Count;
-    // // Add the ticks + tail of the slider. 1 is subtracted because the head circle would be counted twice (once for the slider itself in the line above)
-    // maxCombo += beatmap.HitObjects.OfType<Slider>().Sum(s => s.NestedHitObjects.Count - 1);
-
-    // return new OsuDifficultyAttributes
-    // {
-    //     StarRating = starRating,
-    //     Mods = mods,
-    //     AimStrain = aimRating,
-    //     SpeedStrain = speedRating,
-    //     ApproachRate = preempt > 1200 ? (1800 - preempt) / 120 : (1200 - preempt) / 150 + 5,
-    //     OverallDifficulty = (80 - hitWindowGreat) / 6,
-    //     MaxCombo = maxCombo
-    // };
+    return { aimStrain, speedStrain, starRating, maxCombo, approachRate };
 }
 
 function getMaxCombo(beatmap: ParsedBeatmap): number {
@@ -290,4 +264,16 @@ function getMaxCombo(beatmap: ParsedBeatmap): number {
     }
 
     return result;
+}
+
+function getDifficultyValue(difficulty: number, min: number, mid: number, max: number): number {
+    if (difficulty > 5) {
+        return mid + (max - mid) * (difficulty - 5) / 5;
+    }
+
+    if (difficulty < 5) {
+        return mid - (mid - min) * (5 - difficulty) / 5;
+    }
+
+    return mid;
 }

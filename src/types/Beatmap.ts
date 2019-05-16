@@ -48,11 +48,17 @@ export interface ParsedBeatmap {
     hitObjects: HitObject[];
 }
 
-export type Beatmap = ParsedBeatmap & {
-    // Computed
+export interface Beatmap extends ParsedBeatmap {
+    difficultyAttributes: DifficultyAttributes;
+    difficultyHitObjects: DifficultyHitObject[];
+}
+
+export interface DifficultyAttributes {
+    starRating: number;
+    // mods: number;
     aimStrain: number;
     speedStrain: number;
-    starRating: number;
+    // overallDifficulty: number;
     maxCombo: number;
-    difficultyHitObjects: DifficultyHitObject[];
-};
+    approachRate: number;
+}

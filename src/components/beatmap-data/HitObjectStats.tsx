@@ -21,7 +21,7 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
     return (
         <StatGroup>
             <Stat label='Max Combo'>
-                {beatmap.maxCombo}
+                {beatmap.difficultyAttributes.maxCombo}
             </Stat>
 
             <Stat label='Number of Objects'>
