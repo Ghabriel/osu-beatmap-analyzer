@@ -6,6 +6,7 @@ import { StyleMap } from '../../types/StyleMap';
 export interface ModProps {
     color?: string;
     selected?: boolean;
+    blocked?: boolean;
     onClick: () => void;
 }
 
@@ -17,6 +18,7 @@ const styles: StyleMap = {
         borderRadius: '3px',
         borderWidth: '1px',
         boxSizing: 'border-box',
+        cursor: 'pointer',
         display: 'flex',
         flexDirection: 'row',
         height: '2rem',
@@ -31,23 +33,31 @@ const styles: StyleMap = {
         fontWeight: 'bold',
     },
 
+    blocked: {
+        backgroundColor: '#ddd',
+        borderColor: '#bbb',
+        cursor: 'not-allowed',
+        fontSize: '0.9rem',
+    },
+
     modText: {
         flex: '1 1',
     },
 };
 
-export const Mod: React.FC<ModProps> = ({ color, children, selected, onClick }) => {
+export const Mod: React.FC<ModProps> = props => {
     return (
         <div
             style={merge(
                 styles.mod,
-                !!color && { backgroundColor: color },
-                selected && styles.selected,
+                !!props.color && { backgroundColor: props.color },
+                props.selected && styles.selected,
+                props.blocked && styles.blocked,
             )}
-            onClick={onClick}
+            onClick={props.blocked ? undefined : props.onClick}
         >
             <div style={styles.modText}>
-                {children}
+                {props.children}
             </div>
     </div>
     );

@@ -26,16 +26,37 @@ const styles: StyleMap = {
 
 const difficultyReductionMods = [ModType.Easy, ModType.HalfTime];
 const difficultyIncreaseMods = [ModType.Hidden, ModType.HardRock, ModType.DoubleTime, ModType.Flashlight];
+const mutuallyExclusiveMods: [ModType, ModType][] = [
+    [ModType.Easy, ModType.HardRock],
+    [ModType.HalfTime, ModType.DoubleTime]
+];
 
-export const ModSelector: React.FC<ModSelectorProps> = props => {
+function getBlockedMods(selectedMods: Set<ModType>): Set<ModType> {
+    const result = new Set<ModType>();
+
+    for (const pair of mutuallyExclusiveMods) {
+        if (selectedMods.has(pair[0])) {
+            result.add(pair[1]);
+        } else if (selectedMods.has(pair[1])) {
+            result.add(pair[0]);
+        }
+    }
+
+    return result;
+}
+
+export const ModSelector: React.FC<ModSelectorProps> = ({ selectedMods, onModClick }) => {
+    const blockedMods = getBlockedMods(selectedMods);
+
     return (
         <div style={styles.container}>
             {difficultyReductionMods.map((mod, index) => (
                 <Mod
                     key={index}
                     color='#50e250'
-                    selected={props.selectedMods.has(mod)}
-                    onClick={() => props.onModClick(mod)}
+                    selected={selectedMods.has(mod)}
+                    blocked={blockedMods.has(mod)}
+                    onClick={() => onModClick(mod)}
                 >
                     {mod}
                 </Mod>
@@ -45,8 +66,9 @@ export const ModSelector: React.FC<ModSelectorProps> = props => {
                 <Mod
                     key={index}
                     color='#ff9090'
-                    selected={props.selectedMods.has(mod)}
-                    onClick={() => props.onModClick(mod)}
+                    selected={selectedMods.has(mod)}
+                    blocked={blockedMods.has(mod)}
+                    onClick={() => onModClick(mod)}
                 >
                     {mod}
                 </Mod>
