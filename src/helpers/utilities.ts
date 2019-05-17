@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 
-export function merge(...styles: (CSSProperties | boolean)[]): CSSProperties {
+export function merge(...styles: (CSSProperties | boolean | undefined)[]): CSSProperties {
     const result: CSSProperties = {};
 
     for (const style of styles) {

@@ -4,7 +4,7 @@ import { StyleMap } from '../types/StyleMap';
 import { DifficultyStats } from './beatmap-data/DifficultyStats';
 import { HitObjectStats } from './beatmap-data/HitObjectStats';
 import { MiscStats } from './beatmap-data/MiscStats';
-import { Mod, ModSelector } from './beatmap-data/ModSelector';
+import { ModSelector, ModType } from './beatmap-data/ModSelector';
 
 export interface MainProps {
     beatmap: Beatmap | null;
@@ -26,7 +26,7 @@ const styles: StyleMap = {
 };
 
 export const Main: React.FC<MainProps> = ({ beatmap }) => {
-    const [selectedMods, setSelectedMods] = useState(new Set<Mod>());
+    const [selectedMods, setSelectedMods] = useState(new Set<ModType>());
 
     if (beatmap === null) {
         return (
@@ -38,7 +38,7 @@ export const Main: React.FC<MainProps> = ({ beatmap }) => {
 
     const artist = beatmap.artist;
 
-    function handleModClick(mod: Mod) {
+    function handleModClick(mod: ModType) {
         if (selectedMods.has(mod)) {
             selectedMods.delete(mod);
         } else {
