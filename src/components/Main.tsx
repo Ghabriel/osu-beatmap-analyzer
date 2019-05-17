@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Beatmap } from '../types/Beatmap';
 import { StyleMap } from '../types/StyleMap';
 import { DifficultyStats } from './beatmap-data/DifficultyStats';
 import { HitObjectStats } from './beatmap-data/HitObjectStats';
 import { MiscStats } from './beatmap-data/MiscStats';
+import { Mod, ModSelector } from './beatmap-data/ModSelector';
 
 export interface MainProps {
     beatmap: Beatmap | null;
@@ -25,6 +26,8 @@ const styles: StyleMap = {
 };
 
 export const Main: React.FC<MainProps> = ({ beatmap }) => {
+    const [selectedMods, setSelectedMods] = useState(new Set<Mod>());
+
     if (beatmap === null) {
         return (
             <div>
@@ -35,8 +38,20 @@ export const Main: React.FC<MainProps> = ({ beatmap }) => {
 
     const artist = beatmap.artist;
 
+    function handleModClick(mod: Mod) {
+        if (selectedMods.has(mod)) {
+            selectedMods.delete(mod);
+        } else {
+            selectedMods.add(mod);
+        }
+
+        setSelectedMods(new Set(selectedMods));
+    }
+
     return (
         <div>
+            <ModSelector selectedMods={selectedMods} onModClick={handleModClick} />
+
             <div style={styles.title}>
                 {beatmap.title}
             </div>
