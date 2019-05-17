@@ -51,6 +51,13 @@ export const App: React.FC = () => {
         setBeatmapList(beatmapList.concat([beatmap]));
     }
 
+    function handleBeatmapMutation(beatmap: Beatmap) {
+        if (selectedBeatmap !== null) {
+            beatmapList[selectedBeatmap] = beatmap;
+            setBeatmapList([...beatmapList]);
+        }
+    }
+
     if (beatmapList.length === 0) {
         handleImportBeatmap(quaver);
     }
@@ -77,6 +84,7 @@ export const App: React.FC = () => {
                                 ? null
                                 : beatmapList[selectedBeatmap]
                         }
+                        onBeatmapMutation={handleBeatmapMutation}
                     />
                 </div>
             </div>

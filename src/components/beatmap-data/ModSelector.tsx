@@ -1,15 +1,7 @@
 import React from 'react';
+import { Mod as ModType } from '../../types/Mod';
 import { StyleMap } from '../../types/StyleMap';
 import { Mod } from './Mod';
-
-export enum ModType {
-    Easy = 'EZ',
-    HalfTime = 'HT',
-    Hidden = 'HD',
-    HardRock = 'HR',
-    DoubleTime = 'DT',
-    Flashlight = 'FL',
-}
 
 export interface ModSelectorProps {
     selectedMods: Set<ModType>;

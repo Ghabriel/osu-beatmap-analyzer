@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { changeBeatmapMods } from '../helpers/beatmap';
 import { Beatmap } from '../types/Beatmap';
+import { Mod as ModType } from '../types/Mod';
 import { StyleMap } from '../types/StyleMap';
 import { DifficultyStats } from './beatmap-data/DifficultyStats';
 import { HitObjectStats } from './beatmap-data/HitObjectStats';
 import { MiscStats } from './beatmap-data/MiscStats';
-import { ModSelector, ModType } from './beatmap-data/ModSelector';
+import { ModSelector } from './beatmap-data/ModSelector';
 
 export interface MainProps {
     beatmap: Beatmap | null;
+    onBeatmapMutation: (beatmap: Beatmap) => void;
 }
 
 const styles: StyleMap = {
@@ -25,7 +28,7 @@ const styles: StyleMap = {
     },
 };
 
-export const Main: React.FC<MainProps> = ({ beatmap }) => {
+export const Main: React.FC<MainProps> = ({ beatmap, onBeatmapMutation }) => {
     const [selectedMods, setSelectedMods] = useState(new Set<ModType>());
 
     if (beatmap === null) {
@@ -45,6 +48,7 @@ export const Main: React.FC<MainProps> = ({ beatmap }) => {
             selectedMods.add(mod);
         }
 
+        onBeatmapMutation(changeBeatmapMods(beatmap!, selectedMods));
         setSelectedMods(new Set(selectedMods));
     }
 
