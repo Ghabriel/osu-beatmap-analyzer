@@ -32,6 +32,7 @@ export interface ParsedBeatmap {
 
     // Difficulty
     baseDifficulty: BaseDifficultyAttributes;
+    originalBaseDifficulty: BaseDifficultyAttributes;
     sliderMultiplier: number;
     sliderTickRate: number;
 

@@ -1,3 +1,4 @@
+import { BaseDifficultyAttributes } from '../../types/Beatmap';
 import { Color } from '../../types/Color';
 import { DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from '../../types/ControlPoint';
 import { TimingPoint } from '../../types/TimingPoint';
@@ -30,10 +31,7 @@ export interface PartialBeatmap {
     beatmapSetId?: number;
 
     // Difficulty
-    hpDrainRate?: number;
-    circleSize?: number;
-    overallDifficulty?: number;
-    approachRate?: number;
+    baseDifficulty: Partial<BaseDifficultyAttributes>;
     sliderMultiplier?: number;
     sliderTickRate?: number;
 

@@ -40,6 +40,7 @@ export function parseBeatmap(content: string): PartialBeatmap {
 
 function createPartialBeatmap(): PartialBeatmap {
     return {
+        baseDifficulty: {},
         timingPoints: [],
         timingControlPoints: [],
         difficultyControlPoints: [],
@@ -204,16 +205,16 @@ function parseDifficultyLine(beatmap: PartialBeatmap, line: string) {
 
     switch (key) {
         case 'HPDrainRate':
-            beatmap.hpDrainRate = parseFloat(value);
+            beatmap.baseDifficulty.hpDrainRate = parseFloat(value);
             break;
         case 'CircleSize':
-            beatmap.circleSize = parseFloat(value);
+            beatmap.baseDifficulty.circleSize = parseFloat(value);
             break;
         case 'OverallDifficulty':
-            beatmap.overallDifficulty = parseFloat(value);
+            beatmap.baseDifficulty.overallDifficulty = parseFloat(value);
             break;
         case 'ApproachRate':
-            beatmap.approachRate = parseFloat(value);
+            beatmap.baseDifficulty.approachRate = parseFloat(value);
             break;
         case 'SliderMultiplier':
             beatmap.sliderMultiplier = parseFloat(value);

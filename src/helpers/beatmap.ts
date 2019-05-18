@@ -16,17 +16,27 @@ export function readBeatmapFromString(content: string): Beatmap {
 }
 
 export function changeBeatmapMods(beatmap: Beatmap, mods: Set<Mod>): Beatmap {
-    const modInstances = new Set<GameMod>();
-
-    for (const mod of mods) {
-        modInstances.add(MOD_TABLE[mod]);
-    }
-
+    resetDifficultyAttributes(beatmap);
     const clock = createClock();
+    const modInstances = getModInstances(mods);
     const newBeatmap = processBeatmap(beatmap, clock, modInstances);
     return fillBeatmapComputedAttributes(newBeatmap, clock);
 }
 
 function createClock(): Clock {
     return { rate: 1 };
+}
+
+function resetDifficultyAttributes(beatmap: Beatmap) {
+    beatmap.baseDifficulty = { ...beatmap.originalBaseDifficulty };
+}
+
+function getModInstances(mods: Set<Mod>): Set<GameMod> {
+    const modInstances = new Set<GameMod>();
+
+    for (const mod of mods) {
+        modInstances.add(MOD_TABLE[mod]);
+    }
+
+    return modInstances;
 }

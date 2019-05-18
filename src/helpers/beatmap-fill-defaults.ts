@@ -7,6 +7,13 @@ import { PartialCircle, PartialCircleMetadata, PartialHitObject, PartialSlider, 
 import { coalesce } from './utilities';
 
 export function fillBeatmapDefaults(partialBeatmap: PartialBeatmap): ParsedBeatmap {
+    const baseDifficulty = {
+        hpDrainRate: coalesce(partialBeatmap.baseDifficulty.hpDrainRate, 5),
+        circleSize: coalesce(partialBeatmap.baseDifficulty.circleSize, 5),
+        overallDifficulty: coalesce(partialBeatmap.baseDifficulty.overallDifficulty, 5),
+        approachRate: coalesce(partialBeatmap.baseDifficulty.approachRate, 5),
+    };
+
     return {
         // General
         audioFilename: partialBeatmap.audioFilename || '',
@@ -34,12 +41,8 @@ export function fillBeatmapDefaults(partialBeatmap: PartialBeatmap): ParsedBeatm
         beatmapSetId: partialBeatmap.beatmapSetId,
 
         // Difficulty
-        baseDifficulty: {
-            hpDrainRate: coalesce(partialBeatmap.hpDrainRate, 5),
-            circleSize: coalesce(partialBeatmap.circleSize, 5),
-            overallDifficulty: coalesce(partialBeatmap.overallDifficulty, 5),
-            approachRate: coalesce(partialBeatmap.approachRate, 5),
-        },
+        baseDifficulty: baseDifficulty,
+        originalBaseDifficulty: { ...baseDifficulty },
         sliderMultiplier: partialBeatmap.sliderMultiplier || 0,
         sliderTickRate: partialBeatmap.sliderTickRate || 0,
 
