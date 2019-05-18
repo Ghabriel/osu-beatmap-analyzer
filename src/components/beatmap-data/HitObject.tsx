@@ -53,6 +53,7 @@ export const HitObject: React.FC<HitObjectProps> = ({ backgroundColor }) => {
         <div style={styles.outerLayer}>
             <div style={styles.innerLayer}>
                 <div
+                    id='circle'
                     style={merge(
                         styles.circle,
                         { backgroundColor: `rgba(${red}, ${green}, ${blue}, ${alpha})` },
