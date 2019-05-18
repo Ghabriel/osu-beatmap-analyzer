@@ -21,7 +21,7 @@ const styles: StyleMap = {
 export const Stat: React.FC<StatProps> = ({ label, children }) => {
     return (
         <div style={styles.body}>
-            <div style={styles.label}>
+            <div style={styles.label} id='label-container'>
                 {label}
             </div>
 
