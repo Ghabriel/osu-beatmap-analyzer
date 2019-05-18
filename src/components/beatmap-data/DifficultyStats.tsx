@@ -17,7 +17,7 @@ interface StatProps {
 export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => {
     const IntStat: React.FC<StatProps> = ({ label, value }) => (
         <FractionalStat label={label} fraction={value / 10}>
-            {value}
+            {round(value, 2)}
         </FractionalStat>
     );
 
