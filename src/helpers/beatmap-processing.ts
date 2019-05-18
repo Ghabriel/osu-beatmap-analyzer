@@ -49,7 +49,7 @@ export function processBeatmap(
 
     fillSliderData(beatmap);
 
-    mods.forEach(mod => mod.applyToDifficulty(beatmap.basicDifficultyAttributes));
+    mods.forEach(mod => mod.applyToDifficulty(beatmap.baseDifficulty));
 
     preProcessBeatmap(beatmap);
 
@@ -314,7 +314,7 @@ function createSliderTailCircle(slider: Slider, event: SliderEvent): SliderTailC
 }
 
 export function getHitObjectScale(beatmap: ParsedBeatmap): number {
-    return 0.85 - 0.07 * beatmap.basicDifficultyAttributes.circleSize;
+    return 0.85 - 0.07 * beatmap.baseDifficulty.circleSize;
 }
 
 export function getSliderComputedProperties(slider: Slider): SliderComputedProperties {

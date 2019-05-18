@@ -31,7 +31,7 @@ export interface ParsedBeatmap {
     beatmapSetId?: number;
 
     // Difficulty
-    basicDifficultyAttributes: BasicDifficultyAttributes;
+    baseDifficulty: BaseDifficultyAttributes;
     sliderMultiplier: number;
     sliderTickRate: number;
 
@@ -46,18 +46,18 @@ export interface ParsedBeatmap {
 }
 
 export interface Beatmap extends ParsedBeatmap {
-    calculatedDifficultyAttributes: CalculatedDifficultyAttributes;
+    derivedDifficulty: DerivedDifficultyAttributes;
     difficultyHitObjects: DifficultyHitObject[];
 }
 
-export interface BasicDifficultyAttributes {
+export interface BaseDifficultyAttributes {
     hpDrainRate: number;
     circleSize: number;
     overallDifficulty: number;
     approachRate: number;
 }
 
-export interface CalculatedDifficultyAttributes {
+export interface DerivedDifficultyAttributes {
     starRating: number;
     // mods: number;
     aimStrain: number;

@@ -34,7 +34,7 @@ export function fillBeatmapDefaults(partialBeatmap: PartialBeatmap): ParsedBeatm
         beatmapSetId: partialBeatmap.beatmapSetId,
 
         // Difficulty
-        basicDifficultyAttributes: {
+        baseDifficulty: {
             hpDrainRate: coalesce(partialBeatmap.hpDrainRate, 5),
             circleSize: coalesce(partialBeatmap.circleSize, 5),
             overallDifficulty: coalesce(partialBeatmap.overallDifficulty, 5),

@@ -1,8 +1,8 @@
-import { BasicDifficultyAttributes } from '../../types/Beatmap';
+import { BaseDifficultyAttributes } from '../../types/Beatmap';
 import { GameMod } from './GameMod';
 
 export class EasyMod extends GameMod {
-    applyToDifficulty(difficulty: BasicDifficultyAttributes) {
+    applyToDifficulty(difficulty: BaseDifficultyAttributes) {
         const ratio = 0.5;
         difficulty.hpDrainRate *= ratio;
         difficulty.circleSize *= ratio;

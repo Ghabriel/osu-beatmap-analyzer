@@ -1,4 +1,4 @@
-import { Beatmap, CalculatedDifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
+import { Beatmap, DerivedDifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
 import { Clock } from '../types/Clock';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, Slider } from '../types/HitObject';
@@ -31,7 +31,7 @@ export function fillBeatmapComputedAttributes(
 
     return {
         ...beatmap,
-        calculatedDifficultyAttributes,
+        derivedDifficulty: calculatedDifficultyAttributes,
         difficultyHitObjects,
     };
 }
@@ -207,7 +207,7 @@ function calculate(
     difficultyHitObjects: DifficultyHitObject[],
     beatmap: ParsedBeatmap,
     clock: Readonly<Clock>,
-): CalculatedDifficultyAttributes | null {
+): DerivedDifficultyAttributes | null {
     const BASE_SECTION_LENGTH = 400;
     const sectionLength = BASE_SECTION_LENGTH * clock.rate;
 
@@ -241,7 +241,7 @@ function createDifficultyAttributes(
     skills: Skill[],
     beatmap: ParsedBeatmap,
     clock: Readonly<Clock>,
-): CalculatedDifficultyAttributes | null {
+): DerivedDifficultyAttributes | null {
     if (beatmap.hitObjects.length === 0) {
         return null;
     }
@@ -256,7 +256,7 @@ function createDifficultyAttributes(
 
     const maxCombo = getMaxCombo(beatmap);
 
-    const originalAR = beatmap.basicDifficultyAttributes.approachRate;
+    const originalAR = beatmap.baseDifficulty.approachRate;
     const preempt = getDifficultyValue(originalAR, 1800, 1200, 450) / clock.rate;
 
     const approachRate = (preempt > 1200)
