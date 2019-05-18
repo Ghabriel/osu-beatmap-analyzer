@@ -1,6 +1,6 @@
 import React from 'react';
 import { create, ReactTestInstance } from 'react-test-renderer';
-import { PartialBar, PartialBarProps } from '../base/PartialBar';
+import { PartialBar, PartialBarProps } from '../../base/PartialBar';
 
 const render = (props: PartialBarProps) => {
     const component = create(<PartialBar {...props} />);

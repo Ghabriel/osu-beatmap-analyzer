@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { Stat, StatProps } from '../base/stats/Stat';
+import { Stat, StatProps } from '../../base/stats/Stat';
 
 const render = (props: StatProps) => {
     const component = create(<Stat {...props} />);

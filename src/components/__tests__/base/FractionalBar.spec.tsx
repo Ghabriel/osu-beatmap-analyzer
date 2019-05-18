@@ -1,8 +1,8 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { PartialBar } from '../base/PartialBar';
-import { FractionalStat, FractionalStatProps } from '../base/stats/FractionalStat';
-import { Stat } from '../base/stats/Stat';
+import { PartialBar } from '../../base/PartialBar';
+import { FractionalStat, FractionalStatProps } from '../../base/stats/FractionalStat';
+import { Stat } from '../../base/stats/Stat';
 
 const render = (props: FractionalStatProps) => {
     const component = create(<FractionalStat {...props} />);
