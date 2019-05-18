@@ -1,4 +1,4 @@
-import { Beatmap, DifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
+import { Beatmap, CalculatedDifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
 import { Clock } from '../types/Clock';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, Slider } from '../types/HitObject';
@@ -23,15 +23,15 @@ export function fillBeatmapComputedAttributes(
 ): Beatmap {
     const difficultyHitObjects = createDifficultyHitObjects(beatmap, clock);
 
-    const difficultyAttributes = calculate(difficultyHitObjects, beatmap, clock);
+    const calculatedDifficultyAttributes = calculate(difficultyHitObjects, beatmap, clock);
 
-    if (difficultyAttributes === null) {
+    if (calculatedDifficultyAttributes === null) {
         throw new Error('Beatmap too small');
     }
 
     return {
         ...beatmap,
-        difficultyAttributes,
+        calculatedDifficultyAttributes,
         difficultyHitObjects,
     };
 }
@@ -207,7 +207,7 @@ function calculate(
     difficultyHitObjects: DifficultyHitObject[],
     beatmap: ParsedBeatmap,
     clock: Readonly<Clock>,
-): DifficultyAttributes | null {
+): CalculatedDifficultyAttributes | null {
     const BASE_SECTION_LENGTH = 400;
     const sectionLength = BASE_SECTION_LENGTH * clock.rate;
 
@@ -241,7 +241,7 @@ function createDifficultyAttributes(
     skills: Skill[],
     beatmap: ParsedBeatmap,
     clock: Readonly<Clock>,
-): DifficultyAttributes | null {
+): CalculatedDifficultyAttributes | null {
     if (beatmap.hitObjects.length === 0) {
         return null;
     }
@@ -256,7 +256,8 @@ function createDifficultyAttributes(
 
     const maxCombo = getMaxCombo(beatmap);
 
-    const preempt = getDifficultyValue(beatmap.approachRate, 1800, 1200, 450) / clock.rate;
+    const originalAR = beatmap.basicDifficultyAttributes.approachRate;
+    const preempt = getDifficultyValue(originalAR, 1800, 1200, 450) / clock.rate;
 
     const approachRate = (preempt > 1200)
         ? (1800 - preempt) / 120

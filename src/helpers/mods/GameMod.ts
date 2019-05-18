@@ -1,7 +1,7 @@
-import { ParsedBeatmap } from '../../types/Beatmap';
+import { BasicDifficultyAttributes } from '../../types/Beatmap';
 import { Clock } from '../../types/Clock';
 
 export abstract class GameMod {
     applyToClock(clock: Clock) { }
-    applyToDifficulty(beatmap: ParsedBeatmap) { }
+    applyToDifficulty(difficulty: BasicDifficultyAttributes) { }
 }

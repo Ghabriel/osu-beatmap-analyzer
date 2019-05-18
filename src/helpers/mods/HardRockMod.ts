@@ -1,11 +1,11 @@
-import { ParsedBeatmap } from '../../types/Beatmap';
+import { BasicDifficultyAttributes } from '../../types/Beatmap';
 import { GameMod } from './GameMod';
 
 export class HardRockMod extends GameMod {
-    applyToDifficulty(beatmap: ParsedBeatmap) {
-        beatmap.hpDrainRate = Math.min(10, beatmap.hpDrainRate * 1.4);
-        beatmap.circleSize = Math.min(10, beatmap.circleSize * 1.3);
-        beatmap.overallDifficulty = Math.min(10, beatmap.overallDifficulty * 1.4);
-        beatmap.approachRate = Math.min(10, beatmap.approachRate * 1.4);
+    applyToDifficulty(difficulty: BasicDifficultyAttributes) {
+        difficulty.hpDrainRate = Math.min(10, difficulty.hpDrainRate * 1.4);
+        difficulty.circleSize = Math.min(10, difficulty.circleSize * 1.3);
+        difficulty.overallDifficulty = Math.min(10, difficulty.overallDifficulty * 1.4);
+        difficulty.approachRate = Math.min(10, difficulty.approachRate * 1.4);
     }
 }

@@ -27,20 +27,21 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
         </FractionalStat>
     );
 
-    const difficultyAttributes = beatmap.difficultyAttributes;
+    const basicAttributes = beatmap.basicDifficultyAttributes;
+    const calculatedAttributes = beatmap.calculatedDifficultyAttributes;
 
     return (
         <StatGroup>
-            <IntStat label='HP Drain' value={beatmap.hpDrainRate} />
-            <IntStat label='Circle Size' value={beatmap.circleSize} />
-            <IntStat label='Overall Difficulty' value={beatmap.overallDifficulty} />
-            <IntStat label='Approach Rate' value={beatmap.approachRate} />
+            <IntStat label='HP Drain' value={basicAttributes.hpDrainRate} />
+            <IntStat label='Circle Size' value={basicAttributes.circleSize} />
+            <IntStat label='Overall Difficulty' value={basicAttributes.overallDifficulty} />
+            <IntStat label='Approach Rate' value={basicAttributes.approachRate} />
 
             <StatDivider />
 
-            <FloatStat label='Aim Strain' value={difficultyAttributes.aimStrain} />
-            <FloatStat label='Speed Strain' value={difficultyAttributes.speedStrain} />
-            <FloatStat label='Star Rating' value={difficultyAttributes.starRating} />
+            <FloatStat label='Aim Strain' value={calculatedAttributes.aimStrain} />
+            <FloatStat label='Speed Strain' value={calculatedAttributes.speedStrain} />
+            <FloatStat label='Star Rating' value={calculatedAttributes.starRating} />
         </StatGroup>
     );
 };
