@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { quaver } from './beatmap-input.example';
+import { quaver } from './beatmap-mocks/quaver.beatmap';
 import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
 import { readBeatmapFromString } from './helpers/beatmap';
