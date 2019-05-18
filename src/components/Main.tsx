@@ -28,6 +28,23 @@ const styles: StyleMap = {
     },
 };
 
+const mutuallyExclusiveMods: [ModType, ModType][] = [
+    [ModType.Easy, ModType.HardRock],
+    [ModType.HalfTime, ModType.DoubleTime]
+];
+
+function removeConflictingMods(selectedMods: Set<ModType>, mod: ModType) {
+    for (const pair of mutuallyExclusiveMods) {
+        if (pair[0] === mod) {
+            selectedMods.delete(pair[1]);
+        }
+
+        if (pair[1] === mod) {
+            selectedMods.delete(pair[0]);
+        }
+    }
+}
+
 export const Main: React.FC<MainProps> = ({ beatmap, onBeatmapMutation }) => {
     const [selectedMods, setSelectedMods] = useState(new Set<ModType>());
 
@@ -46,6 +63,7 @@ export const Main: React.FC<MainProps> = ({ beatmap, onBeatmapMutation }) => {
             selectedMods.delete(mod);
         } else {
             selectedMods.add(mod);
+            removeConflictingMods(selectedMods, mod);
         }
 
         onBeatmapMutation(changeBeatmapMods(beatmap!, selectedMods));

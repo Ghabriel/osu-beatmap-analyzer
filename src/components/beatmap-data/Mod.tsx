@@ -6,7 +6,6 @@ import { StyleMap } from '../../types/StyleMap';
 export interface ModProps {
     color?: string;
     selected?: boolean;
-    blocked?: boolean;
     onClick: () => void;
 }
 
@@ -52,9 +51,8 @@ export const Mod: React.FC<ModProps> = props => {
                 styles.mod,
                 !!props.color && { backgroundColor: props.color },
                 props.selected && styles.selected,
-                props.blocked && styles.blocked,
             )}
-            onClick={props.blocked ? undefined : props.onClick}
+            onClick={props.onClick}
         >
             <div style={styles.modText}>
                 {props.children}
