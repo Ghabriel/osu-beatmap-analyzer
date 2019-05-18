@@ -1,4 +1,5 @@
 import { Beatmap, DifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
+import { Clock } from '../types/Clock';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, Slider } from '../types/HitObject';
 import { Point } from '../types/Point';
@@ -16,13 +17,13 @@ const STACK_DISTANCE = 3;
 // HitObject.cs (25)
 const CONTROL_POINT_LENIENCY = 1;
 
-// const CLOCK_RATE = 1000 / 30;
-const CLOCK_RATE = 1;
+export function fillBeatmapComputedAttributes(
+    beatmap: ParsedBeatmap,
+    clock: Readonly<Clock>,
+): Beatmap {
+    const difficultyHitObjects = createDifficultyHitObjects(beatmap, clock);
 
-export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
-    const difficultyHitObjects = createDifficultyHitObjects(beatmap);
-
-    const difficultyAttributes = calculate(difficultyHitObjects, beatmap);
+    const difficultyAttributes = calculate(difficultyHitObjects, beatmap, clock);
 
     if (difficultyAttributes === null) {
         throw new Error('Beatmap too small');
@@ -35,7 +36,10 @@ export function fillBeatmapComputedAttributes(beatmap: ParsedBeatmap): Beatmap {
     };
 }
 
-function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject[] {
+function createDifficultyHitObjects(
+    beatmap: ParsedBeatmap,
+    clock: Readonly<Clock>
+): DifficultyHitObject[] {
     const hitObjectRadius = getHitObjectRadius(beatmap);
     const scalingFactor = getScalingFactor(hitObjectRadius);
     const result: DifficultyHitObject[] = [];
@@ -50,7 +54,8 @@ function createDifficultyHitObjects(beatmap: ParsedBeatmap): DifficultyHitObject
             last,
             current,
             beatmap,
-            scalingFactor
+            scalingFactor,
+            clock,
         );
         result.push(difficultyHitObject);
     }
@@ -64,8 +69,9 @@ function createDifficultyHitObject(
     current: HitObject,
     beatmap: ParsedBeatmap,
     scalingFactor: number,
+    clock: Readonly<Clock>,
 ): DifficultyHitObject {
-    const deltaTime = (current.startTime - last.startTime) / CLOCK_RATE;
+    const deltaTime = (current.startTime - last.startTime) / clock.rate;
     const strainTime = Math.max(50, deltaTime);
 
     const lastTraversalData = getHitObjectTraversalData(last, beatmap);
@@ -199,10 +205,11 @@ function getNestedHitObjectProgress(
 
 function calculate(
     difficultyHitObjects: DifficultyHitObject[],
-    beatmap: ParsedBeatmap
+    beatmap: ParsedBeatmap,
+    clock: Readonly<Clock>,
 ): DifficultyAttributes | null {
     const BASE_SECTION_LENGTH = 400;
-    const sectionLength = BASE_SECTION_LENGTH * CLOCK_RATE;
+    const sectionLength = BASE_SECTION_LENGTH * clock.rate;
 
     let currentSectionEnd = Math.ceil(beatmap.hitObjects[0].startTime / sectionLength) * sectionLength;
 
@@ -227,10 +234,14 @@ function calculate(
         skill.saveCurrentPeak();
     }
 
-    return createDifficultyAttributes(skills, beatmap);
+    return createDifficultyAttributes(skills, beatmap, clock);
 }
 
-function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): DifficultyAttributes | null {
+function createDifficultyAttributes(
+    skills: Skill[],
+    beatmap: ParsedBeatmap,
+    clock: Readonly<Clock>,
+): DifficultyAttributes | null {
     if (beatmap.hitObjects.length === 0) {
         return null;
     }
@@ -245,7 +256,7 @@ function createDifficultyAttributes(skills: Skill[], beatmap: ParsedBeatmap): Di
 
     const maxCombo = getMaxCombo(beatmap);
 
-    const preempt = getDifficultyValue(beatmap.approachRate, 1800, 1200, 450) / CLOCK_RATE;
+    const preempt = getDifficultyValue(beatmap.approachRate, 1800, 1200, 450) / clock.rate;
 
     const approachRate = (preempt > 1200)
         ? (1800 - preempt) / 120

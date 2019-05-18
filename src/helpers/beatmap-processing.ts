@@ -1,9 +1,11 @@
 import { ParsedBeatmap } from "../types/Beatmap";
+import { Clock } from "../types/Clock";
 import { ControlPoint, ControlPointType, DifficultyControlPoint, EffectControlPoint, LegacySampleControlPoint, TimingControlPoint } from "../types/ControlPoint";
 import { HitObjectType, NestedHitObject, NestedHitObjectType, RepeatPoint, Slider, SliderCircle, SliderTailCircle, SliderTick } from "../types/HitObject";
 import { TimingPoint } from "../types/TimingPoint";
 import { assertNever } from "./assertNever";
 import { fillBeatmapDefaults } from "./beatmap-fill-defaults";
+import { GameMod } from "./mods/GameMod";
 import { PartialBeatmap } from "./parsing/PartialBeatmap";
 import { pointSum } from "./point-arithmetic";
 import { isCircle, isSlider, isSliderTip } from "./type-inference";
@@ -34,7 +36,11 @@ export enum SliderEventType {
     Tail,
 }
 
-export function processBeatmap(partialBeatmap: PartialBeatmap): ParsedBeatmap {
+export function processBeatmap(
+    partialBeatmap: PartialBeatmap,
+    clock: Clock,
+    mods: Set<GameMod> = new Set()
+): ParsedBeatmap {
     const beatmap = fillBeatmapDefaults(partialBeatmap);
 
     fillControlPoints(beatmap);
@@ -43,21 +49,19 @@ export function processBeatmap(partialBeatmap: PartialBeatmap): ParsedBeatmap {
 
     fillSliderData(beatmap);
 
-    // TODO: apply mods, if any
-    // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L90
-    // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L97
+    mods.forEach(mod => mod.applyToDifficulty(beatmap));
 
     preProcessBeatmap(beatmap);
 
     // TODO: do we need to apply defaults again?
 
-    // TODO: apply mods, if any
+    // TODO: apply mods, if any, to hit objects
     // https://github.com/ppy/osu/blob/master/osu.Game/Beatmaps/WorkingBeatmap.cs#L114
 
     postProcessBeatmap(beatmap);
 
-    // TODO: apply mods, if any
-    // https://github.com/ppy/osu/blob/master/osu.Game/Rulesets/Difficulty/DifficultyCalculator.cs#L45
+    // TODO: does this need to be here?
+    mods.forEach(mod => mod.applyToClock(clock));
 
     fillStackedPositions(beatmap);
 

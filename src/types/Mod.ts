@@ -1,8 +1,8 @@
 export enum Mod {
     Easy = 'EZ',
     HalfTime = 'HT',
-    Hidden = 'HD',
+    // Hidden = 'HD',
     HardRock = 'HR',
     DoubleTime = 'DT',
-    Flashlight = 'FL',
+    // Flashlight = 'FL',
 }
