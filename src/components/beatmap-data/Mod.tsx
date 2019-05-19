@@ -56,6 +56,6 @@ export const Mod: React.FC<ModProps> = props => {
             <div style={styles.modText}>
                 {props.children}
             </div>
-    </div>
+        </div>
     );
 }
