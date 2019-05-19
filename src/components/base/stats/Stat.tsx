@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleMap } from '../../../types/StyleMap';
+import { createStyleSheet } from '../../../helpers/utilities';
 
 export interface StatProps {
     label: string;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     body: {
         alignItems: 'center',
         display: 'flex',
@@ -16,7 +16,7 @@ const styles: StyleMap = {
         fontWeight: 'bold',
         width: '150px',
     },
-};
+});
 
 export const Stat: React.FC<StatProps> = ({ label, children }) => {
     return (

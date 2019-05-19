@@ -1,15 +1,14 @@
 import React, { CSSProperties } from 'react';
 import Table from 'react-bootstrap/Table';
-import { round } from '../../helpers/utilities';
+import { createStyleSheet, round } from '../../helpers/utilities';
 import { Beatmap } from '../../types/Beatmap';
 import { DifficultyHitObject } from '../../types/DifficultyHitObject';
-import { StyleMap } from '../../types/StyleMap';
 
 export interface DifficultyHitObjectTableProps {
     beatmap: Beatmap;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     table: {
         marginTop: '15px',
     },
@@ -21,7 +20,7 @@ const styles: StyleMap = {
     centered: {
         textAlign: 'center',
     },
-};
+});
 
 interface TableColumn {
     header: string;

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { colors } from '../../helpers/style-variables';
-import { merge } from '../../helpers/utilities';
+import { createStyleSheet, merge } from '../../helpers/utilities';
 import { Beatmap } from '../../types/Beatmap';
-import { StyleMap } from '../../types/StyleMap';
 
 export interface BeatmapSummaryProps {
     beatmap: Beatmap;
@@ -10,7 +9,7 @@ export interface BeatmapSummaryProps {
     onClick: () => void;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     beatmapSummary: {
         backgroundColor: colors.secondary,
         border: `1px solid ${colors.secondaryBorder}`,
@@ -49,7 +48,7 @@ const styles: StyleMap = {
         fontWeight: 'bold',
         wordBreak: 'break-word',
     },
-};
+});
 
 export const BeatmapSummary: React.FC<BeatmapSummaryProps> = props => {
     const [hovered, setHovered] = useState(false);

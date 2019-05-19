@@ -1,6 +1,6 @@
 import React from 'react';
+import { createStyleSheet } from '../../helpers/utilities';
 import { Mod as ModType } from '../../types/Mod';
-import { StyleMap } from '../../types/StyleMap';
 import { Mod } from './Mod';
 
 export interface ModSelectorProps {
@@ -8,13 +8,13 @@ export interface ModSelectorProps {
     onModClick: (mod: ModType) => void;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     container: {
         alignItems: 'center',
         display: 'flex',
         flexDirection: 'row',
     },
-};
+});
 
 const difficultyReductionMods = [ModType.Easy, ModType.HalfTime];
 const difficultyIncreaseMods = [ModType.HardRock, ModType.DoubleTime];

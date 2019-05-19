@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleMap } from '../../../types/StyleMap';
+import { createStyleSheet } from '../../../helpers/utilities';
 import { PartialBar } from '../PartialBar';
 import { Stat } from './Stat';
 
@@ -8,11 +8,11 @@ export interface FractionalStatProps {
     fraction: number;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     value: {
         marginLeft: '10px',
     },
-};
+});
 
 export const FractionalStat: React.FC<FractionalStatProps> = ({ label, fraction, children }) => {
     return (

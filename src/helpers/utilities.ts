@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+import { StyleMap } from '../types/StyleMap';
 
 export function merge(...styles: (CSSProperties | boolean | undefined)[]): CSSProperties {
     const result: CSSProperties = {};
@@ -62,4 +63,10 @@ export function hasFlag<T extends number>(enumValue: T, flag: T): boolean {
 
 export function isNotNull<T>(value: T | null): value is T {
     return value !== null;
+}
+
+// A "type trick" to ensure that the property values are valid CSS values,
+// without losing autocomplete on the defined keys.
+export function createStyleSheet<T extends StyleMap>(styles: T): T {
+    return styles;
 }

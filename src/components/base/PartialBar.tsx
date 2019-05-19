@@ -1,13 +1,12 @@
 import React from 'react';
 import { colors } from '../../helpers/style-variables';
-import { clamp, merge } from '../../helpers/utilities';
-import { StyleMap } from '../../types/StyleMap';
+import { clamp, createStyleSheet, merge } from '../../helpers/utilities';
 
 export interface PartialBarProps {
     fraction: number;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     container: {
         border: `1px solid ${colors.secondaryBorder}`,
         display: 'flex',
@@ -26,7 +25,7 @@ const styles: StyleMap = {
         flexGrow: 0,
         flexShrink: 0,
     }
-};
+});
 
 export const PartialBar: React.FC<PartialBarProps> = props => {
     const filledPercentage = 100 * clamp(props.fraction, 0, 1);

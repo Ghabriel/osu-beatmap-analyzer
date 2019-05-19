@@ -1,9 +1,8 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { coalesce } from '../helpers/utilities';
+import { coalesce, createStyleSheet } from '../helpers/utilities';
 import { useFileUpload } from '../hooks/useFileUpload';
 import { Beatmap } from '../types/Beatmap';
-import { StyleMap } from '../types/StyleMap';
 import { BeatmapSummary } from './beatmap-data/BeatmapSummary';
 
 export interface SidebarProps {
@@ -13,12 +12,12 @@ export interface SidebarProps {
     onSelectBeatmap: (beatmapIndex: number) => void;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     wrapper: {
         display: 'flex',
         flexDirection: 'column',
     }
-};
+});
 
 export const Sidebar: React.FC<SidebarProps> = props => {
     const handleImportClick = useFileUpload(props.onImportBeatmap);

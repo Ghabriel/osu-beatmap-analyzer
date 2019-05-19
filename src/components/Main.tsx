@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { changeBeatmapMods } from '../helpers/beatmap';
+import { createStyleSheet } from '../helpers/utilities';
 import { Beatmap } from '../types/Beatmap';
 import { Mod as ModType } from '../types/Mod';
-import { StyleMap } from '../types/StyleMap';
 import { DifficultyStats } from './beatmap-data/DifficultyStats';
 import { HitObjectStats } from './beatmap-data/HitObjectStats';
 import { MiscStats } from './beatmap-data/MiscStats';
@@ -13,7 +13,7 @@ export interface MainProps {
     onBeatmapMutation: (beatmap: Beatmap) => void;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     title: {
         fontSize: '2rem',
         fontWeight: 'bold',
@@ -26,7 +26,7 @@ const styles: StyleMap = {
     author: {
         fontSize: '1.1rem',
     },
-};
+});
 
 const mutuallyExclusiveMods: [ModType, ModType][] = [
     [ModType.Easy, ModType.HardRock],

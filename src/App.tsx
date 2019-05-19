@@ -4,10 +4,10 @@ import { Main } from './components/Main';
 import { Sidebar } from './components/Sidebar';
 import { readBeatmapFromString } from './helpers/beatmap';
 import { colors } from './helpers/style-variables';
+import { createStyleSheet } from './helpers/utilities';
 import { Beatmap } from './types/Beatmap';
-import { StyleMap } from './types/StyleMap';
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     page: {
         display: 'flex',
         flexDirection: 'column',
@@ -40,7 +40,7 @@ const styles: StyleMap = {
         flex: '80 0 80%',
         padding: '0 5px',
     }
-};
+});
 
 export const App: React.FC = () => {
     const [beatmapList, setBeatmapList] = useState<Beatmap[]>([]);

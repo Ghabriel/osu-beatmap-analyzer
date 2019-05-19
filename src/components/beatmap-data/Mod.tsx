@@ -1,7 +1,6 @@
 import React from 'react';
 import { colors } from '../../helpers/style-variables';
-import { merge } from '../../helpers/utilities';
-import { StyleMap } from '../../types/StyleMap';
+import { createStyleSheet, merge } from '../../helpers/utilities';
 
 export interface ModProps {
     color?: string;
@@ -9,7 +8,7 @@ export interface ModProps {
     onClick: () => void;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     mod: {
         alignItems: 'center',
         borderColor: colors.secondaryBorder,
@@ -42,7 +41,7 @@ const styles: StyleMap = {
     modText: {
         flex: '1 1',
     },
-};
+});
 
 export const Mod: React.FC<ModProps> = props => {
     return (

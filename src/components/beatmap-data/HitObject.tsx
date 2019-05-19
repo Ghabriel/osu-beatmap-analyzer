@@ -1,14 +1,13 @@
 import React from 'react';
 import { colors } from '../../helpers/style-variables';
-import { merge } from '../../helpers/utilities';
+import { createStyleSheet, merge } from '../../helpers/utilities';
 import { Color } from '../../types/Color';
-import { StyleMap } from '../../types/StyleMap';
 
 export interface HitObjectProps {
     backgroundColor: Color;
 }
 
-const styles: StyleMap = {
+const styles = createStyleSheet({
     outerLayer: {
         border: `1px solid ${colors.secondaryDark}`,
         borderRadius: '50%',
@@ -44,7 +43,7 @@ const styles: StyleMap = {
             black 1px 1px 1px
         `,
     },
-};
+});
 
 export const HitObject: React.FC<HitObjectProps> = ({ backgroundColor }) => {
     const { red, green, blue, alpha } = backgroundColor;
