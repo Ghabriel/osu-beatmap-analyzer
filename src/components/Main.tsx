@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { changeBeatmapMods } from '../helpers/beatmap';
 import { Beatmap } from '../types/Beatmap';
 import { Mod as ModType } from '../types/Mod';
+import { BasicStats } from './beatmap-data/BasicStats';
 import { DifficultyStats } from './beatmap-data/DifficultyStats';
 import { HitObjectStats } from './beatmap-data/HitObjectStats';
 import { MiscStats } from './beatmap-data/MiscStats';
@@ -41,8 +42,6 @@ export const Main: React.FC<MainProps> = ({ beatmap, onBeatmapMutation }) => {
         );
     }
 
-    const artist = beatmap.artist;
-
     function handleModClick(mod: ModType) {
         if (selectedMods.has(mod)) {
             selectedMods.delete(mod);
@@ -58,19 +57,7 @@ export const Main: React.FC<MainProps> = ({ beatmap, onBeatmapMutation }) => {
     return (
         <div className="main">
             <ModSelector selectedMods={selectedMods} onModClick={handleModClick} />
-
-            <div className="title">
-                {beatmap.title}
-            </div>
-
-            <div className="version">
-                {beatmap.version}
-            </div>
-
-            <div className="author">
-                {beatmap.source} {artist ? `(${artist})` : ''} - Mapped by {beatmap.creator}
-            </div>
-
+            <BasicStats beatmap={beatmap} />
             <DifficultyStats beatmap={beatmap} />
             <HitObjectStats beatmap={beatmap} />
             <MiscStats beatmap={beatmap} />
