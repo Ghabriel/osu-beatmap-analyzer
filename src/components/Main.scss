@@ -19,4 +19,15 @@
         margin-top: 15px;
         padding: 5px;
     }
+
+    .stat {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+
+        .label {
+            font-weight: bold;
+            width: 150px;
+        }
+    }
 }
