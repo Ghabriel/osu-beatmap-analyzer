@@ -1,0 +1,43 @@
+$primary: #15a8e7;
+$primaryBorder: #1186b8;
+$primaryDark: #1397cf;
+
+$secondary: #b3b3b3;
+$secondaryBorder: #8d8d8d;
+$secondaryDark: #9a9a9a;
+
+.page {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "aside main";
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+}
+
+header {
+    background-color: $primaryDark;
+    color: white;
+    font-size: 20px;
+    grid-area: header;
+    padding: 3px;
+}
+
+aside {
+    background-color: #ccc;
+    border-right: 1px solid $secondary;
+    grid-area: aside;
+    padding: 3px;
+}
+
+main {
+    background-color: #eee;
+    grid-area: main;
+    padding: 0 5px;
+}
+
+button.btn {
+    padding-bottom: 0;
+    padding-top: 0;
+}
