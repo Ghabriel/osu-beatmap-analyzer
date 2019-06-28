@@ -1,0 +1,20 @@
+@import '../../variables.scss';
+
+.partial-bar {
+    border: 1px solid $secondaryBorder;
+    display: flex;
+    flex-direction: row;
+    height: 10px;
+    width: 120px;
+
+    .filled {
+        background-color: $primary;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    .empty {
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+}
