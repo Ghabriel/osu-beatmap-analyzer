@@ -1,0 +1,40 @@
+@import '../../variables.scss';
+
+.beatmap-summary {
+    background-color: $secondary;
+    border: 1px solid $secondaryBorder;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 3px;
+    padding: 3px;
+
+    &:hover {
+        background-color: $secondaryDark;
+    }
+
+    &.selected {
+        background-color: $primary;
+        border: 1px solid $primaryBorder;
+
+        &:hover {
+            background-color: $primaryDark;
+        }
+    }
+
+    .title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        word-break: break-word;
+    }
+
+    .author {
+        font-size: 0.8rem;
+        word-break: break-word;
+    }
+
+    .version {
+        font-size: 0.9rem;
+        font-weight: bold;
+        word-break: break-word;
+    }
+}
