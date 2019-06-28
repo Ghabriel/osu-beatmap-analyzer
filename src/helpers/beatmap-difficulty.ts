@@ -10,6 +10,7 @@ import { Aim } from './skills/Aim';
 import { Skill } from './skills/Skill';
 import { Speed } from './skills/Speed';
 import { isSlider } from './type-inference';
+import { range } from './utilities';
 
 // https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L14
 const STACK_DISTANCE = 3;
@@ -42,25 +43,23 @@ function createDifficultyHitObjects(
 ): DifficultyHitObject[] {
     const hitObjectRadius = getHitObjectRadius(beatmap);
     const scalingFactor = getScalingFactor(hitObjectRadius);
-    const result: DifficultyHitObject[] = [];
 
-    for (let i = 1; i < beatmap.hitObjects.length; i++) {
-        const lastLast = i > 1 ? beatmap.hitObjects[i - 2] : null;
-        const last = beatmap.hitObjects[i - 1];
-        const current = beatmap.hitObjects[i];
+    return range(1, beatmap.hitObjects.length)
+        .map(i => {
+            const lastLast = i > 1 ? beatmap.hitObjects[i - 2] : null;
+            const last = beatmap.hitObjects[i - 1];
+            const current = beatmap.hitObjects[i];
 
-        const difficultyHitObject = createDifficultyHitObject(
-            lastLast,
-            last,
-            current,
-            beatmap,
-            scalingFactor,
-            clock,
-        );
-        result.push(difficultyHitObject);
-    }
-
-    return result.sort((a, b) => a.current.startTime - b.current.startTime);
+            return createDifficultyHitObject(
+                lastLast,
+                last,
+                current,
+                beatmap,
+                scalingFactor,
+                clock,
+            );
+        })
+        .sort((a, b) => a.current.startTime - b.current.startTime);
 }
 
 function createDifficultyHitObject(

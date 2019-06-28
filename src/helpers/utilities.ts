@@ -13,6 +13,16 @@ export function merge(...styles: (CSSProperties | boolean | undefined)[]): CSSPr
     return result;
 }
 
+export function range(min: number, max: number, step: number = 1): number[] {
+    const result = [];
+
+    for (let i = min; i < max; i += step) {
+        result.push(i);
+    }
+
+    return result;
+}
+
 // type KeysToNumber<T> = ({ [K in keyof T]: T[K] extends number ? K : never })[keyof T];
 
 // export function sortBy<T, K extends KeysToNumber<T>>(list: T[], field: K) {
