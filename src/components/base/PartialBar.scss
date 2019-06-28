@@ -11,6 +11,7 @@
         background-color: $primary;
         flex-grow: 0;
         flex-shrink: 0;
+        transition: flex-basis 200ms ease-in-out;
     }
 
     .empty {
