@@ -1,7 +1,6 @@
 import React from 'react';
 import { Beatmap } from '../../types/Beatmap';
 import { Stat } from '../base/stats/Stat';
-import { StatGroup } from '../base/stats/StatGroup';
 import { ComboColors } from './ComboColors';
 
 export interface MiscStatsProps {
@@ -10,7 +9,7 @@ export interface MiscStatsProps {
 
 export const MiscStats: React.FC<MiscStatsProps> = ({ beatmap }) => {
     return (
-        <StatGroup>
+        <div className="stat-group">
             <Stat label='Beat Divisor'>
                 {beatmap.beatDivisor}
             </Stat>
@@ -28,6 +27,6 @@ export const MiscStats: React.FC<MiscStatsProps> = ({ beatmap }) => {
                     ? <ComboColors beatmap={beatmap} />
                     : 'none'}
             </Stat>
-        </StatGroup>
+        </div>
     );
 };

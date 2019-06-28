@@ -1,0 +1,22 @@
+@import '../variables.scss';
+
+.main {
+    .title {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .version {
+        font-weight: bold;
+    }
+
+    .author {
+        font-size: 1.1rem;
+    }
+
+    .stat-group {
+        border: 1px solid $primaryBorder;
+        margin-top: 15px;
+        padding: 5px;
+    }
+}

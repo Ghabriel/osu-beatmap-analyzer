@@ -3,7 +3,6 @@ import { round } from '../../helpers/utilities';
 import { Beatmap } from '../../types/Beatmap';
 import { FractionalStat } from '../base/stats/FractionalStat';
 import { StatDivider } from '../base/stats/StatDivider';
-import { StatGroup } from '../base/stats/StatGroup';
 
 export interface DifficultyStatsProps {
     beatmap: Beatmap;
@@ -26,7 +25,7 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
     const derivedAttributes = beatmap.derivedDifficulty;
 
     return (
-        <StatGroup>
+        <div className="stat-group">
             <DiffStat label='HP Drain' precision={2} value={baseDifficulty.hpDrainRate} />
             <DiffStat label='Circle Size' precision={2} value={baseDifficulty.circleSize} />
             <DiffStat label='Overall Difficulty' precision={2} value={baseDifficulty.overallDifficulty} />
@@ -37,6 +36,6 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
             <DiffStat label='Aim Strain' precision={3} value={derivedAttributes.aimStrain} />
             <DiffStat label='Speed Strain' precision={3} value={derivedAttributes.speedStrain} />
             <DiffStat label='Star Rating' precision={3} value={derivedAttributes.starRating} />
-        </StatGroup>
+        </div>
     );
 };

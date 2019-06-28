@@ -1,32 +1,17 @@
 import React, { useState } from 'react';
 import { changeBeatmapMods } from '../helpers/beatmap';
-import { createStyleSheet } from '../helpers/utilities';
 import { Beatmap } from '../types/Beatmap';
 import { Mod as ModType } from '../types/Mod';
 import { DifficultyStats } from './beatmap-data/DifficultyStats';
 import { HitObjectStats } from './beatmap-data/HitObjectStats';
 import { MiscStats } from './beatmap-data/MiscStats';
 import { ModSelector } from './beatmap-data/ModSelector';
+import './Main.scss';
 
 export interface MainProps {
     beatmap: Beatmap | null;
     onBeatmapMutation: (beatmap: Beatmap) => void;
 }
-
-const styles = createStyleSheet({
-    title: {
-        fontSize: '2rem',
-        fontWeight: 'bold',
-    },
-
-    version: {
-        fontWeight: 'bold',
-    },
-
-    author: {
-        fontSize: '1.1rem',
-    },
-});
 
 const mutuallyExclusiveMods: [ModType, ModType][] = [
     [ModType.Easy, ModType.HardRock],
@@ -71,18 +56,18 @@ export const Main: React.FC<MainProps> = ({ beatmap, onBeatmapMutation }) => {
     }
 
     return (
-        <div>
+        <div className="main">
             <ModSelector selectedMods={selectedMods} onModClick={handleModClick} />
 
-            <div style={styles.title}>
+            <div className="title">
                 {beatmap.title}
             </div>
 
-            <div style={styles.version}>
+            <div className="version">
                 {beatmap.version}
             </div>
 
-            <div style={styles.author}>
+            <div className="author">
                 {beatmap.source} {artist ? `(${artist})` : ''} - Mapped by {beatmap.creator}
             </div>
 

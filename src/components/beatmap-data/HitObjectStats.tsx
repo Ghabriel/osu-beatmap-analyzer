@@ -4,7 +4,6 @@ import { getListMode, round } from '../../helpers/utilities';
 import { Beatmap } from '../../types/Beatmap';
 import { Stat } from '../base/stats/Stat';
 import { StatDivider } from '../base/stats/StatDivider';
-import { StatGroup } from '../base/stats/StatGroup';
 
 export interface HitObjectStatsProps {
     beatmap: Beatmap;
@@ -19,7 +18,7 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
     const modeVelocity = getListMode(sliderVelocities);
 
     return (
-        <StatGroup>
+        <div className="stat-group">
             <Stat label='Max Combo'>
                 {beatmap.derivedDifficulty.maxCombo}
             </Stat>
@@ -47,6 +46,6 @@ export const HitObjectStats: React.FC<HitObjectStatsProps> = ({ beatmap }) => {
                     ? round(minVelocity, 3)
                     : `${round(minVelocity, 3)} - ${round(maxVelocity, 3)} (${round(modeVelocity, 3)})`}
             </Stat>
-        </StatGroup>
+        </div>
     );
 };
