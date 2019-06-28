@@ -11,37 +11,32 @@ export interface DifficultyStatsProps {
 
 interface StatProps {
     label: string;
+    precision: number;
     value: number;
 }
 
+const DiffStat: React.FC<StatProps> = ({ label, value, precision }) => (
+    <FractionalStat label={label} fraction={value / 10}>
+        {round(value, precision)}
+    </FractionalStat>
+);
+
 export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => {
-    const IntStat: React.FC<StatProps> = ({ label, value }) => (
-        <FractionalStat label={label} fraction={value / 10}>
-            {round(value, 2)}
-        </FractionalStat>
-    );
-
-    const FloatStat: React.FC<StatProps> = ({ label, value }) => (
-        <FractionalStat label={label} fraction={value / 10}>
-            {round(value, 3)}
-        </FractionalStat>
-    );
-
     const baseDifficulty = beatmap.baseDifficulty;
     const derivedAttributes = beatmap.derivedDifficulty;
 
     return (
         <StatGroup>
-            <IntStat label='HP Drain' value={baseDifficulty.hpDrainRate} />
-            <IntStat label='Circle Size' value={baseDifficulty.circleSize} />
-            <IntStat label='Overall Difficulty' value={baseDifficulty.overallDifficulty} />
-            <IntStat label='Approach Rate' value={baseDifficulty.approachRate} />
+            <DiffStat label='HP Drain' precision={2} value={baseDifficulty.hpDrainRate} />
+            <DiffStat label='Circle Size' precision={2} value={baseDifficulty.circleSize} />
+            <DiffStat label='Overall Difficulty' precision={2} value={baseDifficulty.overallDifficulty} />
+            <DiffStat label='Approach Rate' precision={2} value={baseDifficulty.approachRate} />
 
             <StatDivider />
 
-            <FloatStat label='Aim Strain' value={derivedAttributes.aimStrain} />
-            <FloatStat label='Speed Strain' value={derivedAttributes.speedStrain} />
-            <FloatStat label='Star Rating' value={derivedAttributes.starRating} />
+            <DiffStat label='Aim Strain' precision={3} value={derivedAttributes.aimStrain} />
+            <DiffStat label='Speed Strain' precision={3} value={derivedAttributes.speedStrain} />
+            <DiffStat label='Star Rating' precision={3} value={derivedAttributes.starRating} />
         </StatGroup>
     );
 };
