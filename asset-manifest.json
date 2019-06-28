@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/osu-beatmap-analyzer/static/css/main.8dcf70e1.chunk.css",
-    "main.js": "/osu-beatmap-analyzer/static/js/main.ef5b3278.chunk.js",
-    "main.js.map": "/osu-beatmap-analyzer/static/js/main.ef5b3278.chunk.js.map",
+    "main.css": "/osu-beatmap-analyzer/static/css/main.991996d9.chunk.css",
+    "main.js": "/osu-beatmap-analyzer/static/js/main.409334ca.chunk.js",
+    "main.js.map": "/osu-beatmap-analyzer/static/js/main.409334ca.chunk.js.map",
     "runtime~main.js": "/osu-beatmap-analyzer/static/js/runtime~main.e807949f.js",
     "runtime~main.js.map": "/osu-beatmap-analyzer/static/js/runtime~main.e807949f.js.map",
     "static/css/2.22a7d4ef.chunk.css": "/osu-beatmap-analyzer/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.1f23c921.chunk.js": "/osu-beatmap-analyzer/static/js/2.1f23c921.chunk.js",
-    "static/js/2.1f23c921.chunk.js.map": "/osu-beatmap-analyzer/static/js/2.1f23c921.chunk.js.map",
+    "static/js/2.09e29ac9.chunk.js": "/osu-beatmap-analyzer/static/js/2.09e29ac9.chunk.js",
+    "static/js/2.09e29ac9.chunk.js.map": "/osu-beatmap-analyzer/static/js/2.09e29ac9.chunk.js.map",
     "index.html": "/osu-beatmap-analyzer/index.html",
-    "precache-manifest.d98ba54989f8d57bd3d4da263cbfe06c.js": "/osu-beatmap-analyzer/precache-manifest.d98ba54989f8d57bd3d4da263cbfe06c.js",
+    "precache-manifest.9f7916e0c8040a78eaa78c1b7f3411c8.js": "/osu-beatmap-analyzer/precache-manifest.9f7916e0c8040a78eaa78c1b7f3411c8.js",
     "service-worker.js": "/osu-beatmap-analyzer/service-worker.js",
     "static/css/2.22a7d4ef.chunk.css.map": "/osu-beatmap-analyzer/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.8dcf70e1.chunk.css.map": "/osu-beatmap-analyzer/static/css/main.8dcf70e1.chunk.css.map"
+    "static/css/main.991996d9.chunk.css.map": "/osu-beatmap-analyzer/static/css/main.991996d9.chunk.css.map"
   }
 }

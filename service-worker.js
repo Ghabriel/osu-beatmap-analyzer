@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/osu-beatmap-analyzer/precache-manifest.d98ba54989f8d57bd3d4da263cbfe06c.js"
+  "/osu-beatmap-analyzer/precache-manifest.9f7916e0c8040a78eaa78c1b7f3411c8.js"
 );
 
 self.addEventListener('message', (event) => {
