@@ -321,15 +321,3 @@ function getNewOverallDifficulty(beatmap: ParsedBeatmap, clock: Readonly<Clock>)
         toleranceMS,
     };
 }
-
-function getDifficultyValue(difficulty: number, min: number, mid: number, max: number): number {
-    if (difficulty > 5) {
-        return mid + (max - mid) * (difficulty - 5) / 5;
-    }
-
-    if (difficulty < 5) {
-        return mid - (mid - min) * (5 - difficulty) / 5;
-    }
-
-    return mid;
-}
