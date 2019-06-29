@@ -64,6 +64,16 @@ export interface DerivedDifficultyAttributes {
     aimStrain: number;
     speedStrain: number;
     maxCombo: number;
-    approachRate: number;
-    overallDifficulty: number;
+    approachRate: ApproachRateData;
+    overallDifficulty: OverallDifficultyData;
+}
+
+export interface ApproachRateData {
+    value: number;
+    toleranceMS: number;
+}
+
+export interface OverallDifficultyData {
+    value: number;
+    toleranceMS: number;
 }

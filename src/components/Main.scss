@@ -33,5 +33,15 @@
             font-weight: bold;
             width: 150px;
         }
+
+        .value {
+            vertical-align: middle;
+        }
+
+        .tolerance {
+            font-size: 0.8rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
     }
 }

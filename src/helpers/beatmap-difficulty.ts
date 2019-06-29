@@ -1,4 +1,4 @@
-import { Beatmap, DerivedDifficultyAttributes, ParsedBeatmap } from '../types/Beatmap';
+import { ApproachRateData, Beatmap, DerivedDifficultyAttributes, OverallDifficultyData, ParsedBeatmap } from '../types/Beatmap';
 import { Clock } from '../types/Clock';
 import { DifficultyHitObject } from '../types/DifficultyHitObject';
 import { HitObject, HitObjectType, NestedHitObject, Slider } from '../types/HitObject';
@@ -279,7 +279,7 @@ function getMaxCombo(beatmap: ParsedBeatmap): number {
     return result;
 }
 
-function getNewApproachRate(beatmap: ParsedBeatmap, clock: Readonly<Clock>): number {
+function getNewApproachRate(beatmap: ParsedBeatmap, clock: Readonly<Clock>): ApproachRateData {
     const AR0_MS = 1800;
     const AR5_MS = 1200;
     const AR10_MS = 450;
@@ -292,12 +292,17 @@ function getNewApproachRate(beatmap: ParsedBeatmap, clock: Readonly<Clock>): num
         : (AR5_MS - AR_MS_STEP2 * (originalAR - 5));
     const toleranceMS = clamp(baseToleranceMS, AR10_MS, AR0_MS) / clock.rate;
 
-    return toleranceMS > AR5_MS
+    const newAR = toleranceMS > AR5_MS
         ? (AR0_MS - toleranceMS) / AR_MS_STEP1
         : 5 + (AR5_MS - toleranceMS) / AR_MS_STEP2;
+
+    return {
+        value: newAR,
+        toleranceMS,
+    };
 }
 
-function getNewOverallDifficulty(beatmap: ParsedBeatmap, clock: Readonly<Clock>): number {
+function getNewOverallDifficulty(beatmap: ParsedBeatmap, clock: Readonly<Clock>): OverallDifficultyData {
     const OD0_MS = 80;
     const OD10_MS = 20;
     const OD_MS_STEP = 6;
@@ -309,7 +314,12 @@ function getNewOverallDifficulty(beatmap: ParsedBeatmap, clock: Readonly<Clock>)
         OD0_MS,
     ) / clock.rate;
 
-    return (OD0_MS - toleranceMS) / OD_MS_STEP;
+    const newOD = (OD0_MS - toleranceMS) / OD_MS_STEP;
+
+    return {
+        value: newOD,
+        toleranceMS,
+    };
 }
 
 function getDifficultyValue(difficulty: number, min: number, mid: number, max: number): number {
