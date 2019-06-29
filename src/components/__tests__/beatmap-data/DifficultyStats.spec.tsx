@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { Beatmap } from '../../../types/Beatmap';
+import { ApproachRateData, Beatmap, OverallDifficultyData } from '../../../types/Beatmap';
 import { DifficultyStats, DifficultyStatsProps } from '../../beatmap-data/DifficultyStats';
 
 interface MockedBeatmapProperties {
@@ -11,6 +11,8 @@ interface MockedBeatmapProperties {
     aimStrain?: number;
     speedStrain?: number;
     starRating?: number;
+    newApproachRate?: ApproachRateData;
+    newOverallDifficulty?: OverallDifficultyData;
 }
 
 function mockBeatmap(props: MockedBeatmapProperties): Beatmap {
@@ -26,7 +28,8 @@ function mockBeatmap(props: MockedBeatmapProperties): Beatmap {
             speedStrain: props.speedStrain || 0,
             starRating: props.starRating || 0,
             maxCombo: 0,
-            approachRate: props.approachRate || 0,
+            approachRate: props.newApproachRate || { value: 0, toleranceMS: 0 },
+            overallDifficulty: props.newOverallDifficulty || { value: 0, toleranceMS: 0 },
         },
     } as Beatmap;
 }
@@ -72,7 +75,7 @@ describe('DifficultyStats component', () => {
     it('should display the beatmap\'s OD', () => {
         // given
         const props: DifficultyStatsProps = {
-            beatmap: mockBeatmap({ overallDifficulty: 8 }),
+            beatmap: mockBeatmap({ newOverallDifficulty: { value: 7, toleranceMS: 38 } }),
         };
 
         // when
@@ -81,13 +84,32 @@ describe('DifficultyStats component', () => {
 
         // then
         expect(getOD).not.toThrow();
-        expect(getOD().props.value).toBe(8);
+        expect(getOD().props.value).toBe(7);
+    });
+
+    it('should display the beatmap\'s OD tolerance', () => {
+        // given
+        const props: DifficultyStatsProps = {
+            beatmap: mockBeatmap({ newOverallDifficulty: { value: 7, toleranceMS: 38 } }),
+        };
+
+        // when
+        const testInstance = render(props);
+        const getToleranceOD = () => {
+            return testInstance
+                .findByProps({ label: 'Overall Difficulty' })
+                .findByProps({ className: 'tolerance' });
+        };
+
+        // then
+        expect(getToleranceOD).not.toThrow();
+        expect(getToleranceOD().props.children.join('')).toBe('(38 ms)');
     });
 
     it('should display the beatmap\'s AR', () => {
         // given
         const props: DifficultyStatsProps = {
-            beatmap: mockBeatmap({ approachRate: 9.5 }),
+            beatmap: mockBeatmap({ newApproachRate: { value: 9.5, toleranceMS: 525 } }),
         };
 
         // when
@@ -97,6 +119,25 @@ describe('DifficultyStats component', () => {
         // then
         expect(getAR).not.toThrow();
         expect(getAR().props.value).toBe(9.5);
+    });
+
+    it('should display the beatmap\'s AR tolerance', () => {
+        // given
+        const props: DifficultyStatsProps = {
+            beatmap: mockBeatmap({ newApproachRate: { value: 9.5, toleranceMS: 525 } }),
+        };
+
+        // when
+        const testInstance = render(props);
+        const getToleranceAR = () => {
+            return testInstance
+                .findByProps({ label: 'Approach Rate' })
+                .findByProps({ className: 'tolerance' });
+        };
+
+        // then
+        expect(getToleranceAR).not.toThrow();
+        expect(getToleranceAR().props.children.join('')).toBe('(525 ms)');
     });
 
     it('should display the beatmap\'s aim strain', () => {
