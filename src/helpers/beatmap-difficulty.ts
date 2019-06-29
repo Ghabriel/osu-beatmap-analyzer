@@ -10,7 +10,7 @@ import { Aim } from './skills/Aim';
 import { Skill } from './skills/Skill';
 import { Speed } from './skills/Speed';
 import { isSlider } from './type-inference';
-import { range } from './utilities';
+import { clamp, range } from './utilities';
 
 // https://github.com/ppy/osu/blob/master/osu.Game.Rulesets.Osu/Beatmaps/OsuBeatmapProcessor.cs#L14
 const STACK_DISTANCE = 3;
@@ -254,15 +254,17 @@ function createDifficultyAttributes(
     // const starRating = Math.max(aimStrain, speedStrain) + (aimStrain + speedStrain) / 2;
 
     const maxCombo = getMaxCombo(beatmap);
+    const approachRate = getNewApproachRate(beatmap, clock);
+    const overallDifficulty = getNewOverallDifficulty(beatmap, clock);
 
-    const originalAR = beatmap.baseDifficulty.approachRate;
-    const preempt = getDifficultyValue(originalAR, 1800, 1200, 450) / clock.rate;
-
-    const approachRate = (preempt > 1200)
-        ? (1800 - preempt) / 120
-        : (1200 - preempt) / 150 + 5;
-
-    return { aimStrain, speedStrain, starRating, maxCombo, approachRate };
+    return {
+        aimStrain,
+        speedStrain,
+        starRating,
+        maxCombo,
+        approachRate,
+        overallDifficulty,
+    };
 }
 
 function getMaxCombo(beatmap: ParsedBeatmap): number {
@@ -275,6 +277,39 @@ function getMaxCombo(beatmap: ParsedBeatmap): number {
     }
 
     return result;
+}
+
+function getNewApproachRate(beatmap: ParsedBeatmap, clock: Readonly<Clock>): number {
+    const AR0_MS = 1800;
+    const AR5_MS = 1200;
+    const AR10_MS = 450;
+    const AR_MS_STEP1 = 120;
+    const AR_MS_STEP2 = 150;
+
+    const originalAR = beatmap.baseDifficulty.approachRate;
+    const baseToleranceMS = (originalAR <= 5)
+        ? (AR0_MS - AR_MS_STEP1 * originalAR)
+        : (AR5_MS - AR_MS_STEP2 * (originalAR - 5));
+    const toleranceMS = clamp(baseToleranceMS, AR10_MS, AR0_MS) / clock.rate;
+
+    return toleranceMS > AR5_MS
+        ? (AR0_MS - toleranceMS) / AR_MS_STEP1
+        : 5 + (AR5_MS - toleranceMS) / AR_MS_STEP2;
+}
+
+function getNewOverallDifficulty(beatmap: ParsedBeatmap, clock: Readonly<Clock>): number {
+    const OD0_MS = 80;
+    const OD10_MS = 20;
+    const OD_MS_STEP = 6;
+
+    const originalOD = beatmap.baseDifficulty.overallDifficulty;
+    const toleranceMS = clamp(
+        OD0_MS - Math.ceil(OD_MS_STEP * originalOD),
+        OD10_MS,
+        OD0_MS,
+    ) / clock.rate;
+
+    return (OD0_MS - toleranceMS) / OD_MS_STEP;
 }
 
 function getDifficultyValue(difficulty: number, min: number, mid: number, max: number): number {

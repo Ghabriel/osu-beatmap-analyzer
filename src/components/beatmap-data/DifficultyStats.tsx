@@ -28,8 +28,8 @@ export const DifficultyStats: React.FC<DifficultyStatsProps> = ({ beatmap }) => 
         <div className="stat-group">
             <DiffStat label='HP Drain' precision={2} value={baseDifficulty.hpDrainRate} />
             <DiffStat label='Circle Size' precision={2} value={baseDifficulty.circleSize} />
-            <DiffStat label='Overall Difficulty' precision={2} value={baseDifficulty.overallDifficulty} />
-            <DiffStat label='Approach Rate' precision={2} value={baseDifficulty.approachRate} />
+            <DiffStat label='Overall Difficulty' precision={2} value={derivedAttributes.overallDifficulty} />
+            <DiffStat label='Approach Rate' precision={2} value={derivedAttributes.approachRate} />
 
             <StatDivider />
 

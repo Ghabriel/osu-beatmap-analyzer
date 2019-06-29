@@ -63,7 +63,7 @@ export interface DerivedDifficultyAttributes {
     // mods: number;
     aimStrain: number;
     speedStrain: number;
-    // overallDifficulty: number;
     maxCombo: number;
     approachRate: number;
+    overallDifficulty: number;
 }
